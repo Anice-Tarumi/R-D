@@ -6,6 +6,9 @@ import { Vector3, MathUtils } from "three"
 import { Leva, useControls } from "leva"
 import { useKeyboardControls } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils.js"
+import useGame from "./useGame.jsx"
+
+
 
 const normalizeAngle = (angle) =>{
     while (angle > Math.PI) angle -= 2 * Math.PI
@@ -32,7 +35,7 @@ const lerpAngle = (start,end,t) =>
     return MathUtils.lerp(start, end, t)
 }
 
-export default function CharacterController({canvasRef}){
+export default function CharacterController({canvasRef,gameState}){
     const { WALK_SPEED, RUN_SPEED, ROTATION_SPEED } = useControls("Character Control",{
         WALK_SPEED: {value: 3.0,min: 0.1, max: 4, step: 0.1},
         RUN_SPEED: { value: 6.5, min: 0.2, max: 12, step: 0.1},
@@ -43,6 +46,7 @@ export default function CharacterController({canvasRef}){
             step: degToRad(0.1),
         },
     })
+    const phase = useGame((state) => state.phase)
     const rb = useRef()
     const container = useRef()
     const character = useRef()
@@ -90,6 +94,7 @@ export default function CharacterController({canvasRef}){
 
     useFrame(({camera,mouse}) =>
     {
+        if(phase !== 'playing')return;//playing状態以外は操作不可
         if(rb.current)
         {
             const vel = rb.current.linvel()
@@ -157,11 +162,6 @@ export default function CharacterController({canvasRef}){
                 // console.log('アイドル')
                 setAnimation("idle")
             }
-            // character.current.rotation.y = MathUtils.lerp(
-            //     character.current.rotation.y,
-            //     characterRotationTarget.current,
-            //     0.1
-            // )
             
             character.current.rotation.y = lerpAngle(
                 character.current.rotation.y,
@@ -169,7 +169,6 @@ export default function CharacterController({canvasRef}){
                 0.1
             )
             rb.current.setLinvel(vel,true)
-            // console.log(rb.current.position)
         }
 
         container.current.rotation.y = MathUtils.lerp(
