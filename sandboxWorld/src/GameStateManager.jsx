@@ -5,12 +5,15 @@ import useGame from "./useGame.jsx"
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {
-  return (
+  return (<>
+  <div>
     <button className="menu-button">
       <span className="line"></span>
       <span className="line middle"></span>
       <span className="line"></span>
     </button>
+    </div>
+    </>
   );
 };
 
