@@ -53,12 +53,22 @@ export default create(subscribeWithSelector((set) =>
                 })
             },
 
-        talking: () =>
+        startTalking: () =>
         {
             set((state) =>
             {
                 if(state.phase === 'playing')
                     return { phase: 'talking'}
+
+                return {}
+            })
+        },
+        endTalking: () =>
+        {
+            set((state) =>
+            {
+                if(state.phase === 'talking')
+                    return { phase: 'playing'}
 
                 return {}
             })

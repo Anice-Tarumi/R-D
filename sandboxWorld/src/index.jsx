@@ -5,6 +5,7 @@ import Experience from './Experience.jsx'; // ゲームの3Dシーン
 import { KeyboardControls } from '@react-three/drei';
 import GameStateManager from './GameStateManager'; // 状態管理コンポーネント
 import { useRef, useState } from 'react';
+import DialogButton from './DialogButton.jsx';
 
 const App = () => {
 
@@ -44,6 +45,7 @@ const App = () => {
           <Experience canvasRef={canvasRef} />
         </Canvas>
       </KeyboardControls>
+      <DialogButton  />
     </>
   );
 };

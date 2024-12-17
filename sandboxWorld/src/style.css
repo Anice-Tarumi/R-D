@@ -170,6 +170,29 @@ body,
   .dialog-button button:hover {
     background-color: #0056b3;
   }
+
+  .end-conversation-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* 他の要素より手前に表示 */
+  }
+  
+  .end-conversation-button button {
+    background-color: #ff4b5c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .end-conversation-button button:hover {
+    background-color: #e04352;
+  }
+  
   
   
   @keyframes slide-down {

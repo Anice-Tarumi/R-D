@@ -23,6 +23,7 @@ const GameStateManager = () => {
   const phase = useGame((state) => state.phase)
   const ready = useGame((state) => state.ready)
   const start = useGame((state) => state.start)
+  const endTalking = useGame((state) => state.endTalking); // 会話終了処理
 
   // ロードが完了したらアニメーションを開始
   useEffect(() => {
@@ -49,14 +50,14 @@ const GameStateManager = () => {
         return (
           <div className="game-state-container">
             <div className="title">
-              <h1>Welcome to the Game!</h1>
+              <h1>テストゲーム</h1>
               <button
                 className="start-button"
                 onClick={() => {
                   start();
                 }}
               >
-                Start Game
+                スタート！
               </button>
             </div>
           </div>
@@ -65,6 +66,14 @@ const GameStateManager = () => {
         return (
           <>
             <MenuButton />
+          </>
+        );
+      case 'talking':
+        return (
+          <>
+          <div className="end-conversation-button">
+            <button onClick={endTalking}>中断</button>
+          </div>
           </>
         );
       default:

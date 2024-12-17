@@ -28,7 +28,7 @@ const lerpAngle = (start, end, t) => {
   return MathUtils.lerp(start, end, t);
 };
 
-const CharacterController = forwardRef(({ canvasRef }, ref) => {
+const CharacterController = forwardRef(({ canvasRef,npcRef }, ref) => {
   const { WALK_SPEED, RUN_SPEED, ROTATION_SPEED } = useControls("Character Control", {
     WALK_SPEED: { value: 3.0, min: 0.1, max: 4, step: 0.1 },
     RUN_SPEED: { value: 6.5, min: 0.2, max: 12, step: 0.1 },
@@ -39,6 +39,8 @@ const CharacterController = forwardRef(({ canvasRef }, ref) => {
       step: degToRad(0.1),
     },
   });
+  const initialCameraPosition = useRef(new Vector3()); // カメラの初期位置を保存
+  const isTalking = useRef(false); // 会話中フラグ
 
   const phase = useGame((state) => state.phase);
   const rb = useRef();
@@ -93,6 +95,36 @@ const CharacterController = forwardRef(({ canvasRef }, ref) => {
   }, []);
 
   useFrame(({ camera, mouse }) => {
+// console.log(npcRef)
+    if (phase === "talking" && npcRef.current) {
+      const npcPosition = new Vector3();
+    npcRef.current.getWorldPosition(npcPosition);
+
+    // NPCの正面方向を計算
+    const npcDirection = new Vector3(0, 0, 1.5); // Z軸正方向をNPCの「前方」と仮定
+    npcDirection.applyQuaternion(npcRef.current.quaternion); // NPCの回転を考慮
+    npcDirection.applyAxisAngle(new Vector3(0, 1, 0), -Math.PI / 2); // 90度のY軸オフセット
+
+    // カメラの目標位置を計算 (NPCの前方少し離れた位置)
+    const cameraTargetPosition = npcPosition
+      .clone()
+      .add(npcDirection.multiplyScalar(-4)) // NPCの前方に3単位分離れた位置
+      .add(new Vector3(0, 2, 0)); // 少し上の位置
+
+    // カメラを滑らかに移動
+    camera.position.lerp(cameraTargetPosition, 0.1);
+
+    // カメラの向きをNPCの顔の少し上側に向ける
+    const lookAtPosition = npcPosition.clone().add(new Vector3(0, 3, 0)); // 顔の高さに調整
+    camera.lookAt(lookAtPosition);
+    } else if (phase === "playing") {
+      // 会話が終了したらカメラを元の位置に戻す
+      if (isTalking.current) {
+        camera.position.lerp(initialCameraPosition.current, 0.1);
+        isTalking.current = false;
+      }
+    }
+
     if (phase !== "playing") return; // playing状態以外は操作不可
     if (rb.current) {
       const vel = rb.current.linvel();
