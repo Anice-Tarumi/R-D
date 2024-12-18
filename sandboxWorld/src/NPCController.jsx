@@ -3,6 +3,8 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import { Vector3 } from "three";
 import useInteractionStore from "./useInteractionStore"; // 会話状態を管理
 import { useFrame } from "@react-three/fiber";
+import { Quaternion } from "three";
+import { pingpong } from "three/src/math/MathUtils.js";
 
 const NPCController = forwardRef(({
   modelPath,
@@ -32,25 +34,45 @@ const NPCController = forwardRef(({
     };
   }, [actions]);
 
+  // useFrame(() => {
+  //   if (playerRef?.current && ref?.current && isClose) {
+  //     const playerPosition = new Vector3();
+  //     const npcPosition = new Vector3();
+  
+  //     playerRef.current.getWorldPosition(playerPosition); // プレイヤー座標を取得
+  //     ref.current.getWorldPosition(npcPosition); // NPC座標を取得
+  
+  //     // プレイヤーとNPCの水平位置差分を計算
+  //     const direction = playerPosition.clone().sub(npcPosition);
+  //     direction.y = 0; // Y軸の高さを無視（水平回転のみ）
+  
+  //     // Y軸の回転角度を計算（atan2を使用）
+  //     const targetRotationY = Math.atan2(direction.x, direction.z);
+  
+  //     // 角度をNPCのrotation.yに適用
+  //     ref.current.rotation.y = targetRotationY - Math.PI/2; // 補正のためMath.PIを加える
+  //   }
+  // });
+
   useFrame(() => {
-    if (playerRef?.current && ref?.current) {
-      const playerPosition = new Vector3();
+    if (playerRef?.current && ref?.current && isClose) {
       const npcPosition = new Vector3();
+      const playerPosition = new Vector3();
+      ref.current.getWorldPosition(npcPosition);
+      playerRef.current.getWorldPosition(playerPosition);
   
-      playerRef.current.getWorldPosition(playerPosition); // プレイヤー座標を取得
-      ref.current.getWorldPosition(npcPosition); // NPC座標を取得
+      // NPCが向くべき方向を計算
+      const targetDirection = new Vector3().subVectors(playerPosition, npcPosition).normalize();
+      const targetQuaternion = new Quaternion().setFromUnitVectors(
+        new Vector3(1, 0, 0), // NPCの正面方向
+        new Vector3(targetDirection.x, 0, targetDirection.z) // Y軸回転のみ考慮
+      );
   
-      // プレイヤーとNPCの水平位置差分を計算
-      const direction = playerPosition.clone().sub(npcPosition);
-      direction.y = 0; // Y軸の高さを無視（水平回転のみ）
-  
-      // Y軸の回転角度を計算（atan2を使用）
-      const targetRotationY = Math.atan2(direction.x, direction.z);
-  
-      // 角度をNPCのrotation.yに適用
-      ref.current.rotation.y = targetRotationY - Math.PI/2; // 補正のためMath.PIを加える
+      // 現在の回転を取得し補間
+      ref.current.quaternion.slerp(targetQuaternion, 0.1); // 0.1は補間速度
     }
   });
+  
   
 
   // useEffect(() => {

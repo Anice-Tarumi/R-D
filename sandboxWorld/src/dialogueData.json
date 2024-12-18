@@ -4,12 +4,14 @@
       "dialogues": [
         {
           "id": "d1",
-          "text": "こんにちは！今日はどうされましたか？",
+          "text": "こんにちは！このフレグランスを知っていますか？",
+          "image": "/images/fre.png",
           "next": "d2"
         },
         {
           "id": "d2",
-          "text": "今日はいい天気ですね。",
+          "text": "もっと詳しく知りたい方はこちらをご覧ください。",
+          "url": "https://sinnpurete.com",
           "next": null
         }
       ]
@@ -34,6 +36,7 @@
         {
           "id": "d2",
           "text": "町で一番の品揃えですよ！",
+          "image": "/images/shop.png",
           "next": null
         },
         {
@@ -44,3 +47,4 @@
       ]
     }
   }
+  

@@ -199,22 +199,22 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
 
     if (cameraTarget.current) {
       cameraTarget.current.getWorldPosition(cameraLookAtWorldPosition.current);
-      cameraLookAt.current.lerp(cameraLookAtWorldPosition.current, 0.1);
+      cameraLookAt.current.lerp(cameraLookAtWorldPosition.current, 0.2);
 
       camera.lookAt(cameraLookAt.current);
     }
   });
 
   return (
-    <RigidBody colliders={false} lockRotations ref={rb} friction={0}>
-      <group ref={container}>
+    <RigidBody colliders={false} lockRotations ref={rb} friction={1}>
+      <group ref={container} visible={phase !== "talking"}>
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={2} position-z={-10} />
         <group ref={character}>
           <Chara scale={0.5} position-y={-1} rotation-y={-Math.PI / 2} animation={animation} />
         </group>
       </group>
-      <CapsuleCollider args={[0.5, 0.5]} friction={1} />
+      <CapsuleCollider args={[0.5, 0.5]} friction={2} />
       <Leva hidden />
     </RigidBody>
   );

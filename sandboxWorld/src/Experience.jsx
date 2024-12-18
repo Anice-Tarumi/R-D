@@ -1,7 +1,7 @@
 import { OrbitControls } from '@react-three/drei'
 import Lights from './Lights.jsx'
 import Chara from './Chara.jsx'
-import { CapsuleCollider, MeshCollider, Physics, RigidBody } from '@react-three/rapier'
+import { CapsuleCollider, CuboidCollider, MeshCollider, Physics, RigidBody } from '@react-three/rapier'
 import CharacterController from './CharacterController.jsx'
 import { Perf } from 'r3f-perf'
 import WildWest from './Scene.jsx'
@@ -10,6 +10,9 @@ import React, { useEffect, useRef } from 'react'
 import DialogButton from './DialogButton.jsx'
 import NpcData from './NpcData.jsx'
 import DialogueUI from './DialogueUI.jsx'
+import ChestController from './ChestController.jsx'
+import { ChestTest } from './chesttest.jsx'
+import ChestGroup from './ChestGroup.jsx'
 
 export default function Experience({canvasRef})
 {
@@ -28,7 +31,7 @@ export default function Experience({canvasRef})
     return <>
 
         {/* <OrbitControls makeDefault /> */}
-        {/* <Perf position='top-left' /> */}
+        <Perf position='top-left' />
         <Lights />
         <Physics debug >
             
@@ -47,8 +50,15 @@ export default function Experience({canvasRef})
             </RigidBody> */}
             {/* NPC */}
             <NpcData playerRef={playerRef} npcRefs={npcRefs} />
-            
+            {/* <ChestController /> */}
+            {/* <RigidBody colliders={false} type='fixed'>
+                <ChestTest position={[4,-1,10]} rotation={[0,Math.PI,0]} >
+                </ChestTest>
+                <CuboidCollider args={[1,1,1]} position={[4,0,10]}/>
+            </RigidBody> */}
+            <ChestGroup playerRef={playerRef}/>
         </Physics>
+        
 
     </>
 }

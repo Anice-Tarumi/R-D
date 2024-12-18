@@ -277,6 +277,26 @@ body,
   padding-bottom: 10px;
 }
 
+.dialogue-content {
+  display: flex;
+  flex-direction: column; /* 縦並びにする */
+  align-items: center;    /* 中央揃え */
+  text-align: center;     /* テキストを中央揃え */
+}
+
+.dialogue-image {
+  margin-top: 10px;       /* テキストとの間隔を調整 */
+  width: 100px;        /* 画像の横幅をコンテナに合わせる */
+  height: auto;           /* アスペクト比を保つ */
+}
+/* .dialogue-image {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+} */
+
 .dialogue-content p {
   font-size: 18px;
   line-height: 1.6;
@@ -292,29 +312,56 @@ body,
 }
 
 
-  
-  
-  @keyframes slide-down {
-    0% {
-      transform: translateY(-50%);
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
-    }
-    50% {
-      clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
-    }
-    100% {
-      transform: translateY(100%);
-      clip-path: polygon(0 10%, 100% 20%, 100% 100%, 0 90%);
-    }
+
+.dialogue-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.dialogue-link:hover {
+  background-color: #0056b3;
+}
+ 
+@keyframes slide-down {
+  0% {
+    transform: translateY(-50%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
   }
-  
-  
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  50% {
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
   }
-  
+  100% {
+    transform: translateY(100%);
+    clip-path: polygon(0 10%, 100% 20%, 100% 100%, 0 90%);
+  }
+}
+
+.animated-text {
+  font-size: 1rem; /* 以前より小さなフォントサイズ */
+  line-height: 1.5rem; /* 文字の縦間隔を調整 */
+  display: inline-block;
+  text-align: center;
+  color: white;
+  letter-spacing: -3px;
+}
+
+.animated-text span {
+  display: inline-block;
+  margin: 0 1px; /* 文字間隔を狭くする */
+}
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
