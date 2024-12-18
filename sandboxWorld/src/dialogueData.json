@@ -1,47 +1,46 @@
 {
     "npc1": {
-      "name": "Carrot",
+      "name": "キャロット",
       "dialogues": [
         {
           "id": "d1",
-          "text": "Hello there! How can I help you today?",
+          "text": "こんにちは！今日はどうされましたか？",
           "next": "d2"
         },
         {
           "id": "d2",
-          "text": "It's a beautiful day, isn't it?",
+          "text": "今日はいい天気ですね。",
           "next": null
         }
       ]
     },
     "npc2": {
-      "name": "Jam",
+      "name": "ジャム",
       "dialogues": [
         {
           "id": "d1",
-          "text": "Hi there! Would you like to buy something?",
+          "text": "こんにちは！何かお買い求めですか？",
           "options": [
             {
-              "text": "Yes, show me your wares.",
+              "text": "はい、品物を見せてください。",
               "next": "d2"
             },
             {
-              "text": "No, thank you.",
+              "text": "いいえ、大丈夫です。",
               "next": "d3"
             }
           ]
         },
         {
           "id": "d2",
-          "text": "We have the best products in town!",
+          "text": "町で一番の品揃えですよ！",
           "next": null
         },
         {
           "id": "d3",
-          "text": "Alright, let me know if you change your mind.",
+          "text": "わかりました。また必要なときはお知らせくださいね。",
           "next": null
         }
       ]
     }
   }
-  
