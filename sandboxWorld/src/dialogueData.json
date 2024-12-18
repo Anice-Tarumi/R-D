@@ -1,0 +1,47 @@
+{
+    "npc1": {
+      "name": "Carrot",
+      "dialogues": [
+        {
+          "id": "d1",
+          "text": "Hello there! How can I help you today?",
+          "next": "d2"
+        },
+        {
+          "id": "d2",
+          "text": "It's a beautiful day, isn't it?",
+          "next": null
+        }
+      ]
+    },
+    "npc2": {
+      "name": "Jam",
+      "dialogues": [
+        {
+          "id": "d1",
+          "text": "Hi there! Would you like to buy something?",
+          "options": [
+            {
+              "text": "Yes, show me your wares.",
+              "next": "d2"
+            },
+            {
+              "text": "No, thank you.",
+              "next": "d3"
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "text": "We have the best products in town!",
+          "next": null
+        },
+        {
+          "id": "d3",
+          "text": "Alright, let me know if you change your mind.",
+          "next": null
+        }
+      ]
+    }
+  }
+  

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Loader from "./Loader"; // ローディング画面
 import { useProgress } from "@react-three/drei";
 import useGame from "./useGame.jsx"
+import useDialogueStore from "./useDialogueStore.jsx";
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {
@@ -24,6 +25,7 @@ const GameStateManager = () => {
   const ready = useGame((state) => state.ready)
   const start = useGame((state) => state.start)
   const endTalking = useGame((state) => state.endTalking); // 会話終了処理
+  const endDialogue = useDialogueStore((state) => state.endDialogue); // 会話をリセット
 
   // ロードが完了したらアニメーションを開始
   useEffect(() => {
@@ -40,6 +42,11 @@ const GameStateManager = () => {
       setTimeout(() => ready(), 1500); // アニメーション後1.5秒でスタート画面に遷移
     }
   }, [animationDone]);
+  const talkEnd = () =>
+  {
+    endTalking()
+    endDialogue()
+  }
 
   // 状態ごとのUIを切り替える関数
   const renderState = () => {
@@ -72,7 +79,7 @@ const GameStateManager = () => {
         return (
           <>
           <div className="end-conversation-button">
-            <button onClick={endTalking}>中断</button>
+            <button onClick={talkEnd}>中断</button>
           </div>
           </>
         );

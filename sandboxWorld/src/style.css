@@ -11,74 +11,108 @@ body,
 }
 
 .loader-container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    z-index: 1000; /* 他の要素より上に表示 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .load-contents{
-    position: fixed;
-    top: 50%;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .progress-bar {
-    width: 200px;
-    height: 10px;
-    background: #444;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 10px;
-  }
-  
-  .progress-bar-fill {
-    height: 100%;
-    background: #007bff;
-    transition: width 0.3s;
-  }
-  
-  .spinner {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(255, 255, 255, 0.3);
-    border-top: 5px solid #007bff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-top: 20px;
-  }
-  .game-state-container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    z-index: 1000;
-  }
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: linear-gradient(135deg, #1e90ff, #1e40af); /* グラデーション背景 */
+  color: white;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.8s ease, transform 1s ease;
+}
+.loader-container.slide-down {
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+}
 
-  .title{
-    top: 50%;
-    position: relative;
-    transform: translateY(-50%);
-  }
+  /* ローディングコンテンツ */
+.load-contents {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
   
+.progress-bar {
+  width: 300px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+  
+.progress-bar-fill {
+  height: 100%;
+  background: #ffffff;
+  transition: width 0.3s ease;
+}
+  
+.loading-text {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+ /* タイトル画面 */
+.game-state-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e40af;
+  color: white;
+  text-align: center;
+  z-index: 1000;
+  font-family: "Arial", sans-serif;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  animation: fade-in 1.5s ease forwards, float 3s ease-in-out infinite;
+}
+  
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
   .start-button,
   .restart-button {
     background-color: #007bff;
@@ -171,6 +205,29 @@ body,
     background-color: #0056b3;
   }
 
+  .dialogue-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .dialogue-buttons button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .dialogue-buttons button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+  }
+
   .end-conversation-button {
     position: fixed;
     top: 20px;
@@ -193,6 +250,48 @@ body,
     background-color: #e04352;
   }
   
+/* 会話UI */
+.dialogue-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 70%;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: "Arial", sans-serif;
+}
+
+.dialogue-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffcc00;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 10px;
+}
+
+.dialogue-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.npc-name {
+  color: #ffcc00; /* 名前を目立たせる黄色 */
+}
+
+.dialogue-container .dialogue-buttons {
+  cursor: default; /* ボタン部分は通常のカーソル */
+}
+
+
   
   
   @keyframes slide-down {

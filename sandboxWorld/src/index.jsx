@@ -6,6 +6,7 @@ import { KeyboardControls } from '@react-three/drei';
 import GameStateManager from './GameStateManager'; // 状態管理コンポーネント
 import { useRef, useState } from 'react';
 import DialogButton from './DialogButton.jsx';
+import DialogueUI from './DialogueUI.jsx';
 
 const App = () => {
 
@@ -46,6 +47,7 @@ const App = () => {
         </Canvas>
       </KeyboardControls>
       <DialogButton  />
+      <DialogueUI />
     </>
   );
 };

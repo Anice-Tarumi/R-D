@@ -73,7 +73,7 @@ const NPCController = forwardRef(({
   // }, []);
 
   useEffect(() => {
-    console.log(ref.current,playerRef?.current)
+    // console.log(ref.current,playerRef?.current)
     // プレイヤーとNPCの距離をチェック
     const checkProximity = () => {
         if (ref.current && playerRef?.current) {

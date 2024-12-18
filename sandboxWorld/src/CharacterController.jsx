@@ -7,6 +7,7 @@ import { Leva, useControls } from "leva";
 import { useKeyboardControls } from "@react-three/drei";
 import { degToRad } from "three/src/math/MathUtils.js";
 import useGame from "./useGame.jsx";
+import useInteractionStore from "./useInteractionStore.jsx";
 
 const normalizeAngle = (angle) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -28,7 +29,7 @@ const lerpAngle = (start, end, t) => {
   return MathUtils.lerp(start, end, t);
 };
 
-const CharacterController = forwardRef(({ canvasRef,npcRef }, ref) => {
+const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
   const { WALK_SPEED, RUN_SPEED, ROTATION_SPEED } = useControls("Character Control", {
     WALK_SPEED: { value: 3.0, min: 0.1, max: 4, step: 0.1 },
     RUN_SPEED: { value: 6.5, min: 0.2, max: 12, step: 0.1 },
@@ -43,6 +44,7 @@ const CharacterController = forwardRef(({ canvasRef,npcRef }, ref) => {
   const isTalking = useRef(false); // 会話中フラグ
 
   const phase = useGame((state) => state.phase);
+  const currentNPC = useInteractionStore((state) => state.currentNPC); // 現在会話中のNPC ID
   const rb = useRef();
   const container = useRef();
   const character = useRef();
@@ -96,27 +98,32 @@ const CharacterController = forwardRef(({ canvasRef,npcRef }, ref) => {
 
   useFrame(({ camera, mouse }) => {
 // console.log(npcRef)
-    if (phase === "talking" && npcRef.current) {
-      const npcPosition = new Vector3();
-    npcRef.current.getWorldPosition(npcPosition);
+    if (phase === "talking" && currentNPC) {
+      const npcRef = npcRefs.current[currentNPC]; // 現在のNPCの参照を取得
+      // console.log(npcRef.current.getWorldPosition)
+      if(npcRef){
+        const npcPosition = new Vector3();
+        // console.log(npcRef.getWorldPosition())
+        npcRef.current.getWorldPosition(npcPosition);
 
-    // NPCの正面方向を計算
-    const npcDirection = new Vector3(0, 0, 1.5); // Z軸正方向をNPCの「前方」と仮定
-    npcDirection.applyQuaternion(npcRef.current.quaternion); // NPCの回転を考慮
-    npcDirection.applyAxisAngle(new Vector3(0, 1, 0), -Math.PI / 2); // 90度のY軸オフセット
+        // NPCの正面方向を計算
+        const npcDirection = new Vector3(0, 0, 1.5); // Z軸正方向をNPCの「前方」と仮定
+        npcDirection.applyQuaternion(npcRef.current.quaternion); // NPCの回転を考慮
+        npcDirection.applyAxisAngle(new Vector3(0, 1, 0), -Math.PI / 2); // 90度のY軸オフセット
 
-    // カメラの目標位置を計算 (NPCの前方少し離れた位置)
-    const cameraTargetPosition = npcPosition
-      .clone()
-      .add(npcDirection.multiplyScalar(-4)) // NPCの前方に3単位分離れた位置
-      .add(new Vector3(0, 2, 0)); // 少し上の位置
+        // カメラの目標位置を計算 (NPCの前方少し離れた位置)
+        const cameraTargetPosition = npcPosition
+          .clone()
+          .add(npcDirection.multiplyScalar(-4)) // NPCの前方に3単位分離れた位置
+          .add(new Vector3(0, 2, 0)); // 少し上の位置
 
-    // カメラを滑らかに移動
-    camera.position.lerp(cameraTargetPosition, 0.1);
+        // カメラを滑らかに移動
+        camera.position.lerp(cameraTargetPosition, 0.1);
 
-    // カメラの向きをNPCの顔の少し上側に向ける
-    const lookAtPosition = npcPosition.clone().add(new Vector3(0, 3, 0)); // 顔の高さに調整
-    camera.lookAt(lookAtPosition);
+        // カメラの向きをNPCの顔の少し上側に向ける
+        // const lookAtPosition = npcPosition.clone().add(new Vector3(0, 3, 0)); // 顔の高さに調整
+        camera.lookAt(npcPosition.clone().add(new Vector3(0, 3, 0)));
+      }
     } else if (phase === "playing") {
       // 会話が終了したらカメラを元の位置に戻す
       if (isTalking.current) {
