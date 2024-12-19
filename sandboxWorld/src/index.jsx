@@ -7,20 +7,22 @@ import GameStateManager from './GameStateManager'; // 状態管理コンポー�
 import { useRef, useState } from 'react';
 import DialogButton from './DialogButton.jsx';
 import DialogueUI from './DialogueUI.jsx';
+import ChestOpenButton from './ChestOpenButton.jsx';
+import React from 'react';
+
 
 const App = () => {
-
-  // ゲーム開始時の処理
-  const handleStart = () => {
-    console.log("Game Started");
-  };
   const canvasRef = useRef()
+  const chestRefs = useRef({
+    chest1: React.createRef(),
+    chest2: React.createRef(),
+    chest3: React.createRef(),
+  });
+
   return (
     <>
       {/* ゲーム状態管理 */}
-      <GameStateManager
-        onStart={handleStart} // ゲーム開始時の処理
-      />
+      <GameStateManager/>
       <KeyboardControls
         map={[
           { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -47,6 +49,9 @@ const App = () => {
         </Canvas>
       </KeyboardControls>
       <DialogButton  />
+      <ChestOpenButton chestRefs={chestRefs} chestId="chest1" />
+      <ChestOpenButton chestRefs={chestRefs} chestId="chest2" />
+      <ChestOpenButton chestRefs={chestRefs} chestId="chest3" />
       <DialogueUI />
     </>
   );

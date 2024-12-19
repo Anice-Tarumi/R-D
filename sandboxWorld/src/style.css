@@ -356,6 +356,25 @@ body,
   margin: 0 1px; /* 文字間隔を狭くする */
 }
 
+.chest-open-button {
+  position: fixed;
+  bottom: 20px; /* 画面下から20px */
+  left: 20px;   /* 画面左から20px */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1000; /* 他の要素より前面に表示 */
+}
+
+.chest-open-button:hover {
+  background-color: #0056b3;
+}
+
+
 
 @keyframes spin {
   from {
