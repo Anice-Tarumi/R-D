@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
-import { CapsuleCollider, RigidBody } from "@react-three/rapier";
+import { CapsuleCollider, RigidBody,BallCollider } from "@react-three/rapier";
 import Chara from "./Chara.jsx";
 import { useFrame } from "@react-three/fiber";
 import { Vector3, MathUtils } from "three";
@@ -215,6 +215,12 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
         </group>
       </group>
       <CapsuleCollider args={[0.5, 0.5]} friction={2} />
+      <BallCollider
+        args={[2.5]} // 半径3の球体コライダー
+        sensor // センサーとして動作
+        onIntersectionEnter={(event) => handleInteractionStart(event)}
+        onIntersectionExit={(event) => handleInteractionEnd(event)}
+      />
       <Leva hidden />
     </RigidBody>
   );

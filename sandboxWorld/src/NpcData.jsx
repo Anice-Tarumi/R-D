@@ -48,6 +48,19 @@ const NpcData = ({ playerRef, npcRefs }) => {
           position={npc.colliderPosition}
           friction={1}
         />
+        <CapsuleCollider
+        args={npc.colliderArgs}
+        position={npc.colliderPosition}
+        friction={1}
+        sensor
+          onIntersectionEnter={(event) => {
+              console.log("Player is near the chest", event);
+          }}
+          onIntersectionExit={() => {
+              console.log("Player left the chest area");
+          }}
+        >
+        </CapsuleCollider>
       </RigidBody>
     );
   });

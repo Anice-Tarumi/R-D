@@ -289,14 +289,6 @@ body,
   width: 100px;        /* 画像の横幅をコンテナに合わせる */
   height: auto;           /* アスペクト比を保つ */
 }
-/* .dialogue-image {
-  max-width: 100%;
-  height: auto;
-  margin: 10px 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-} */
-
 .dialogue-content p {
   font-size: 18px;
   line-height: 1.6;
