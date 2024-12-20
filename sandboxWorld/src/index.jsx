@@ -7,17 +7,20 @@ import GameStateManager from './GameStateManager'; // 状態管理コンポー�
 import { useRef, useState } from 'react';
 import DialogButton from './DialogButton.jsx';
 import DialogueUI from './DialogueUI.jsx';
-import ChestOpenButton from './ChestOpenButton.jsx';
+// import ChestOpenButton from './ChestOpenButton.jsx';
 import React from 'react';
 
 
 const App = () => {
   const canvasRef = useRef()
-  const chestRefs = useRef({
-    chest1: React.createRef(),
-    chest2: React.createRef(),
-    chest3: React.createRef(),
-  });
+  const [showChestButton, setShowChestButton] = useState(false);
+  const [triggerOpenChest, setTriggerOpenChest] = useState(null);
+
+  // 宝箱近接状態のハンドラー
+  const handleChestProximity = (isNearby, openChestCallback) => {
+    setShowChestButton(isNearby);
+    setTriggerOpenChest(() => openChestCallback); // ボタンのクリック時に実行される関数を保存
+  };
 
   return (
     <>
@@ -45,14 +48,23 @@ const App = () => {
             position: [0, 0, 0],
           }}
         >
-          <Experience canvasRef={canvasRef} />
+          <Experience canvasRef={canvasRef} onChestProximity={handleChestProximity}/>
         </Canvas>
       </KeyboardControls>
       <DialogButton  />
-      <ChestOpenButton chestRefs={chestRefs} chestId="chest1" />
+      {/* <ChestOpenButton chestRefs={chestRefs} chestId="chest1" />
       <ChestOpenButton chestRefs={chestRefs} chestId="chest2" />
-      <ChestOpenButton chestRefs={chestRefs} chestId="chest3" />
+      <ChestOpenButton chestRefs={chestRefs} chestId="chest3" /> */}
       <DialogueUI />
+      {/* ボタンをCanvas外に配置 */}
+      {showChestButton && (
+        <button
+          className="chest-open-button"
+          onClick={() => triggerOpenChest && triggerOpenChest()}
+        >
+          Open Chest
+        </button>
+      )}
     </>
   );
 };

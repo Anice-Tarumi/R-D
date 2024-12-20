@@ -4,7 +4,6 @@ import { Vector3 } from "three";
 import useInteractionStore from "./useInteractionStore"; // 会話状態を管理
 import { useFrame } from "@react-three/fiber";
 import { Quaternion } from "three";
-import { pingpong } from "three/src/math/MathUtils.js";
 
 const NPCController = forwardRef(({
   modelPath,
@@ -21,6 +20,7 @@ const NPCController = forwardRef(({
   const setCurrentNPC = useInteractionStore((state) => state.setCurrentNPC); // 会話可能なNPCを設定
   const clearNPC = useInteractionStore((state) => state.clearNPC); // 会話可能なNPCを設定
   let isClose = false
+  // let isClose = true
   useEffect(() => {
     // アニメーション再生
     if (actions && actions.idle) {
@@ -34,32 +34,15 @@ const NPCController = forwardRef(({
     };
   }, [actions]);
 
-  // useFrame(() => {
-  //   if (playerRef?.current && ref?.current && isClose) {
-  //     const playerPosition = new Vector3();
-  //     const npcPosition = new Vector3();
-  
-  //     playerRef.current.getWorldPosition(playerPosition); // プレイヤー座標を取得
-  //     ref.current.getWorldPosition(npcPosition); // NPC座標を取得
-  
-  //     // プレイヤーとNPCの水平位置差分を計算
-  //     const direction = playerPosition.clone().sub(npcPosition);
-  //     direction.y = 0; // Y軸の高さを無視（水平回転のみ）
-  
-  //     // Y軸の回転角度を計算（atan2を使用）
-  //     const targetRotationY = Math.atan2(direction.x, direction.z);
-  
-  //     // 角度をNPCのrotation.yに適用
-  //     ref.current.rotation.y = targetRotationY - Math.PI/2; // 補正のためMath.PIを加える
-  //   }
-  // });
-
   useFrame(() => {
+    // console.log(playerRef,ref,isClose)
     if (playerRef?.current && ref?.current && isClose) {
       const npcPosition = new Vector3();
       const playerPosition = new Vector3();
+      // console.log(npcPosition,playerPosition)
       ref.current.getWorldPosition(npcPosition);
       playerRef.current.getWorldPosition(playerPosition);
+      // console.log("mamamam")
   
       // NPCが向くべき方向を計算
       const targetDirection = new Vector3().subVectors(playerPosition, npcPosition).normalize();
@@ -72,27 +55,6 @@ const NPCController = forwardRef(({
       ref.current.quaternion.slerp(targetQuaternion, 0.1); // 0.1は補間速度
     }
   });
-  
-  
-
-  // useEffect(() => {
-  //   // 親コンポーネントのrefに内部のgroup要素を渡す
-  //   if (ref) {
-  //     ref.current = npcRef.current;
-  //     // console.log("Ref successfully set in NPCController:", ref.current);
-  //   }
-  // }, [ref]);
-
-  // useEffect(() => {
-  //   if (playerRef.current && ref.current) {
-  //     const playerPosition = new Vector3();
-  //     playerRef.current.getWorldPosition(playerPosition);
-
-  //     // NPCをプレイヤーの方向に向ける
-  //     ref.current.lookAt(playerPosition);
-  //   }
-  //   // console.log(npcRef)
-  // }, []);
 
   useEffect(() => {
     // console.log(ref.current,playerRef?.current)
@@ -107,8 +69,9 @@ const NPCController = forwardRef(({
         const distance = npcPosition.distanceTo(playerPosition); // 距離を計算
         // console.log(distance)
         // 初回評価と近づいた状態の切り替え
+        // console.log(distance < 3 , !isClose)
         if (distance < 3 && !isClose) {
-          // console.log(`Player is close to NPC ${npcId}`);
+          console.log(`Player is close to NPC ${npcId}`);
           isClose = true;
           setCurrentNPC(npcId); // NPCを設定
         } else if (distance >= 3 && isClose) {

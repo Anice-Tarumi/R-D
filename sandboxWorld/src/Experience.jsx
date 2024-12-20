@@ -6,23 +6,27 @@ import { Perf } from 'r3f-perf'
 import WildWest from './Scene.jsx'
 import React, { useEffect, useRef } from 'react'
 import NpcData from './NpcData.jsx'
-import ChestGroup from './ChestGroup.jsx'
+import Chest from './Chest.jsx'
+import { useState } from 'react'
+import Portal from './portal.jsx'
+// import ChestGroup from './ChestGroup.jsx'
 
-export default function Experience({canvasRef})
+export default function Experience({canvasRef,onChestProximity})
 {
     const playerRef = useRef(); // プレイヤーの参照を作成
-    const npcRef = useRef(); // NPCへの参照
-    const npcRef2 = useRef(); // NPCへの参照
     const npcRefs = useRef({}); // NPCの参照をまとめて管理
+    const chestRef = useRef();
     const chestRefs = useRef({}); // 宝箱の参照を管理
-    // console.log("npcRefs",npcRefs)
-    const handleConversationStart = (npcId) => {
-        console.log(`Starting conversation with NPC: ${npcId}`);
-        // 会話開始のロジックをここに追加
-      };
-      useEffect(() => {
-        // console.log("After render npcRef:", npcRef);
-      }, []);
+   
+    // 宝箱の近接状態を親コンポーネントに通知
+  const handleProximity = (isNearby) => {
+    onChestProximity(isNearby, () => chestRef.current?.openChest());
+  };
+
+//   useEffect(() => {
+//     console.log("Chest Refs:", chestRefs.current);
+//   }, [chestRefs]);
+      
     return <>
         {/* <OrbitControls makeDefault /> */}
         <Perf position='top-left' />
@@ -32,8 +36,23 @@ export default function Experience({canvasRef})
             <RigidBody type='fixed' colliders={"trimesh"} friction={0}>
                 <WildWest scale={10} />
             </RigidBody>
+
             <NpcData playerRef={playerRef} npcRefs={npcRefs} />
-            <ChestGroup playerRef={playerRef} chestRefs={chestRefs}/>
+            {/* <ChestGroup playerRef={playerRef} chestRefs={chestRefs}/> */}
+
+            <RigidBody colliders={false} type='kinematicPosition'>
+            <Chest 
+                position={[4,-1,10]} 
+                playerRef={playerRef} 
+                onProximity={handleProximity} 
+                ref={chestRef}
+            />
+            <CuboidCollider args={[1,1,1]} position={[4,0,10]}/>
+            </RigidBody>
+            <RigidBody type='fixed' colliders='trimesh'>
+                <Portal position={[0,-2.5,-21]} scale={3}/>
+            </RigidBody>
         </Physics>
+        
     </>
 }
