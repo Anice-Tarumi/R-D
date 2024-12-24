@@ -7,6 +7,7 @@ import { Leva, useControls } from "leva";
 import { useKeyboardControls } from "@react-three/drei";
 import { degToRad } from "three/src/math/MathUtils.js";
 import useGame from "./useGame.jsx";
+import useInteractionStore from "./useInteractionStore.jsx";
 
 const normalizeAngle = (angle) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -41,8 +42,10 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
   });
   const initialCameraPosition = useRef(new Vector3()); // カメラの初期位置を保存
   const isTalking = useRef(false); // 会話中フラグ
+  const setTarget = useInteractionStore((state) => state.setCurrentTarget)
 
   const phase = useGame((state) => state.phase);
+  const currentNPC = useInteractionStore((state) => state.currentNPC); // 現在会話中のNPC ID
   const rb = useRef();
   const container = useRef();
   const character = useRef();

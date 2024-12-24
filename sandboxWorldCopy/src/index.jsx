@@ -5,14 +5,23 @@ import Experience from './Experience.jsx'; // ゲームの3Dシーン
 import { KeyboardControls } from '@react-three/drei';
 import GameStateManager from './GameStateManager'; // 状態管理コンポーネント
 import { useRef, useState } from 'react';
-// import DialogButton from './DialogButton.jsx';
-// import DialogueUI from './DialogueUI.jsx';
+import DialogButton from './DialogButton.jsx';
+import DialogueUI from './DialogueUI.jsx';
 import React from 'react';
-// import InteractionUI from './InteractionUI.jsx';
+import InteractionUI from './InteractionUI.jsx';
 
 
 const App = () => {
   const canvasRef = useRef()
+  const [showChestButton, setShowChestButton] = useState(false);
+  const [triggerOpenChest, setTriggerOpenChest] = useState(null);
+
+  // 宝箱近接状態のハンドラー
+  const handleChestProximity = (isNearby, openChestCallback) => {
+    setShowChestButton(isNearby);
+    setTriggerOpenChest(() => openChestCallback); // ボタンのクリック時に実行される関数を保存
+  };
+
   return (
     <>
       {/* ゲーム状態管理 */}
@@ -39,10 +48,18 @@ const App = () => {
             position: [0, 0, 0],
           }}
         >
-          <Experience canvasRef={canvasRef} />
+          <Experience canvasRef={canvasRef} onChestProximity={handleChestProximity}/>
         </Canvas>
       </KeyboardControls>
-      {/* <InteractionUI /> */}
+      {showChestButton && (
+        <button
+          className="chest-open-button"
+          onClick={() => triggerOpenChest && triggerOpenChest()}
+        >
+          Open Chest
+        </button>
+      )}
+      <InteractionUI />
     </>
   );
 };

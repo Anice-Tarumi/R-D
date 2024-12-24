@@ -6,6 +6,7 @@ const NpcData = ({ playerRef, npcRefs }) => {
   const npcList = [
     {
       id: "npc1",
+      name: "Carrot",
       modelPath: "./npc/carrot.glb",
       position: [9, 0, 4],
       rotation: [0, Math.PI, 0],
@@ -14,6 +15,7 @@ const NpcData = ({ playerRef, npcRefs }) => {
     },
     {
       id: "npc2",
+      name: "Jam",
       modelPath: "./npc/jam.glb",
       position: [-9, -1, 4],
       rotation: [0, Math.PI, 0],
@@ -24,7 +26,7 @@ const NpcData = ({ playerRef, npcRefs }) => {
 
   return npcList.map((npc) => {
     if (!npcRefs.current[npc.id]) {
-      npcRefs.current[npc.id] = React.createRef(); // 動的にrefを作成
+      npcRefs.current[npc.id] = React.createRef();
     }
 
     return (
@@ -33,6 +35,7 @@ const NpcData = ({ playerRef, npcRefs }) => {
         type={"kinematicVelocity"}
         colliders={false}
         lockRotations
+        userData={{ type: "NPC", id: npc.id, name: npc.name}}
       >
         <NPCController
           modelPath={npc.modelPath}
@@ -40,6 +43,7 @@ const NpcData = ({ playerRef, npcRefs }) => {
           rotation={npc.rotation}
           scale={0.5}
           npcId={npc.id}
+          npcName={npc.name}
           playerRef={playerRef}
           ref={npcRefs.current[npc.id]}
         />
@@ -47,20 +51,9 @@ const NpcData = ({ playerRef, npcRefs }) => {
           args={npc.colliderArgs}
           position={npc.colliderPosition}
           friction={1}
+          // onReady={(collider) => console.log("Collider Ready:", collider.userData)}
+          // onIntersectionEnter={(event) => console.log("Intersection Enter:", event.target.userData)}
         />
-        <CapsuleCollider
-        args={npc.colliderArgs}
-        position={npc.colliderPosition}
-        friction={1}
-        sensor
-          onIntersectionEnter={(event) => {
-              console.log("Player is near the chest", event);
-          }}
-          onIntersectionExit={() => {
-              console.log("Player left the chest area");
-          }}
-        >
-        </CapsuleCollider>
       </RigidBody>
     );
   });

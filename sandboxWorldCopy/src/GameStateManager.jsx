@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Loader from "./Loader"; // ローディング画面
 import { useProgress } from "@react-three/drei";
 import useGame from "./useGame.jsx"
+import useDialogueStore from "./useDialogueStore.jsx";
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {
@@ -23,6 +24,8 @@ const GameStateManager = () => {
   const phase = useGame((state) => state.phase)
   const ready = useGame((state) => state.ready)
   const start = useGame((state) => state.start)
+  const endTalking = useGame((state) => state.endTalking); // 会話終了処理
+  const endDialogue = useDialogueStore((state) => state.endDialogue); // 会話をリセット
 
   // ロードが完了したらアニメーションを開始
   useEffect(() => {
