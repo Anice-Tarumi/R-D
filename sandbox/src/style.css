@@ -1,0 +1,564 @@
+html,
+body,
+#root
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: ivory;
+}
+
+.loader-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: linear-gradient(135deg, #1e90ff, #1e40af); /* グラデーション背景 */
+  color: white;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.8s ease, transform 1s ease;
+}
+.loader-container.slide-down {
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+  /* ローディングコンテンツ */
+.load-contents {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+  
+.progress-bar {
+  width: 300px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+  
+.progress-bar-fill {
+  height: 100%;
+  background: #ffffff;
+  transition: width 0.3s ease;
+}
+  
+.loading-text {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+ /* タイトル画面 */
+.game-state-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e40af;
+  color: white;
+  text-align: center;
+  z-index: 1000;
+  font-family: "Arial", sans-serif;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  animation: fade-in 1.5s ease forwards, float 3s ease-in-out infinite;
+}
+  
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+  .start-button,
+  .restart-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .start-button:hover,
+  .restart-button:hover {
+    background-color: #0056b3;
+  }
+
+/* メニューボタン */
+.menu-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border-color: white;
+    display: flex;
+    flex-direction: column; /* 縦に並べる */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background 0.3s ease;
+  }
+  
+  .menu-button:hover {
+    background: rgba(255, 255, 255, 0.4); /* ホバー時の背景色 */
+  }
+  
+  /* 縦に並ぶ三本線 */
+  .menu-button .line {
+    width: 10px; /* 線の長さ */
+    height: 2px; /* 線の太さ */
+    background: white;
+    border-radius: 5px;
+    margin: 3px 0; /* 初期状態の間隔を狭く設定 */
+    transition: all 0.3s ease; /* アニメーション */
+  }
+  
+  .menu-button .line.middle {
+    width: 20px; /* 真ん中の線だけ長くする */
+  }
+  
+  /* ホバー時のアニメーション */
+  .menu-button:hover .line.middle {
+    transform: translateX(40px); /* 真ん中の線が遠くに飛ぶ */
+    opacity: 0; /* 飛び出し後に見えなくする */
+  }
+  
+  .menu-button:hover .line:nth-child(1),
+  .menu-button:hover .line:nth-child(3) {
+    width: 20px; /* 上下の線を少し長くする */
+    margin: 0; /* 上下の隙間をさらに狭くする */
+  }
+
+  .loader-container.slide-down {
+    animation: slide-down 1.5s ease forwards; /* 下にスライドするアニメーション */
+  }
+
+  .dialog-button {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ffcc00, #ff6600);
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.6), 0 0 30px rgba(255, 102, 0, 0.5);
+    z-index: 1000;
+    appearance: none; /* デフォルトのスタイルを無効化 */
+    outline: none; /* フォーカス時のアウトラインを削除 */
+  }
+  
+  /* ホバー時のエフェクト */
+  .dialog-button:hover {
+    background: linear-gradient(45deg, #ff9900, #ff3300);
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.8), 0 0 40px rgba(255, 102, 0, 0.7);
+    transform: translateX(-50%) scale(1.1);
+  }
+  
+  /* クリック時のエフェクト */
+  .dialog-button:active {
+    background: linear-gradient(45deg, #cc9900, #cc3300);
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.5), 0 0 20px rgba(255, 102, 0, 0.4);
+    transform: translateX(-50%) scale(0.95);
+  }
+
+  .dialogue-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .dialogue-buttons button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .dialogue-buttons button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+  }
+
+  .end-conversation-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* 他の要素より手前に表示 */
+  }
+  
+  .end-conversation-button button {
+    background-color: #ff4b5c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .end-conversation-button button:hover {
+    background-color: #e04352;
+  }
+  
+/* 会話UI */
+.dialogue-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 70%;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: "Arial", sans-serif;
+}
+
+.dialogue-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffcc00;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 10px;
+}
+
+.dialogue-content {
+  display: flex;
+  flex-direction: column; /* 縦並びにする */
+  align-items: center;    /* 中央揃え */
+  text-align: center;     /* テキストを中央揃え */
+}
+
+.dialogue-image {
+  margin-top: 10px;       /* テキストとの間隔を調整 */
+  width: 100px;        /* 画像の横幅をコンテナに合わせる */
+  height: auto;           /* アスペクト比を保つ */
+}
+.dialogue-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.npc-name {
+  color: #ffcc00; /* 名前を目立たせる黄色 */
+}
+
+.dialogue-container .dialogue-buttons {
+  cursor: default; /* ボタン部分は通常のカーソル */
+}
+
+.interaction-ui-button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ff00cc, #3333ff);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.6), 0 0 30px rgba(51, 51, 255, 0.5);
+  z-index: 1000;
+}
+.interaction-ui-button:hover {
+  background: linear-gradient(45deg, #ff33ff, #6666ff);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.8), 0 0 40px rgba(51, 51, 255, 0.7);
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* アクティブ状態のエフェクト */
+.interaction-ui-button:active {
+  background: linear-gradient(45deg, #cc0099, #0000ff);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(51, 51, 255, 0.4);
+  transform: translateX(-50%) scale(0.95);
+}
+/* メディアクエリ: 小さい画面向けに調整 */
+@media (max-width: 768px) {
+  .interaction-ui-button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
+
+
+
+.dialogue-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.dialogue-link:hover {
+  background-color: #0056b3;
+}
+ 
+@keyframes slide-down {
+  0% {
+    transform: translateY(-50%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+  }
+  50% {
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
+  }
+  100% {
+    transform: translateY(100%);
+    clip-path: polygon(0 10%, 100% 20%, 100% 100%, 0 90%);
+  }
+}
+
+.animated-text {
+  font-size: 1rem; /* 以前より小さなフォントサイズ */
+  line-height: 1.5rem; /* 文字の縦間隔を調整 */
+  display: inline-block;
+  text-align: center;
+  color: white;
+  letter-spacing: -3px;
+}
+
+.animated-text span {
+  display: inline-block;
+  margin: 0 1px; /* 文字間隔を狭くする */
+}
+
+.chest-open-button {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chest-open-button:hover {
+  background-color: #0056b3;
+}
+
+.add-loading-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.add-loading-screen h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.add-loading-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  animation: spin 1s linear infinite;
+}
+
+.add-loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000; /* 半透明の黒背景 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 1000; /* 最前面に表示 */
+  opacity: 0; /* 初期値は透明 */
+  transition: opacity 0.5s ease; /* フェードのトランジション */
+}
+
+/* フェードインアニメーション */
+.add-loading-fade-in {
+  opacity: 1; /* 完全に表示 */
+}
+
+/* フェードアウトアニメーション */
+.add-loading-fade-out {
+  opacity: 0; /* 完全に透明 */
+}
+
+/* ローディングバー */
+.add-progress-bar {
+  width: 80%;
+  height: 10px;
+  background: #555;
+  border-radius: 5px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.add-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #ff9900, #ff6600);
+  transition: width 0.3s ease;
+}
+
+/* .add-loading-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+} */
+
+/* .add-spinner {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  animation: spin 1s linear infinite !important;
+} */
+/* .add-spinner {
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+} */
+
+@keyframes add-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.add-progress-bar {
+  width: 80%;
+  height: 10px;
+  background: #555;
+  border-radius: 5px;
+  margin-top: 20px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.add-progress {
+  height: 100%;
+  transition: background 0.3s ease;
+}
+
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
