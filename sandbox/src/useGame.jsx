@@ -72,6 +72,26 @@ export default create(subscribeWithSelector((set) =>
 
                 return {}
             })
+        },
+        addLoading: () =>
+        {
+            set((state) =>
+            {
+                if(state.phase === 'playing')
+                    return { phase: 'addloading'}
+
+                return {}
+            })
+        },
+        addLoadingComp: () =>
+        {
+            set((state) =>
+            {
+                if(state.phase === 'addloading')
+                    return { phase: 'playing'}
+
+                return {}
+            })
         }
     }
 }))

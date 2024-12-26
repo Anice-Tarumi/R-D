@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Loader from "./Loader"; // ローディング画面
 import { useProgress } from "@react-three/drei";
 import useGame from "./useGame.jsx"
 import useDialogueStore from "./useDialogueStore.jsx";
+import AddLoadingScreen from "./AddLoadingScreen.jsx";
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {
@@ -26,6 +27,7 @@ const GameStateManager = () => {
   const start = useGame((state) => state.start)
   const endTalking = useGame((state) => state.endTalking); // 会話終了処理
   const endDialogue = useDialogueStore((state) => state.endDialogue); // 会話をリセット
+  const addLoadingComp = useGame((state) => state.addLoadingComp)
 
   // ロードが完了したらアニメーションを開始
   useEffect(() => {
@@ -83,6 +85,17 @@ const GameStateManager = () => {
           </div>
           </>
         );
+        case 'addloading':
+          return (
+            <>
+             <Suspense fallback={<div>Loading...</div>}>
+          <AddLoadingScreen
+            resourceUrl="map/Theatre.glb"
+            onComplete={addLoadingComp}
+          />
+        </Suspense>
+            </>
+          );
       default:
         return null;
     }

@@ -3,14 +3,17 @@ import useDialogueStore from "./useDialogueStore";
 import dialogueData from "./dialogueData.json";
 import useGame from "./useGame";
 import { motion } from "framer-motion";
+import useInteractionStore from "./useInteractionStore";
+
 const DialogueUI = () => {
   const currentNPC = useDialogueStore((state) => state.currentNPC);
   const currentDialogue = useDialogueStore((state) => state.currentDialogue);
   const advanceDialogue = useDialogueStore((state) => state.advanceDialogue);
   const endTalking = useGame((state) => state.endTalking); // 会話終了処理
   const endDialogue = useDialogueStore((state) => state.endDialogue); // 会話をリセット
-
-  if (!currentNPC || !currentDialogue) return null;
+  const target = useInteractionStore((state) => state.currentTarget)
+  // console.log("target",target)
+  if (!target || !currentDialogue) return null;
 
   const npcDialogues = dialogueData[currentNPC]?.dialogues;
   const dialogue = npcDialogues?.find((d) => d.id === currentDialogue);

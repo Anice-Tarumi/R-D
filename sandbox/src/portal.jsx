@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import * as THREE from 'three'
 import portalVertexShader from './portal/vertex.glsl'
 import portalFragmentShader from './portal/fragment.glsl'
+import { BallCollider } from '@react-three/rapier'
 
 const PortalMaterial = shaderMaterial({
     uTime: 0,
@@ -16,7 +17,7 @@ const PortalMaterial = shaderMaterial({
 
 extend({PortalMaterial})
 
-export default function Portal({position,scale})
+export default function Portal({position,id})
 {
     const {nodes} = useGLTF('./model/portal.glb')
 
@@ -30,7 +31,7 @@ export default function Portal({position,scale})
     
 
     return <>
-    <group position={position} scale={3}>
+    <group position={position} scale={3} userData={{type: "PORTAL", id}}>
            
                 <mesh geometry={nodes.baked.geometry} >
                     <meshBasicMaterial map={bakedTexture}/>
@@ -59,6 +60,23 @@ export default function Portal({position,scale})
                 position-y={1}
                 speed={0.2} 
                 color={'black'}
+            />
+            <BallCollider
+                args={[0.5]} // コライダーの半径
+                position={[0,0.84,4.1]}
+                sensor={true}
+                onIntersectionEnter={(event) => {
+                    const { type, id } = event.other.rigidBodyObject.userData || {};
+                    if (type === 'Player') {
+                    setInteractionTarget({ type: 'Portal', id: 'portal1', ref: portalRef });
+                    }
+                }}
+                onIntersectionExit={(event) => {
+                    const { type, id } = event.other.rigidBodyObject.userData || {};
+                    if (type === 'Player') {
+                    removeInteractionTarget();
+                    }
+                }}
             />
             </group>
             

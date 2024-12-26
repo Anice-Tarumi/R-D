@@ -7,8 +7,8 @@ import GameStateManager from './GameStateManager'; // 状態管理コンポー�
 import { useRef, useState } from 'react';
 import DialogButton from './DialogButton.jsx';
 import DialogueUI from './DialogueUI.jsx';
-// import ChestOpenButton from './ChestOpenButton.jsx';
 import React from 'react';
+import InteractionUI from './InteractionUI.jsx';
 
 
 const App = () => {
@@ -51,12 +51,6 @@ const App = () => {
           <Experience canvasRef={canvasRef} onChestProximity={handleChestProximity}/>
         </Canvas>
       </KeyboardControls>
-      <DialogButton  />
-      {/* <ChestOpenButton chestRefs={chestRefs} chestId="chest1" />
-      <ChestOpenButton chestRefs={chestRefs} chestId="chest2" />
-      <ChestOpenButton chestRefs={chestRefs} chestId="chest3" /> */}
-      <DialogueUI />
-      {/* ボタンをCanvas外に配置 */}
       {showChestButton && (
         <button
           className="chest-open-button"
@@ -65,6 +59,7 @@ const App = () => {
           Open Chest
         </button>
       )}
+      <InteractionUI />
     </>
   );
 };

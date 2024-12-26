@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
-import { CapsuleCollider, RigidBody } from "@react-three/rapier";
+import { CapsuleCollider, RigidBody,BallCollider } from "@react-three/rapier";
 import Chara from "./Chara.jsx";
 import { useFrame } from "@react-three/fiber";
 import { Vector3, MathUtils } from "three";
@@ -42,15 +42,15 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
   });
   const initialCameraPosition = useRef(new Vector3()); // カメラの初期位置を保存
   const isTalking = useRef(false); // 会話中フラグ
-
+  const currentTarget = useInteractionStore((state) => state.currentTarget)
+  const setTarget = useInteractionStore((state) => state.setCurrentTarget)
+  const removeTarget = useInteractionStore((state) => state.removeTarget)
   const phase = useGame((state) => state.phase);
   const currentNPC = useInteractionStore((state) => state.currentNPC); // 現在会話中のNPC ID
   const rb = useRef();
   const container = useRef();
   const character = useRef();
-
   const [animation, setAnimation] = useState("idle");
-
   const characterRotationTarget = useRef(0);
   const rotationTarget = useRef(0);
   const cameraTarget = useRef();
@@ -61,11 +61,10 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
   const [, get] = useKeyboardControls();
   const isClicking = useRef(false);
 
-  // ref を外部から利用できるようにする
   useImperativeHandle(ref, () => ({
     getWorldPosition: (vector) => {
       if (rb.current) {
-        const translation = rb.current.translation(); // RigidBody の位置を取得
+        const translation = rb.current.translation();
         vector.set(translation.x, translation.y, translation.z);
       }
     },
@@ -97,45 +96,35 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
   }, []);
 
   useFrame(({ camera, mouse }) => {
-// console.log(npcRef)
-    if (phase === "talking" && currentNPC) {
-      const npcRef = npcRefs.current[currentNPC]; // 現在のNPCの参照を取得
-      // console.log(npcRef.current.getWorldPosition)
-      if(npcRef){
+    // console.log(phase)
+    if (phase === "talking" && currentTarget) {
+      const npcRef = npcRefs.current[currentTarget.id];
+      // console.log(npcRef.current)
+      if(npcRef && npcRefs.current){
         const npcPosition = new Vector3();
-        // console.log(npcRef.getWorldPosition())
         npcRef.current.getWorldPosition(npcPosition);
-
-        // NPCの正面方向を計算
-        const npcDirection = new Vector3(0, 0, 1.5); // Z軸正方向をNPCの「前方」と仮定
-        npcDirection.applyQuaternion(npcRef.current.quaternion); // NPCの回転を考慮
-        npcDirection.applyAxisAngle(new Vector3(0, 1, 0), -Math.PI / 2); // 90度のY軸オフセット
-
-        // カメラの目標位置を計算 (NPCの前方少し離れた位置)
+        // console.log(npcPosition)
+        // console.log("NPC Quaternion:", npcRef.current.quaternion);
+        const npcDirection = new Vector3(0, 0, 1.5);
+        npcDirection.applyQuaternion(npcRef.current.quaternion);
+        npcDirection.applyAxisAngle(new Vector3(0, 1, 0), -Math.PI / 2);
         const cameraTargetPosition = npcPosition
           .clone()
-          .add(npcDirection.multiplyScalar(-4)) // NPCの前方に3単位分離れた位置
-          .add(new Vector3(0, 2, 0)); // 少し上の位置
-
-        // カメラを滑らかに移動
+          .add(npcDirection.multiplyScalar(-4))
+          .add(new Vector3(0, 2, 0));
         camera.position.lerp(cameraTargetPosition, 0.1);
-
-        // カメラの向きをNPCの顔の少し上側に向ける
-        // const lookAtPosition = npcPosition.clone().add(new Vector3(0, 3, 0)); // 顔の高さに調整
         camera.lookAt(npcPosition.clone().add(new Vector3(0, 3, 0)));
       }
     } else if (phase === "playing") {
-      // 会話が終了したらカメラを元の位置に戻す
       if (isTalking.current) {
         camera.position.lerp(initialCameraPosition.current, 0.1);
         isTalking.current = false;
       }
     }
 
-    if (phase !== "playing") return; // playing状態以外は操作不可
+    if (phase !== "playing") return;
     if (rb.current) {
       const vel = rb.current.linvel();
-
       const movement = {
         x: 0,
         z: 0,
@@ -179,7 +168,6 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
       } else {
         setAnimation("idle");
       }
-
       character.current.rotation.y = lerpAngle(
         character.current.rotation.y,
         characterRotationTarget.current,
@@ -206,7 +194,7 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
   });
 
   return (
-    <RigidBody colliders={false} lockRotations ref={rb} friction={1}>
+    <RigidBody colliders={false} lockRotations ref={rb} friction={1} userData={{ type: "Player" }}>
       <group ref={container} visible={phase !== "talking"}>
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={2} position-z={-10} />
@@ -215,6 +203,31 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
         </group>
       </group>
       <CapsuleCollider args={[0.5, 0.5]} friction={2} />
+      <BallCollider
+        args={[2.5]}
+        sensor={true}
+        // collisionGroups={{
+        //   group: 0b0001,
+        //   mask : 0b0010,
+        // }}
+        onIntersectionEnter={(event) => {
+          const { type, id } = event.other.rigidBodyObject.children[0].userData || {};
+          if (type) {
+            if(type === "NPC")
+            useInteractionStore.setState({
+              currentTarget: { type, id, ref},
+            });
+            if(type === "PORTAL")
+              useInteractionStore.setState({
+                currentTarget: { type, id},});
+            const currentTarget = useInteractionStore.getState().currentTarget;
+            // console.log("Current Target in Store:", currentTarget);
+          }
+        }}
+        onIntersectionExit={() => {
+          removeTarget()
+        }}
+      />
       <Leva hidden />
     </RigidBody>
   );
