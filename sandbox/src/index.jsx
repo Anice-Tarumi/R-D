@@ -9,6 +9,7 @@ import DialogButton from './DialogButton.jsx';
 import DialogueUI from './DialogueUI.jsx';
 import React from 'react';
 import InteractionUI from './InteractionUI.jsx';
+import MenuScreen from './MenuScreen.jsx';
 
 
 const App = () => {
@@ -60,6 +61,7 @@ const App = () => {
         </button>
       )}
       <InteractionUI />
+      <MenuScreen />
     </>
   );
 };

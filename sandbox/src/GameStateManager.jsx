@@ -4,12 +4,17 @@ import { useProgress } from "@react-three/drei";
 import useGame from "./useGame.jsx"
 import useDialogueStore from "./useDialogueStore.jsx";
 import AddLoadingScreen from "./AddLoadingScreen.jsx";
+import MenuScreen from "./MenuScreen.jsx";
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {
+  const menu = useGame((state) => state.menu);
   return (<>
   <div>
-    <button className="menu-button">
+    <button className="menu-button" 
+            onClick={() => {
+              menu(); // 状態をmenuに切り替え
+            }}>
       <span className="line"></span>
       <span className="line middle"></span>
       <span className="line"></span>
@@ -77,6 +82,11 @@ const GameStateManager = () => {
             <MenuButton />
           </>
         );
+        case 'menu': // 追加
+      return (
+      //  <MenuScreen/>
+      <></>
+      );
       case 'talking':
         return (
           <>
