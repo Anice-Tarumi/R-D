@@ -96,7 +96,7 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
   }, []);
 
   useFrame(({ camera, mouse }) => {
-    // console.log(phase)
+    console.log(phase)
     if (phase === "talking" && currentTarget) {
       const npcRef = npcRefs.current[currentTarget.id];
       // console.log(npcRef.current)

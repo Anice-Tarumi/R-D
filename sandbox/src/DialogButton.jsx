@@ -11,7 +11,7 @@ export default function DialogButton({  }) {
   const target = useInteractionStore((state) => state.currentTarget)
   // console.log("taet",target?.type,phase)
   // console.log(target.type,phase)
-  if (target?.type !== "NPC" || phase === "talking") return null; // 会話可能でない場合は何も表示しない
+  if (target?.type !== "NPC" || phase !== "playing") return null; // 会話可能でない場合は何も表示しない
 
   const handleClick = () => {
     // console.log(`Starting conversation with NPC: ${currentNPC}`);
