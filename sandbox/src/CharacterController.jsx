@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
-import { CapsuleCollider, RigidBody,BallCollider } from "@react-three/rapier";
+import { CapsuleCollider, RigidBody,BallCollider, useRapier } from "@react-three/rapier";
 import Chara from "./Chara.jsx";
 import { useFrame } from "@react-three/fiber";
 import { Vector3, MathUtils } from "three";
@@ -29,12 +29,12 @@ const lerpAngle = (start, end, t) => {
   return MathUtils.lerp(start, end, t);
 };
 
-const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
+const CharacterController = forwardRef(({ canvasRef,npcRefs,portalRefs }, ref) => {
   const { WALK_SPEED, RUN_SPEED, ROTATION_SPEED } = useControls("Character Control", {
     WALK_SPEED: { value: 3.0, min: 0.1, max: 4, step: 0.1 },
     RUN_SPEED: { value: 6.5, min: 0.2, max: 12, step: 0.1 },
     ROTATION_SPEED: {
-      value: degToRad(0.5),
+      value: degToRad(2),
       min: degToRad(0.1),
       max: degToRad(5),
       step: degToRad(0.1),
@@ -70,6 +70,12 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
     },
   }));
 
+  const jump = () =>
+  {
+    // console.log('jump')
+    // rb.current.applyImpulse({ x: 0, y: 1, z: 0 })
+  }
+
   useEffect(() => {
     const onMouseDown = (e) => {
       if (canvasRef.current && canvasRef.current.contains(e.target)) {
@@ -96,7 +102,7 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
   }, []);
 
   useFrame(({ camera, mouse }) => {
-    console.log(phase)
+    // console.log(phase)
     if (phase === "talking" && currentTarget) {
       const npcRef = npcRefs.current[currentTarget.id];
       // console.log(npcRef.current)
@@ -136,6 +142,7 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
       if (get().backward) {
         movement.z = -1;
       }
+      
       let speed = get().run ? RUN_SPEED : WALK_SPEED;
       if (isClicking.current) {
         if (Math.abs(mouse.x) > 0.1) {
@@ -154,6 +161,10 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
 
       if (get().right) {
         movement.x = -1;
+      }
+
+      if (get().jump) {
+        jump()
       }
 
       if (movement.x !== 0) {
@@ -194,7 +205,15 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
   });
 
   return (
-    <RigidBody colliders={false} lockRotations ref={rb} friction={1} userData={{ type: "Player" }}>
+    <RigidBody 
+      colliders={false} 
+      lockRotations 
+      ref={rb} 
+      friction={1} 
+      linearDamping={ 0.5 }
+      angularDamping={ 0.5 } 
+      userData={{ type: "Player" }}
+    >
       <group ref={container} visible={phase !== "talking"}>
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={2} position-z={-10} />
@@ -203,7 +222,7 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
         </group>
       </group>
       <CapsuleCollider args={[0.5, 0.5]} friction={2} />
-      <BallCollider
+      {/* <BallCollider
         args={[2.5]}
         sensor={true}
         // collisionGroups={{
@@ -227,7 +246,7 @@ const CharacterController = forwardRef(({ canvasRef,npcRefs }, ref) => {
         onIntersectionExit={() => {
           removeTarget()
         }}
-      />
+      /> */}
       <Leva hidden />
     </RigidBody>
   );

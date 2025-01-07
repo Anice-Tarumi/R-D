@@ -35,16 +35,32 @@ export default function Experience({canvasRef,onChestProximity})
   const renderStage = () => {
     console.log(currentStage)
     switch (currentStage) {
-      case "WildWest":
-        return <RigidBody type='fixed' colliders={"trimesh"} friction={0}>
+        case "WildWest":
+            return (
+              <group key="wildwest"> {/* keyを付与してステージ全体を再生成 */}
+                <RigidBody type="fixed" colliders="trimesh" friction={0}>
                   <WildWest scale={10} />
-               </RigidBody>
-      case "Theatre":
-        return <RigidBody type='fixed' colliders={"trimesh"} friction={0}>
-                  <Theatre scale={8} />;
-               </RigidBody>
-      default:
-        return null;
+                </RigidBody>
+                <group name="NPC">
+                  <NpcData playerRef={playerRef} npcRefs={npcRefs} chestRefs={chestRefs} />
+                </group>
+                <group name="Portal">
+                  <RigidBody type="fixed" colliders="trimesh">
+                    <Portal position={[0, -2.5, -21]} id={"portal1"} playerRef={playerRef}/>
+                  </RigidBody>
+                </group>
+              </group>
+            );
+          case "Theatre":
+            return (
+              <group key="theatre">
+                <RigidBody type="fixed" colliders="trimesh" friction={0}>
+                  <Theatre scale={8} />
+                </RigidBody>
+              </group>
+            );
+          default:
+            return null;
     }
   };
       
@@ -52,20 +68,20 @@ export default function Experience({canvasRef,onChestProximity})
         {/* <OrbitControls makeDefault /> */}
         <Perf position='top-left' />
         <Lights />
-        <Physics debug >
+        <Physics key={currentStage} debug >
             <CharacterController canvasRef={canvasRef} npcRefs={npcRefs} ref={playerRef} />
             {/* <RigidBody type='fixed' colliders={"trimesh"} friction={0}>
             {renderStage()}
             </RigidBody> */}
             {renderStage()}
-            <group name="NPC">
+            {/* <group name="NPC">
                 <NpcData playerRef={playerRef} npcRefs={npcRefs} chestRefs={chestRefs}/>
             </group>
             <group name="Portal">
                 <RigidBody type='fixed' colliders='trimesh'>
                     <Portal position={[0,-2.5,-21]} id={1}/>
                 </RigidBody>
-            </group>
+            </group> */}
         </Physics>
     </>
 }

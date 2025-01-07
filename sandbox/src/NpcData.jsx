@@ -45,6 +45,7 @@ const NpcData = ({ playerRef, npcRefs }) => {
           npcId={npc.id}
           npcName={npc.name}
           playerRef={playerRef}
+          type = {"NPC"}
           ref={npcRefs.current[npc.id]}
         />
         <CapsuleCollider
@@ -52,7 +53,7 @@ const NpcData = ({ playerRef, npcRefs }) => {
           position={npc.colliderPosition}
           friction={1}
         />
-        <BallCollider
+        {/* <BallCollider
           args={npc.colliderArgs}
           position={npc.colliderPosition}
           sensor={true}
@@ -75,7 +76,7 @@ const NpcData = ({ playerRef, npcRefs }) => {
               npcRefs.current[npc.id].current.setClose(false);
             }
           }}
-        />
+        /> */}
       </RigidBody>
     );
   });

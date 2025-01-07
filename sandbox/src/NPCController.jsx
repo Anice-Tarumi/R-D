@@ -13,13 +13,17 @@ const NPCController = forwardRef(({
   npcId,
   npcName,
   playerRef,
+  type,
 },ref) => {
   const npcRef = useRef();
   const { nodes, animations } = useGLTF(modelPath); // モデルとアニメーションをロード
   const { actions } = useAnimations(animations,npcRef); // アニメーションを管理
-  const  currentTarget  = useInteractionStore((state) => (state.currentTarget));
-  const [isClose, setIsClose] = useState(false); // 接触状態を管理する
-
+  const [isClose, setIsClose] = useState(false);
+  const setCurrentTarget = useInteractionStore((state) => state.setCurrentTarget);
+  const currentTarget = useInteractionStore((state) => state.currentTarget);
+  const removeTarget = useInteractionStore((state) => state.removeTarget);
+  const [isTargetSet, setIsTargetSet] = useState(false);
+  
   useImperativeHandle(ref, () => ({
     setClose: (value) => setIsClose(value),
     getWorldPosition: (vector) => {
@@ -27,13 +31,14 @@ const NPCController = forwardRef(({
         npcRef.current.getWorldPosition(vector);
       }
     },
-    quaternion: npcRef.current?.quaternion, // クォータニオンを公開
+    quaternion: npcRef.current?.quaternion,
   }));
 
   useEffect(() => {
     // アニメーション再生
     if (actions && actions.idle) {
-      actions.idle.reset().fadeIn(0.24).play(); // "idle" アニメーションを再生
+      actions.idle.reset().fadeIn(0.24).play();
+      
     }
 
     return () => {
@@ -42,6 +47,32 @@ const NPCController = forwardRef(({
       }
     };
   }, [actions]);
+
+  useFrame(() => {
+    // console.log(currentTarget)
+        if (npcRef.current && playerRef?.current) {
+        const npcPosition = new Vector3()
+        const playerPosition = new Vector3()
+        npcRef.current.getWorldPosition(npcPosition)
+        playerRef.current.getWorldPosition(playerPosition)
+        
+        const distance = npcPosition.distanceTo(playerPosition)
+         console.log(isTargetSet)
+        if (distance < 3) {
+          if (!isTargetSet) {
+            setCurrentTarget(type, npcId)
+            setIsTargetSet(true)
+            // console.log("近い:", type, npcId)
+          }
+        } else {
+          if (isTargetSet) {
+            // console.log("遠い:", npcId)
+            setIsTargetSet(false)
+            removeTarget()
+          }
+        }
+      }
+  },);
 
   useFrame(() => {
     // console.log(isClose,npcId)
