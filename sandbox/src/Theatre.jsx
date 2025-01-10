@@ -1,5281 +1,3436 @@
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef } from "react"
+import { useGLTF } from "@react-three/drei"
 
 export default function Theatre(props) {
-  const { nodes, materials } = useGLTF('./map/Theatre.glb')
+  const { nodes, materials } = useGLTF("./map/Theatre.glb")
   return (
     <group {...props} dispose={null}>
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1089502856.geometry}
         material={materials.mat20}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group966674978.geometry}
         material={materials.mat20}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1352329150.geometry}
         material={materials.mat20}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1275667551.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group951359142.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1103954568.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1904947834.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1230310007.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1443340865.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group229094622.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1595999161.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group261990612.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group448409745.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group818006074.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1535005260.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1272244745.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group2111321070.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group143970978.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.group19513178.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.group19513178.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group2025497177.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1208279155.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group413715467.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group357680794.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group553184163.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1112968997.geometry}
         material={materials.mat12}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group600755998.geometry}
         material={materials.mat20}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1530391114.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group168220510.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1234629553.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group885878627.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1511749642.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1577750076.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1809171106.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group259311962.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group677836197.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group631176592.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1331245825.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group305284441.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group181224007.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1632284348.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1494721920.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group38512641.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group2075695574.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1344967529.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group758851735.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1385410355.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group948613072.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group445140295.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group2050823850.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1392806946.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group587993062.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group146733562.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group989675149.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1897836782.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group238443703.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group39912262.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1489093233.geometry}
         material={materials.mat14}
       />
+      <mesh geometry={nodes.group2035430.geometry} material={materials.mat14} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.group2035430.geometry}
-        material={materials.mat14}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group620393833.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group2046938214.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group2065977395.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1378629990.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1241910426.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group854611637.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1813174771.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1167008135.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group876599569.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group2073656009.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1359234238.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group848343555.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1905421960.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1526971210.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group53236134.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group591288348.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group860772043.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group228156563.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1775036918.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group753855438.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group648794729.geometry}
         material={materials.mat20}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1109776871.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1259146412.geometry}
         material={materials.mat14}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1528355684.geometry}
         material={materials.mat20}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group489023030.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1905365015.geometry}
         material={materials.mat17}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1296082119.geometry}
         material={materials.mat16}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group2115173589.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group957738301.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1410448475.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group361628747.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group924282252.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1233849566.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1814197996.geometry}
         material={materials.mat2}
       />
+      <mesh geometry={nodes.group91476046.geometry} material={materials.mat2} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.group91476046.geometry}
-        material={materials.mat2}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group632238253.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1072173256.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1052210116.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group975852317.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group792310127.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group500174007.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group572126642.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group898571475.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1529237130.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1723370584.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group516205075.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1506711771.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group829761918.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1399759430.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1876180861.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group825709056.geometry}
         material={materials.mat7}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1121094332.geometry}
         material={materials.mat16}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group223517107.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group122758598.geometry}
         material={materials.mat16}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group584430783.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group445607873.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group792004306.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group312922109.geometry}
         material={materials.mat2}
       />
+      <mesh geometry={nodes.group29082817.geometry} material={materials.mat2} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.group29082817.geometry}
-        material={materials.mat2}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1373473915.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group301952150.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group482801259.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group543900621.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1577545294.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group427448716.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1333398049.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group2097092098.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1430468166.geometry}
         material={materials.mat2}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group743789918.geometry}
         material={materials.mat12}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1472359954.geometry}
         material={materials.mat12}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1369288703.geometry}
         material={materials.mat12}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group625278703.geometry}
         material={materials.mat12}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1199278857.geometry}
         material={materials.mat12}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group591929000.geometry}
         material={materials.mat12}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1952000674.geometry}
         material={materials.mat12}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1235178265.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group144877544.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1190297442.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group574293323.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group476580081.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group105324051.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group264994784.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1181731628.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1909029974.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1955358074.geometry}
         material={materials.mat21}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1625847572.geometry}
         material={materials.mat21}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1364689369.geometry}
         material={materials.mat21}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1545034772.geometry}
         material={materials.mat21}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group38909246.geometry}
         material={materials.mat21}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1001512926.geometry}
         material={materials.mat21}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group784457706.geometry}
         material={materials.mat21}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group408249477.geometry}
         material={materials.mat21}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.group1812657143.geometry}
         material={materials.mat21}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1079906564.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1079906564_1.geometry}
         material={materials.mat19}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2016318933.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2016318933_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh531132724.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh531132724_1.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh339907138.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh339907138_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2127548775.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2127548775_1.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh602565904.geometry}
         material={materials.mat15}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh602565904_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1268098723.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1268098723_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1888860356.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1888860356_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh16337799.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh16337799.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh16337799_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh821620925.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh821620925_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh158946193.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh158946193_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1779994804.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1779994804_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh104727213.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh104727213.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh104727213_1.geometry}
         material={materials.mat23}
       />
+      <mesh geometry={nodes.mesh678368930.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh678368930.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh678368930_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1361381242.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1361381242_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1366708743.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1366708743_1.geometry}
         material={materials.mat23}
       />
+      <mesh geometry={nodes.mesh637864010.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh637864010.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh637864010_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh621945404.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh621945404_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh428356159.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh428356159_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh436193715.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh436193715_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1911671153.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1911671153_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh814817260.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh814817260_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1477405674.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1477405674_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1077429180.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1077429180_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1090919745.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1090919745_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh418541149.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh418541149_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1769137432.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1769137432_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1521810826.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1521810826_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh581642868.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh581642868_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1152061494.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1152061494_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh32486335.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh32486335.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh32486335_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1914529444.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1914529444_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh192793013.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh192793013.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh192793013_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh185128366.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh185128366_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1599069365.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1599069365_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh554887804.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh554887804_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh289091355.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh289091355_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1679993913.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1679993913_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1409262545.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1409262545_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2146197353.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2146197353_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1655903158.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1655903158_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh609165186.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh609165186_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh881240341.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh881240341_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh93762181.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh93762181.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh93762181_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1555842436.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1555842436_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1452968944.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1452968944_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh465232001.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh465232001_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh832672231.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh832672231_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh260881410.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh260881410_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1097941257.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1097941257_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1801996081.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1801996081_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh779029891.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh779029891_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1776160408.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1776160408_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1044786768.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1044786768_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh649972516.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh649972516_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1043475740.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1043475740_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1499464248.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1499464248_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh963138062.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh963138062_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh821457619.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh821457619_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh612071893.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh612071893_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh361547610.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh361547610_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh863758258.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh863758258_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh244498721.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh244498721_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1952709687.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1952709687_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1165051728.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1165051728_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1582295419.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1582295419_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1248724151.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1248724151_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2108576262.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2108576262_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1633380939.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1633380939_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1000462454.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1000462454_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh173738746.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh173738746_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1480609084.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1480609084_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh746551285.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh746551285_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh577341000.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh577341000_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1957791951.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1957791951_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh29308936.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh29308936.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh29308936_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh948377070.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh948377070_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1188915247.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1188915247_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1781033350.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1781033350_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1705031098.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1705031098_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh61306247.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh61306247.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh61306247_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh56080474.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh56080474.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh56080474_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1528208635.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1528208635_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1963559056.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1963559056_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh142254945.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh142254945_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh919036757.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh919036757_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2008124859.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2008124859_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1421052335.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1421052335_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh360281947.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh360281947_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh608707345.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh608707345_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1913216147.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1913216147_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1926706088.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1926706088_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh791310580.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh791310580_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh730874005.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh730874005_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh971182613.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh971182613_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh362009044.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh362009044_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2080503469.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2080503469_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2083918462.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2083918462_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1134613217.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1134613217_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1512665833.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1512665833_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh974949512.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh974949512_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh154358376.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh154358376_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh869110737.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh869110737_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1459869560.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1459869560_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh941700282.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh941700282_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1486325055.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1486325055_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1097138323.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1097138323_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh785772424.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh785772424_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1877356222.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1877356222_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1350053208.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1350053208_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh487931077.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh487931077_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh76526098.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh76526098.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh76526098_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1205641032.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1205641032_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh246391941.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh246391941_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh921427198.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh921427198_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1915739445.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1915739445_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh636684176.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh636684176_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh852692629.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh852692629_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1364889361.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1364889361_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1855674380.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1855674380_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1877374142.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1877374142_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh652163910.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh652163910_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1970062171.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1970062171_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2127131011.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2127131011_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1914510779.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1914510779_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh582341604.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh582341604_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1062839480.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1062839480_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1397111894.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1397111894_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1938298612.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1938298612_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1717354275.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1717354275_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1632226359.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1632226359_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1589405640.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1589405640_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh259194855.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh259194855_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh820959096.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh820959096_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh785522782.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh785522782_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1034246143.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1034246143_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1360702045.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1360702045_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1240348441.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1240348441_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1230083960.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1230083960_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1362387186.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1362387186_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh164739518.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh164739518_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2083006028.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2083006028_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1828331050.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1828331050_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh473183413.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh473183413_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1466502379.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1466502379_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1977890277.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1977890277_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1215694486.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1215694486_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1256536284.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1256536284_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1172552266.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1172552266_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1399054674.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1399054674_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh774350587.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh774350587_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1753928364.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1753928364_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1474463702.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1474463702_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1799398722.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1799398722_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh335119604.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh335119604_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1888516753.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1888516753_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1141315324.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1141315324_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1063746182.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1063746182_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1647902126.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1647902126_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh625649076.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh625649076_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh676155623.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh676155623.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh676155623_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1373386564.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1373386564_1.geometry}
         material={materials.mat23}
       />
+      <mesh geometry={nodes.mesh822034422.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh822034422.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh822034422_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1146198204.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1146198204_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1879519906.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1879519906_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1759660333.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1759660333_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1452712107.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1452712107_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh650075323.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh650075323_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh364457089.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh364457089_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh19063302.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh19063302.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh19063302_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1924442715.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1924442715_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1925662686.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1925662686_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1542902413.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1542902413_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh336369159.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh336369159_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh571815261.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh571815261_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh919062070.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh919062070_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1641147183.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1641147183_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1500232895.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1500232895_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1596549733.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1596549733_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh909950651.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh909950651_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1499342614.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1499342614_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh192210686.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh192210686_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1902390225.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1902390225_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1286859066.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1286859066_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1123060968.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1123060968_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1136602351.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1136602351_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh513409759.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh513409759_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh602885317.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh602885317_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1961510102.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1961510102_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1543834878.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1543834878_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh612103386.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh612103386_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh433094880.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh433094880_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1419249071.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1419249071_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1523051027.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1523051027_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh167921223.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh167921223_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh28767816.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh28767816.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh28767816_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh351909080.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh351909080_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh538194972.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh538194972_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh793551519.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh793551519_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh713994237.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh713994237.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh713994237_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1462123605.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1462123605_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1983693128.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1983693128_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1728742901.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1728742901_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1546725103.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1546725103_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh569719533.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh569719533_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh325524314.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh325524314.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh325524314_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1991023887.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1991023887_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1594738709.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1594738709_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh63411086.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh63411086.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh63411086_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh630347860.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh630347860_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1641834369.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1641834369_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2110495537.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2110495537_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh585369781.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh585369781_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh475035837.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh475035837_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1416267328.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1416267328_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1168501900.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1168501900_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh491024346.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh491024346_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1050604220.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1050604220_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1079024112.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1079024112_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1305216828.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1305216828_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1166042762.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1166042762_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh885660557.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh885660557_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh262031148.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh262031148_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1507341761.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1507341761_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh147136314.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh147136314_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1604656876.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1604656876_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1475463918.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1475463918_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh301954900.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh301954900_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1951965137.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1951965137_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh292091991.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh292091991_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh448385955.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh448385955_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1334155530.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1334155530_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh783310648.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh783310648_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh408806137.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh408806137_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh180518302.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh180518302_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1915372672.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1915372672_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh237423842.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh237423842_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1605117883.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1605117883_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh468293162.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh468293162_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh537346002.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh537346002_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh600969455.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh600969455_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1535347553.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1535347553_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1176641136.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1176641136_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh176208354.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh176208354_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh613542513.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh613542513_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1524384621.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1524384621_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh192488908.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh192488908_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh1033475.geometry} material={materials.mat23} />
+      <mesh geometry={nodes.mesh1033475_1.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh1033475.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh1033475_1.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh708057327.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh708057327_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh212817255.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh212817255_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh890792896.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh890792896_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1467268610.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1467268610_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1876390358.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1876390358_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh269830350.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh269830350_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh448880145.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh448880145_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1227025674.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1227025674_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1700994627.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1700994627_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1918148430.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1918148430_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1140777413.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1140777413_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1763028351.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1763028351_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1368285897.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1368285897_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1646596579.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1646596579_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh975120634.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh975120634_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh436407967.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh436407967_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1717790714.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1717790714_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1486778356.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1486778356_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1615125839.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1615125839_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh153825695.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh153825695_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1689509097.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1689509097_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh340501707.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh340501707_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh165565257.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh165565257_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1295180376.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1295180376_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh140828756.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh140828756_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1344059651.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1344059651_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2134198675.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2134198675_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh559766550.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh559766550_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh547372364.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh547372364_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh882346773.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh882346773_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1284009530.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1284009530_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh340428689.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh340428689_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh321217227.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh321217227_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1689571000.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1689571000_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh575674215.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh575674215_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh687094720.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh687094720_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh134357785.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh134357785_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1653105879.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1653105879_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh285330768.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh285330768_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1692894151.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1692894151_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh523065783.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh523065783_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1650936383.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1650936383_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1443578222.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1443578222_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1035441878.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1035441878_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh179357028.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh179357028_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh611590923.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh611590923_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1175648977.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1175648977_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh880597526.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh880597526_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh511732500.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh511732500_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1030134600.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1030134600_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1218047023.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1218047023_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1818970831.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1818970831_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh721120340.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh721120340_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1427926292.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1427926292_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh286370411.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh286370411_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh964904322.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh964904322_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1273325785.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1273325785_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh378502127.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh378502127_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1511908217.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1511908217_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1321832602.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1321832602_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1209177279.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1209177279_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1386093362.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1386093362_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2006634546.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2006634546_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1844085710.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1844085710_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1895739096.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1895739096_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh195318117.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh195318117_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1801970134.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1801970134_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1891334035.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1891334035_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh276600433.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh276600433.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh276600433_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh252916520.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh252916520_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2117231054.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2117231054_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1987928446.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1987928446_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1257484616.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1257484616_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1277690674.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1277690674_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1308290802.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1308290802_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1759712788.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1759712788_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh627550331.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh627550331_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh1699376.geometry} material={materials.mat23} />
+      <mesh geometry={nodes.mesh1699376_1.geometry} material={materials.mat8} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh1699376.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh1699376_1.geometry}
-        material={materials.mat8}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh951482785.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh951482785_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1882223258.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1882223258_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh199675734.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh199675734_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh963849705.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh963849705_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh999366914.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh999366914_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1104536135.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1104536135_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1658298261.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1658298261_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh933631839.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh933631839_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1018623393.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1018623393_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1620261974.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1620261974_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2145241986.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2145241986_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1673079339.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1673079339_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1459671761.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1459671761_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh44982722.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh44982722.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh44982722_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh840192718.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh840192718_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1146309638.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1146309638_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh991334364.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh991334364_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2145736497.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2145736497_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh453219300.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh453219300_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2137379417.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh2137379417_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1927493022.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1927493022_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1108476000.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1108476000_1.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1496273907.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1496273907_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh625810926.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh625810926_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1744626379.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1744626379_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1930514589.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1930514589_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1753837622.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1753837622_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh191352597.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh191352597_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1595493898.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1595493898_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1209960906.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1209960906_1.geometry}
         material={materials.mat8}
       />
+      <mesh geometry={nodes.mesh41776080.geometry} material={materials.mat23} />
       <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.mesh41776080.geometry}
-        material={materials.mat23}
-      />
-      <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh41776080_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1732453790.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1732453790_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1266753944.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1266753944_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh752393584.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh752393584_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1462605535.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh1462605535_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh599986505.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh599986505_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh984728129.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh984728129_1.geometry}
         material={materials.mat8}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh437889633.geometry}
         material={materials.mat23}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.mesh437889633_1.geometry}
         material={materials.mat8}
       />

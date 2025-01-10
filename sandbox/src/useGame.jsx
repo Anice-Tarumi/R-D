@@ -19,18 +19,16 @@ export default create(subscribeWithSelector((set) =>
                 return {}
             })
         },
-
         start: () =>
+        {
+            set((state) =>
             {
-                set((state) =>
-                {
-                    if(state.phase === 'ready')
-                        return { phase: 'playing'}
-    
-                    return {}
-                })
-            },
+                if(state.phase === 'ready')
+                    return { phase: 'playing'}
 
+                return {}
+            })
+        },
         menu: () =>
         {
             set((state) =>
@@ -41,18 +39,16 @@ export default create(subscribeWithSelector((set) =>
                 return {}
             })
         },
-
         resume: () =>
+        {
+            set((state) =>
             {
-                set((state) =>
-                {
-                    if(state.phase === 'menu' || state.phase === 'talking')
-                        return { phase: 'playing'}
-    
-                    return {}
-                })
-            },
+                if(state.phase === 'menu' || state.phase === 'talking' || state.phase === 'changing')
+                    return { phase: 'playing'}
 
+                return {}
+            })
+        },
         startTalking: () =>
         {
             set((state) =>
@@ -91,6 +87,13 @@ export default create(subscribeWithSelector((set) =>
                     return { phase: 'playing'}
 
                 return {}
+            })
+        },
+        startChanging: () =>
+        {
+            set((state) =>
+            {
+                    return { phase: 'changing'}
             })
         }
     }

@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
 const useDialogueStore = create((set) => ({
   currentNPC: null, // 現在のNPC ID
@@ -11,6 +11,6 @@ const useDialogueStore = create((set) => ({
       currentNPC: nextId ? state.currentNPC : null, // 会話終了時にNPCもリセット
     })),
   endDialogue: () => set({ currentNPC: null, currentDialogue: null }), // 会話を完全にリセット
-}));
+}))
 
-export default useDialogueStore;
+export default useDialogueStore
