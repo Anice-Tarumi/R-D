@@ -1,19 +1,21 @@
-import React, { useState, useEffect, Suspense } from "react";
-import Loader from "./Loader"; // ローディング画面
-import { useProgress } from "@react-three/drei";
+import React, { useState, useEffect, Suspense } from "react"
+import Loader from "./Loader" // ローディング画面
+import { useProgress } from "@react-three/drei"
 import useGame from "./useGame.jsx"
-import useDialogueStore from "./useDialogueStore.jsx";
-import AddLoadingScreen from "./AddLoadingScreen.jsx";
-import MenuScreen from "./MenuScreen.jsx";
+import useDialogueStore from "./useDialogueStore.jsx"
+import AddLoadingScreen from "./AddLoadingScreen.jsx"
+import MenuScreen from "./MenuScreen.jsx"
+import ClothChangeButton from "./ClothChangeButton.jsx"
+import ClothChangeUI from "./ClothChangeUI.jsx"
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {
-  const menu = useGame((state) => state.menu);
+  const menu = useGame((state) => state.menu)
   return (<>
   <div>
     <button className="menu-button" 
             onClick={() => {
-              menu(); // 状態をmenuに切り替え
+              menu() // 状態をmenuに切り替え
             }}>
       <span className="line"></span>
       <span className="line middle"></span>
@@ -21,34 +23,36 @@ const MenuButton = () => {
     </button>
     </div>
     </>
-  );
-};
+  )
+}
 
 const GameStateManager = () => {
-  const { progress } = useProgress(); // Drei のロード進捗取得
-  const [animationDone, setAnimationDone] = useState(false); // ローディングアニメーション完了管理
+  const { progress } = useProgress() // Drei のロード進捗取得
+  const [animationDone, setAnimationDone] = useState(false) // ローディングアニメーション完了管理
   const phase = useGame((state) => state.phase)
   const ready = useGame((state) => state.ready)
   const start = useGame((state) => state.start)
-  const endTalking = useGame((state) => state.endTalking); // 会話終了処理
-  const endDialogue = useDialogueStore((state) => state.endDialogue); // 会話をリセット
+  const endTalking = useGame((state) => state.endTalking) // 会話終了処理
+  const endDialogue = useDialogueStore((state) => state.endDialogue) // 会話をリセット
   const addLoadingComp = useGame((state) => state.addLoadingComp)
+  const startChanging = useGame((state) => state.startChanging);
+  const resume = useGame((state) => state.resume);
 
   // ロードが完了したらアニメーションを開始
   useEffect(() => {
     if (progress === 100 && phase === 'loading') {
       setTimeout(() => {
-        setAnimationDone(true); // アニメーションを開始
-      }, 500); // 0.5秒遅延
+        setAnimationDone(true) // アニメーションを開始
+      }, 500) // 0.5秒遅延
     }
-  }, [progress, phase]);
+  }, [progress, phase])
 
   // アニメーション完了後にスタート画面へ遷移
   useEffect(() => {
     if (animationDone) {
-      setTimeout(() => ready(), 1500); // アニメーション後1.5秒でスタート画面に遷移
+      setTimeout(() => ready(), 1500) // アニメーション後1.5秒でスタート画面に遷移
     }
-  }, [animationDone]);
+  }, [animationDone])
   const talkEnd = () =>
   {
     endTalking()
@@ -68,25 +72,26 @@ const GameStateManager = () => {
               <button
                 className="start-button"
                 onClick={() => {
-                  start();
+                  start()
                 }}
               >
                 スタート！
               </button>
             </div>
           </div>
-        );
+        )
       case 'playing':
         return (
           <>
             <MenuButton />
+            <ClothChangeButton />
           </>
-        );
+        )
         case 'menu': // 追加
       return (
       //  <MenuScreen/>
       <></>
-      );
+      )
       case 'talking':
         return (
           <>
@@ -94,24 +99,28 @@ const GameStateManager = () => {
             <button onClick={talkEnd}>中断</button>
           </div>
           </>
-        );
-        case 'addloading':
-          return (
-            <>
-             <Suspense fallback={<div>Loading...</div>}>
-          <AddLoadingScreen
-            resourceUrl="map/Theatre.glb"
-            onComplete={addLoadingComp}
-          />
-        </Suspense>
-            </>
-          );
+        )
+      case 'addloading':
+        return (
+          <>
+            <Suspense fallback={<div>Loading...</div>}>
+        <AddLoadingScreen
+          resourceUrl="map/Theatre.glb"
+          onComplete={addLoadingComp}
+        />
+      </Suspense>
+          </>
+        )
+      case 'changing':
+        return (
+          <ClothChangeUI />
+        )
       default:
-        return null;
+      return null
     }
-  };
+  }
 
-  return <>{renderState()}</>;
-};
+  return <>{renderState()}</>
+}
 
-export default GameStateManager;
+export default GameStateManager

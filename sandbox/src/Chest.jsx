@@ -1,62 +1,62 @@
-// import React, { useRef, forwardRef, useImperativeHandle, useMemo, useEffect } from "react";
-// import { useGLTF, useAnimations } from "@react-three/drei";
-// import * as THREE from "three";
-// import { useFrame } from "@react-three/fiber";
-// import useChestStore from "./useChestStore.jsx";
-// import useInteractionStore from "./useInteractionStore.jsx";
+// import React, { useRef, forwardRef, useImperativeHandle, useMemo, useEffect } from "react"
+// import { useGLTF, useAnimations } from "@react-three/drei"
+// import * as THREE from "three"
+// import { useFrame } from "@react-three/fiber"
+// import useChestStore from "./useChestStore.jsx"
+// import useInteractionStore from "./useInteractionStore.jsx"
 
 // const Chest = forwardRef(({id, modelPath,props,position,rotation,playerRef,onProximity},ref) => {   
 //   const chestRef = useRef()
-//   const group = useRef();
-//   const { scene, nodes, materials, animations } = useGLTF("./chests/Chest.glb");
-//   const { actions } = useAnimations(animations, scene);
+//   const group = useRef()
+//   const { scene, nodes, materials, animations } = useGLTF("./chests/Chest.glb")
+//   const { actions } = useAnimations(animations, scene)
 
 //   const isChestOpen = useChestStore((state) => state.isChestOpen)
 //   const openChest = useChestStore ((state) => state.openChest)
 
 //   // useFrame(() => {
 //   //   if (playerRef.current && chestRef.current) {
-//   //     const playerPos = new THREE.Vector3();
-//   //     const chestPos = new THREE.Vector3();
-//   //     playerRef.current.getWorldPosition(playerPos);
-//   //     chestRef.current.getWorldPosition(chestPos);
+//   //     const playerPos = new THREE.Vector3()
+//   //     const chestPos = new THREE.Vector3()
+//   //     playerRef.current.getWorldPosition(playerPos)
+//   //     chestRef.current.getWorldPosition(chestPos)
 
-//   //     const distanceToChest = playerPos.distanceTo(chestPos);
+//   //     const distanceToChest = playerPos.distanceTo(chestPos)
 //   //     if (!isChestOpen && distanceToChest < 3) {
-//   //       onProximity(true); // ボタンを表示
+//   //       onProximity(true) // ボタンを表示
 //   //      } else {
-//   //       onProximity(false); // ボタンを非表示
+//   //       onProximity(false) // ボタンを非表示
 //   //     }
 //   //   }
-//   // });
+//   // })
 
  
 
 //   // console.log("dou",ref)
 //   // useImperativeHandle(ref, () => ({
 //   //   openChest: () => {
-//   //     const animationName = 'Chest_Open';
+//   //     const animationName = 'Chest_Open'
 //   //     if (!isChestOpen && actions[animationName]) {
 //   //       openChest()
-//   //       actions[animationName].reset().play();
-//   //       console.log("Animation exists for:", animationName);
-//   //       actions[animationName].setLoop(THREE.LoopOnce);
-//   //       actions[animationName].clampWhenFinished = true;
+//   //       actions[animationName].reset().play()
+//   //       console.log("Animation exists for:", animationName)
+//   //       actions[animationName].setLoop(THREE.LoopOnce)
+//   //       actions[animationName].clampWhenFinished = true
 //   //     }
 //   //   },
-//   // }));
+//   // }))
 
 //   useEffect(() => {
 //     if (ref.current) {
-//       console.log("Adding target to store:", { id, ref, type: "CHEST" });
+//       console.log("Adding target to store:", { id, ref, type: "CHEST" })
 //       useInteractionStore.getState().addTarget({
 //         id,
 //         ref,
 //         type: "CHEST",
-//       });
+//       })
 //     }
-//   }, [ref, id]);
-//   console.log("Current target in store:", useInteractionStore.getState().currentTarget);
+//   }, [ref, id])
+//   console.log("Current target in store:", useInteractionStore.getState().currentTarget)
 
 
 //   return (
@@ -70,9 +70,9 @@
 //         </group>
 //       </group>
 //     </group>
-//   );
-// });
+//   )
+// })
 
-// useGLTF.preload("/Chest.glb");
+// useGLTF.preload("/Chest.glb")
 
-// export default Chest;
+// export default Chest

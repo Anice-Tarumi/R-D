@@ -1,8 +1,8 @@
-import React from "react";
-import { useProgress } from "@react-three/drei";
+import React from "react"
+import { useProgress } from "@react-three/drei"
 
 export default function Loader({ animationDone }) {
-  const { progress } = useProgress(); // ロード進捗を取得 (0~100%)
+  const { progress } = useProgress() // ロード進捗を取得 (0~100%)
 
   return (
     <div className={`loader-container ${animationDone ? "fade-out" : ""}`}>
@@ -22,5 +22,5 @@ export default function Loader({ animationDone }) {
         <p className="loading-text">{Math.floor(progress)}% Loaded</p>
       </div>
     </div>
-  );
+  )
 }

@@ -1,60 +1,60 @@
-import React, { useEffect, useState } from "react";
-import { useProgress, Html } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import useGame from "./useGame";
+import React, { useEffect, useState } from "react"
+import { useProgress, Html } from "@react-three/drei"
+import { useLoader } from "@react-three/fiber"
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import useGame from "./useGame"
 
 const AddLoadingScreen = ({ resourceUrl, onComplete }) => {
   const { progress } = useProgress()
 //   const resource = useLoader(GLTFLoader,resourceUrl)
-  const [resource, setResource] = useState(null);
-  const [spinnerSize, setSpinnerSize] = useState(50); // スピナーの初期サイズ
-  const [barColor, setBarColor] = useState("#ff9900"); // ローディングバーの初期色
-  const [isComplete, setIsComplete] = useState(false);
+  const [resource, setResource] = useState(null)
+  const [spinnerSize, setSpinnerSize] = useState(50) // スピナーの初期サイズ
+  const [barColor, setBarColor] = useState("#ff9900") // ローディングバーの初期色
+  const [isComplete, setIsComplete] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [animationClass, setAnimationClass] = useState("add-loading-fade-in")
-  const [startTime] = useState(Date.now());
+  const [startTime] = useState(Date.now())
 
   useEffect(() => {
-    const loader = new GLTFLoader();
+    const loader = new GLTFLoader()
     loader.load(
       resourceUrl,
       (gltf) => {
-        setResource(gltf); // ロード完了時にリソースを保存
+        setResource(gltf) // ロード完了時にリソースを保存
       },
       undefined,
       (error) => console.error("Error loading resource:", error)
-    );
-  }, [resourceUrl]);
+    )
+  }, [resourceUrl])
 
   useEffect(() => {
     if (progress === 100 && resource && !isComplete) {
-      const elapsedTime = Date.now() - startTime; // 経過時間を計算
-      const delay = Math.max(3000 - elapsedTime, 0); // 最低3秒の遅延を計算
+      const elapsedTime = Date.now() - startTime // 経過時間を計算
+      const delay = Math.max(3000 - elapsedTime, 0) // 最低3秒の遅延を計算
 
       setTimeout(() => {
-        setAnimationClass("add-loading-fade-out");
+        setAnimationClass("add-loading-fade-out")
         setTimeout(() => {
-          setIsVisible(false);
+          setIsVisible(false)
           if (typeof onComplete === "function") {
-            onComplete(resource);
+            onComplete(resource)
           }
-        }, 500); // フェードアウト時間に合わせる
-      }, delay);
+        }, 500) // フェードアウト時間に合わせる
+      }, delay)
 
-      setIsComplete(true);
+      setIsComplete(true)
     }
-  }, [progress, resource, onComplete, isComplete, startTime]);
+  }, [progress, resource, onComplete, isComplete, startTime])
 
   const changeSpinnerSize = () => {
-    const newSize = Math.random() * 50 + 50; // ランダムな大きさ (50px～100px)
-    setSpinnerSize(newSize);
-  };
+    const newSize = Math.random() * 50 + 50 // ランダムな大きさ (50px～100px)
+    setSpinnerSize(newSize)
+  }
 
   const changeBarColor = () => {
-    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16); // ランダムな色
-    setBarColor(randomColor);
-  };
+    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16) // ランダムな色
+    setBarColor(randomColor)
+  }
   if(!isVisible) return null
 
   return (
@@ -77,7 +77,7 @@ const AddLoadingScreen = ({ resourceUrl, onComplete }) => {
         ></div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddLoadingScreen;
+export default AddLoadingScreen

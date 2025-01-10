@@ -1,29 +1,28 @@
-import React, { useState } from "react";
-import useInteractionStore from "./useInteractionStore";
-import DialogButton from "./DialogButton";
-import DialogueUI from "./DialogueUI";
-import useGame from "./useGame";
-import useStageStore from "./useStageStore";
+import React, { useState } from "react"
+import useInteractionStore from "./useInteractionStore"
+import DialogButton from "./DialogButton"
+import DialogueUI from "./DialogueUI"
+import useGame from "./useGame"
+import useStageStore from "./useStageStore"
 
 const InteractionUI = () => {
-  const  currentTarget  = useInteractionStore((state) => (state.currentTarget));
-  const  setCurrentTarget  = useInteractionStore((state) => state.setCurrentTarget);
+  const  currentTarget  = useInteractionStore((state) => (state.currentTarget))
+  const removeTarget = useInteractionStore((state) => state.removeTarget)
   const addLoading = useGame((state) => state.addLoading)
   const setStage = useStageStore((state) => state.setStage)
   const phase = useGame((state) => state.phase)
   const [isButtonVisible, setIsButtonVisible] = useState(true)
-  if (!currentTarget) return null;
+  if (!currentTarget) return null
   const handlePortalInteraction = () => {
-    setIsButtonVisible(false); // ボタンを非表示
+    removeTarget()
+    setIsButtonVisible(false) // ボタンを非表示
     setTimeout(() => {
-      addLoading(); // ローディング状態に切り替え
+      addLoading()
       setTimeout(() => {
-        setStage("Theatre"); // ステージをTheatreに切り替え
-      }, 3000); // 最低3秒のローディング後にステージ変更
-    }, 0);
-  };
-
-  // console.log("currentTarget.type",currentTarget.type)
+        setStage("Theatre")
+      }, 3000)
+    }, 0)
+  }
   switch (currentTarget.type) {
     case "NPC":
       return (
@@ -31,13 +30,13 @@ const InteractionUI = () => {
           <DialogButton/>
           <DialogueUI/>
         </>
-      );
-    case "CHEST":
-      return (
-        <button className="interaction-ui-button" onClick={() => console.log(`Opening chest: ${currentTarget.id}`)}>
-          Open Chest
-        </button>
-      );
+      )
+    // case "CHEST":
+    //   return (
+    //     <button className="interaction-ui-button" onClick={() => console.log(`Opening chest: ${currentTarget.id}`)}>
+    //       Open Chest
+    //     </button>
+    //   )
     case "PORTAL":
     return (
       <div className="portal-ui">
@@ -48,10 +47,10 @@ const InteractionUI = () => {
         Enter Portal
       </button>)}
       </div>
-    );
+    )
     default:
-      return null;
+      return null
   }
-};
+}
 
-export default InteractionUI;
+export default InteractionUI

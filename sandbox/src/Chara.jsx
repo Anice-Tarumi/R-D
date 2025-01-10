@@ -11,9 +11,9 @@ export default function Chara({animation, ...props}) {
   const { actions } = useAnimations(animations, group)
 
   useEffect(() => {
-    actions[animation].reset().fadeIn(0.24).play();
-    return () => actions?.[animation]?.fadeOut(0.24);
-  }, [animation]);
+    actions[animation].reset().fadeIn(0.24).play()
+    return () => actions?.[animation]?.fadeOut(0.24)
+  }, [animation])
 
   return (
     <group ref={group} {...props} dispose={null} >
@@ -35,4 +35,4 @@ export default function Chara({animation, ...props}) {
   )
 }
 
-useGLTF.preload('/chara.glb')
+// useGLTF.preload('/chara.glb')

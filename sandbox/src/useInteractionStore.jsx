@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
 const useInteractionStore = create((set) => ({
   currentTarget: [], // 現在インタラクション中のターゲット
@@ -14,6 +14,6 @@ const useInteractionStore = create((set) => ({
     set(() => ({
       currentTarget: null,
     })),
-}));
+}))
 
-export default useInteractionStore;
+export default useInteractionStore

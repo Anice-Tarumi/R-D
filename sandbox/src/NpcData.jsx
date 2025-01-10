@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
-import NPCController from "./NPCController";
-import { RigidBody, CapsuleCollider, BallCollider } from "@react-three/rapier";
+import React from "react"
+import NPCController from "./NPCController"
+import { RigidBody, CapsuleCollider, BallCollider } from "@react-three/rapier"
 
 const NpcData = ({ playerRef, npcRefs }) => { 
   
@@ -9,10 +9,10 @@ const NpcData = ({ playerRef, npcRefs }) => {
       id: "npc1",
       name: "Carrot",
       modelPath: "./npc/carrot.glb",
-      position: [9, 0, 4],
+      position: [9, -1, 4],
       rotation: [0, Math.PI, 0],
       colliderArgs: [0.5, 1],
-      colliderPosition: [9 ,1.5,4],
+      colliderPosition: [9 ,0.5,4],
     },
     {
       id: "npc2",
@@ -23,10 +23,10 @@ const NpcData = ({ playerRef, npcRefs }) => {
       colliderArgs: [0.5, 0.8],
       colliderPosition: [-9 ,0.2,4],
     },
-  ];
+  ]
   return npcList.map((npc) => {
     if (!npcRefs.current[npc.id]) {
-      npcRefs.current[npc.id] = React.createRef();
+      npcRefs.current[npc.id] = React.createRef()
     }
 
     return (
@@ -53,33 +53,9 @@ const NpcData = ({ playerRef, npcRefs }) => {
           position={npc.colliderPosition}
           friction={1}
         />
-        {/* <BallCollider
-          args={npc.colliderArgs}
-          position={npc.colliderPosition}
-          sensor={true}
-          // collisionGroups={{
-          //   group: 0b0010,
-          //   mask : 0b0001,
-          // }}
-          onIntersectionEnter={(event) =>{
-            // console.log("event",event)
-            const { type, id } = event.other.rigidBodyObject.userData || {};
-            if (type === "Player") {
-              // console.log(`Player is near NPC: ${npc.id}`);
-              npcRefs.current[npc.id].current.setClose(true);
-            }
-          }}
-          onIntersectionExit={(event) => {
-            const { type, id } = event.other.rigidBodyObject.userData || {};
-            if (type === "Player") {
-              // console.log(`Player left NPC: ${npc.id}`);
-              npcRefs.current[npc.id].current.setClose(false);
-            }
-          }}
-        /> */}
       </RigidBody>
-    );
-  });
-};
+    )
+  })
+}
 
-export default NpcData;
+export default NpcData

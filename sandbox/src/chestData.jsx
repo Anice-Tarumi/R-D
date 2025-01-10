@@ -15,7 +15,7 @@
 //       colliderArgs: [1, 1, 1],
 //       colliderPosition: [0 ,-1, 5],
 //     },
-//   ];
+//   ]
 //   11
-//   export default chestData;
+//   export default chestData
   
