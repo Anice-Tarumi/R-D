@@ -8,6 +8,7 @@ import { useKeyboardControls } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils.js"
 import useGame from "./useGame.jsx"
 import useInteractionStore from "./useInteractionStore.jsx"
+import ClothChangeUI from "./ClothChangeUI.jsx"
 
 const normalizeAngle = (angle) => {
   while (angle > Math.PI) angle -= 2 * Math.PI
@@ -50,16 +51,16 @@ const cameraLookAtWorldPosition = useRef(new Vector3())
 const cameraLookAt = useRef(new Vector3())
 const [, get] = useKeyboardControls()
 const isClicking = useRef(false)
-const initialRotation = useRef(new Quaternion());
+const initialRotation = useRef(new Quaternion())
 
-  useImperativeHandle(ref, () => ({
-    getWorldPosition: (vector) => {
-      if (rb.current) {
-        const translation = rb.current.translation()
-        vector.set(translation.x, translation.y, translation.z)
-      }
-    },
-  }))
+useImperativeHandle(ref, () => ({
+  getWorldPosition: (vector) => {
+    if (rb.current) {
+      const translation = rb.current.translation() // RigidBody の位置を取得
+      vector.set(translation.x, translation.y, translation.z)
+    }
+  },
+}))
 
   // const jump = () =>
   // {
@@ -67,64 +68,63 @@ const initialRotation = useRef(new Quaternion());
   //   rb.current.applyImpulse({ x: 0, y: 1, z: 0 })
   // }
 
-  useEffect(() => {
-    const onMouseDown = (e) => {
-      if (canvasRef.current && canvasRef.current.contains(e.target)) {
-        isClicking.current = true
-      }
+useEffect(() => {
+  const onMouseDown = (e) => {
+    if (canvasRef.current && canvasRef.current.contains(e.target)) {
+      isClicking.current = true
     }
-    const onMouseUp = (e) => {
-      if (canvasRef.current && canvasRef.current.contains(e.target)) {
-        isClicking.current = false
-      }
+  }
+  const onMouseUp = (e) => {
+    if (canvasRef.current && canvasRef.current.contains(e.target)) {
+      isClicking.current = false
     }
+  }
 
-    document.addEventListener("mousedown", onMouseDown)
-    document.addEventListener("mouseup", onMouseUp)
-    document.addEventListener("touchstart", onMouseDown)
-    document.addEventListener("touchend", onMouseUp)
+  document.addEventListener("mousedown", onMouseDown)
+  document.addEventListener("mouseup", onMouseUp)
+  document.addEventListener("touchstart", onMouseDown)
+  document.addEventListener("touchend", onMouseUp)
 
-    return () => {
-      document.removeEventListener("mousedown", onMouseDown)
-      document.removeEventListener("mouseup", onMouseUp)
-      document.removeEventListener("touchstart", onMouseDown)
-      document.removeEventListener("touchend", onMouseUp)
-    }
-  }, [])
+  return () => {
+    document.removeEventListener("mousedown", onMouseDown)
+    document.removeEventListener("mouseup", onMouseUp)
+    document.removeEventListener("touchstart", onMouseDown)
+    document.removeEventListener("touchend", onMouseUp)
+  }
+}, [])
 
   // useFrame(() => {
-  //   console.log("初期回転角度:", character.current.rotation.y); // 初期のrotation.yを表示
-  // }, []);
+  //   console.log("初期回転角度:", character.current.rotation.y) // 初期のrotation.yを表示
+  // }, [])
 
   useEffect(() => {
     if (phase === "changing") {
       // 着替えフェーズに入る時の回転保存
       if (character.current) {
-        initialRotation.current.copy(character.current.quaternion); // 現在の回転を保存
+        initialRotation.current.copy(character.current.quaternion) // 現在の回転を保存
       }
     }
 
     if (phase === "playing") {
       // 着替えフェーズ終了時に回転を元に戻す
       if (character.current) {
-        character.current.quaternion.copy(initialRotation.current); // 初期回転に戻す
+        character.current.quaternion.copy(initialRotation.current) // 初期回転に戻す
       }
     }
-  }, [phase]);
+  }, [phase])
 
 
 
   useFrame(({ camera, mouse }) => {
   if (phase === "changing") {
-    const playerPosition = new Vector3();
+    const playerPosition = new Vector3()
     if (rb.current) {
-      const translation = rb.current.translation();
-      playerPosition.set(translation.x, translation.y, translation.z);
+      const translation = rb.current.translation()
+      playerPosition.set(translation.x, translation.y, translation.z)
     }
-
-    character.current.lookAt(camera.position.x, playerPosition.y, camera.position.z);
-    camera.fov = MathUtils.lerp(camera.fov, 20, 0.1);
-    camera.updateProjectionMatrix();
+    character.current.lookAt(camera.position.x, playerPosition.y, camera.position.z)
+    camera.fov = MathUtils.lerp(camera.fov, 20, 0.1)
+    camera.updateProjectionMatrix()
     }
     if (phase === "talking" && currentTarget) {
       const npcRef = npcRefs.current[currentTarget.id]
@@ -146,8 +146,8 @@ const initialRotation = useRef(new Quaternion());
         camera.position.lerp(initialCameraPosition.current, 0.1)
         isTalking.current = false
       }
-      camera.fov = MathUtils.lerp(camera.fov, 45, 0.1); // fovを狭めることでズーム
-      camera.updateProjectionMatrix();
+      camera.fov = MathUtils.lerp(camera.fov, 45, 0.1) // fovを狭めることでズーム
+      camera.updateProjectionMatrix()
       
     }
 
@@ -241,7 +241,12 @@ const initialRotation = useRef(new Quaternion());
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={2} position-z={-10} />
         <group ref={character}>
-          <Chara scale={0.5} position-y={-1} rotation-y={-Math.PI / 2} animation={animation} />
+          <Chara 
+            scale={0.5} 
+            position-y={-1} 
+            rotation-y={-Math.PI / 2} 
+            animation={animation}
+          />
         </group>
       </group>
       <CapsuleCollider args={[0.5, 0.5]} friction={2} />

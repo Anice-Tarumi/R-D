@@ -13,7 +13,7 @@ const City = (position) => {
 
   useEffect(() => {
     // 読み込みが完了した後の処理
-    console.log("Model loaded:", gltf)
+    // console.log("Model loaded:", gltf)
   }, [gltf])
 
   return <primitive object={gltf.scene} position={[0,-1,0]}/>
