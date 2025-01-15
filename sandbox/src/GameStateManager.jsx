@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react"
+import React, { useState, useEffect, Suspense, useRef } from "react"
 import Loader from "./Loader" // ローディング画面
 import { useProgress } from "@react-three/drei"
 import useGame from "./useGame.jsx"
@@ -35,8 +35,9 @@ const GameStateManager = () => {
   const endTalking = useGame((state) => state.endTalking) // 会話終了処理
   const endDialogue = useDialogueStore((state) => state.endDialogue) // 会話をリセット
   const addLoadingComp = useGame((state) => state.addLoadingComp)
-  const startChanging = useGame((state) => state.startChanging);
-  const resume = useGame((state) => state.resume);
+  const startChanging = useGame((state) => state.startChanging)
+  const resume = useGame((state) => state.resume)
+  const characterControllerRef = useRef()
 
   // ロードが完了したらアニメーションを開始
   useEffect(() => {
@@ -111,10 +112,12 @@ const GameStateManager = () => {
       </Suspense>
           </>
         )
-      case 'changing':
-        return (
-          <ClothChangeUI />
-        )
+        case "changing":
+          return (
+            <>
+              <ClothChangeUI/>
+            </>
+          );
       default:
       return null
     }
