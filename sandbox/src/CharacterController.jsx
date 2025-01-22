@@ -9,6 +9,7 @@ import { degToRad } from "three/src/math/MathUtils.js"
 import useGame from "./useGame.jsx"
 import useInteractionStore from "./useInteractionStore.jsx"
 import ClothChangeUI from "./ClothChangeUI.jsx"
+import { Purete1 } from "./Purete1.jsx"
 
 const normalizeAngle = (angle) => {
   while (angle > Math.PI) angle -= 2 * Math.PI
@@ -98,22 +99,21 @@ useEffect(() => {
   // }, [])
 
   useEffect(() => {
-    if (phase === "changing") {
-      // 着替えフェーズに入る時の回転保存
-      if (character.current) {
-        initialRotation.current.copy(character.current.quaternion) // 現在の回転を保存
-      }
-    }
+    // if (phase === "changing") {
+    //   // 着替えフェーズに入る時の回転保存
+    //   if (character.current) {
+    //     initialRotation.current.copy(character.current.quaternion) // 現在の回転を保存
+    //   }
+    // }
 
     if (phase === "playing") {
       // 着替えフェーズ終了時に回転を元に戻す
       if (character.current) {
+        // character.current.quaternion.slerp(initialRotation.current, 0.2)
         character.current.quaternion.copy(initialRotation.current) // 初期回転に戻す
       }
     }
   }, [phase])
-
-
 
   useFrame(({ camera, mouse }) => {
   if (phase === "changing") {
@@ -247,6 +247,7 @@ useEffect(() => {
             rotation-y={-Math.PI / 2} 
             animation={animation}
           />
+          {/* <Purete1/> */}
         </group>
       </group>
       <CapsuleCollider args={[0.5, 0.5]} friction={2} />

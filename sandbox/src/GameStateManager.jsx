@@ -7,6 +7,8 @@ import AddLoadingScreen from "./AddLoadingScreen.jsx"
 import MenuScreen from "./MenuScreen.jsx"
 import ClothChangeButton from "./ClothChangeButton.jsx"
 import ClothChangeUI from "./ClothChangeUI.jsx"
+import useAudioStore from "./useAudioStore.jsx"
+import AudioButton from "./AudioButton.jsx"
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {
@@ -38,6 +40,7 @@ const GameStateManager = () => {
   const startChanging = useGame((state) => state.startChanging)
   const resume = useGame((state) => state.resume)
   const characterControllerRef = useRef()
+  const playBGM = useAudioStore((state) => state.playBGM);
 
   // ロードが完了したらアニメーションを開始
   useEffect(() => {
@@ -54,6 +57,13 @@ const GameStateManager = () => {
       setTimeout(() => ready(), 1500) // アニメーション後1.5秒でスタート画面に遷移
     }
   }, [animationDone])
+
+  useEffect(() => {
+    if (phase === "playing") {
+      playBGM(); // ゲーム開始時にBGMを再生
+    }
+  }, [phase]);
+
   const talkEnd = () =>
   {
     endTalking()
@@ -86,6 +96,7 @@ const GameStateManager = () => {
           <>
             <MenuButton />
             <ClothChangeButton />
+            <AudioButton/>
           </>
         )
         case 'menu': // 追加
