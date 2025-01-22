@@ -6,9 +6,9 @@ import { Vector3, MathUtils, Quaternion } from "three"
 import { Leva, useControls } from "leva"
 import { useKeyboardControls } from "@react-three/drei"
 import { degToRad } from "three/src/math/MathUtils.js"
-import useGame from "./useGame.jsx"
-import useInteractionStore from "./useInteractionStore.jsx"
-import ClothChangeUI from "./ClothChangeUI.jsx"
+import useGame from "../manager/useGame.jsx"
+import useInteractionStore from "../manager/useInteractionStore.jsx"
+import ClothChangeUI from "../ui/ClothChangeUI.jsx"
 import { Purete1 } from "./Purete1.jsx"
 
 const normalizeAngle = (angle) => {

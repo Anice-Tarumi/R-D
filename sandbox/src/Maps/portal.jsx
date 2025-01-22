@@ -7,9 +7,9 @@ import {
 import { useFrame, extend } from "@react-three/fiber"
 import { useRef, useState } from "react"
 import * as THREE from "three"
-import portalVertexShader from "./portal/vertex.glsl"
-import portalFragmentShader from "./portal/fragment.glsl"
-import useInteractionStore from "./useInteractionStore"
+import portalVertexShader from "../portal/vertex.glsl"
+import portalFragmentShader from "../portal/fragment.glsl"
+import useInteractionStore from "../manager/useInteractionStore"
 
 const PortalMaterial = shaderMaterial(
   {

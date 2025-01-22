@@ -1,14 +1,14 @@
 import React, { useState, useEffect, Suspense, useRef } from "react"
-import Loader from "./Loader" // ローディング画面
+import Loader from "../ui/Loader.jsx" // ローディング画面
 import { useProgress } from "@react-three/drei"
 import useGame from "./useGame.jsx"
 import useDialogueStore from "./useDialogueStore.jsx"
-import AddLoadingScreen from "./AddLoadingScreen.jsx"
-import MenuScreen from "./MenuScreen.jsx"
-import ClothChangeButton from "./ClothChangeButton.jsx"
-import ClothChangeUI from "./ClothChangeUI.jsx"
+import AddLoadingScreen from "../ui/AddLoadingScreen.jsx"
+import MenuScreen from "../ui/MenuScreen.jsx"
+import ClothChangeButton from "../ui/ClothChangeButton.jsx"
+import ClothChangeUI from "../ui/ClothChangeUI.jsx"
 import useAudioStore from "./useAudioStore.jsx"
-import AudioButton from "./AudioButton.jsx"
+import AudioButton from "../sound/AudioButton.jsx"
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {

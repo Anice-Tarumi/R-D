@@ -1,9 +1,9 @@
 import React from "react"
-import useDialogueStore from "./useDialogueStore"
 import dialogueData from "./dialogueData.json"
-import useGame from "./useGame"
+import useDialogueStore from "../manager/useDialogueStore"
+import useGame from "../manager/useGame"
 import { motion } from "framer-motion"
-import useInteractionStore from "./useInteractionStore"
+import useInteractionStore from "../manager/useInteractionStore"
 
 const DialogueUI = () => {
   const currentNPC = useDialogueStore((state) => state.currentNPC)

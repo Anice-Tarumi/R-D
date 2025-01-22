@@ -1,7 +1,7 @@
 import React, { useEffect, useRef,forwardRef, useState, useImperativeHandle } from "react"
 import { useGLTF, useAnimations } from "@react-three/drei"
 import { Vector3 } from "three"
-import useInteractionStore from "./useInteractionStore" // 会話状態を管理
+import useInteractionStore from "../manager/useInteractionStore" // 会話状態を管理
 import { useFrame } from "@react-three/fiber"
 import { Quaternion } from "three"
 

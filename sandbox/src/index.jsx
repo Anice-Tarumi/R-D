@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx' // ゲームの3Dシーン
 import { KeyboardControls } from '@react-three/drei'
-import GameStateManager from './GameStateManager' // 状態管理コンポーネント
+import GameStateManager from './Manager/GameStateManager.jsx' // 状態管理コンポーネント
 import { useRef, useState } from 'react'
-import DialogButton from './DialogButton.jsx'
-import DialogueUI from './DialogueUI.jsx'
+import DialogButton from './UI/DialogButton.jsx'
+import DialogueUI from './UI/DialogueUI.jsx'
 import React from 'react'
-import InteractionUI from './InteractionUI.jsx'
-import MenuScreen from './MenuScreen.jsx'
+import InteractionUI from './UI/InteractionUI.jsx'
+import MenuScreen from './UI/MenuScreen.jsx'
 
 
 const App = () => {

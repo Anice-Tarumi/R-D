@@ -1,4 +1,4 @@
-import useAudioStore from "./useAudioStore";
+import useAudioStore from "../manager/useAudioStore";
 import { useState } from "react";
 const AudioButton = () => {
     const playBGM = useAudioStore((state) => state.playBGM);
