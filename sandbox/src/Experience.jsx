@@ -1,26 +1,26 @@
-import Lights from "./Lights.jsx"
-import { Physics, RigidBody } from "@react-three/rapier"
-import CharacterController from "./CharacterController.jsx"
-import { Perf } from "r3f-perf"
-import React, { useRef } from "react"
-import NpcData from "./NpcData.jsx"
-import * as THREE from "three"
-import Theatre from "./Theatre.jsx"
-import useStageStore from "./useStageStore.jsx"
-import City from "./city.jsx"
-import { Sky } from "@react-three/drei"
+import Lights from "./Lights.jsx";
+import { Physics, RigidBody } from "@react-three/rapier";
+import CharacterController from "./CharacterController.jsx";
+import { Perf } from "r3f-perf";
+import React, { useRef } from "react";
+import NpcData from "./NpcData.jsx";
+import * as THREE from "three";
+import Theatre from "./Theatre.jsx";
+import useStageStore from "./useStageStore.jsx";
+import City from "./City.jsx";
+import { Sky } from "@react-three/drei";
 
 export default function Experience({ canvasRef, onChestProximity }) {
-  const playerRef = useRef()
-  const npcRefs = useRef({})
-  const chestRef = useRef()
-  const chestRefs = useRef({})
-  const raycaster = new THREE.Raycaster()
-  const direction = new THREE.Vector3()
-  const currentStage = useStageStore((state) => state.currentStage)
+  const playerRef = useRef();
+  const npcRefs = useRef({});
+  const chestRef = useRef();
+  const chestRefs = useRef({});
+  const raycaster = new THREE.Raycaster();
+  const direction = new THREE.Vector3();
+  const currentStage = useStageStore((state) => state.currentStage);
 
   const renderStage = () => {
-    console.log(currentStage)
+    console.log(currentStage);
     switch (currentStage) {
       case "WildWest":
         return (
@@ -39,7 +39,7 @@ export default function Experience({ canvasRef, onChestProximity }) {
               />
             </group>
           </group>
-        )
+        );
       case "Theatre":
         return (
           <group key="theatre">
@@ -47,11 +47,11 @@ export default function Experience({ canvasRef, onChestProximity }) {
               <Theatre scale={8} />
             </RigidBody>
           </group>
-        )
+        );
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <>
@@ -76,5 +76,5 @@ export default function Experience({ canvasRef, onChestProximity }) {
         {renderStage()}
       </Physics>
     </>
-  )
+  );
 }
