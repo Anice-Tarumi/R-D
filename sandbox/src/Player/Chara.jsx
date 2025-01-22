@@ -1,6 +1,6 @@
 import React, { useRef,useEffect, useMemo } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import useClothStore from './useClothStore.jsx'
+import useClothStore from '../manager/useClothStore.jsx'
 
 export default function Chara({animation, ...props}) {
   const group = useRef()

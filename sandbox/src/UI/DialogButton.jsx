@@ -1,7 +1,7 @@
 import React from "react"
-import useInteractionStore from "./useInteractionStore"
-import useGame from "./useGame"
-import useDialogueStore from "./useDialogueStore"
+import useInteractionStore from "../manager/useInteractionStore"
+import useGame from "../manager/useGame"
+import useDialogueStore from "../manager/useDialogueStore"
 
 export default function DialogButton({  }) {
   const currentNPC = useInteractionStore((state) => state.currentNPC) // 現在の会話可能NPCを取得

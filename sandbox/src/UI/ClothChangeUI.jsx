@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import useGame from "./useGame"
-import useClothStore from "./useClothStore"
+import useGame from "../manager/useGame"
+import useClothStore from "../manager/useClothStore"
 import { useEffect } from "react"
 
 const ClothChangeUI = ({ onApply, onCancel }) => {

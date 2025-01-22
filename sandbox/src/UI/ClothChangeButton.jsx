@@ -1,5 +1,5 @@
 import React from "react"
-import useGame from "./useGame"
+import useGame from "../manager/useGame"
 
 const ClothChangeButton = () => {
   const startChanging = useGame((state) => state.startChanging) // 着替えモードに切り替え

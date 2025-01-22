@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import useGame from "./useGame"
+import useGame from "../manager/useGame"
 
 const MenuScreen = () => {
   const resume = useGame((state) => state.resume)

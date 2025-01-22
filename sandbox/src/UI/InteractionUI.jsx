@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import useInteractionStore from "./useInteractionStore"
+import useInteractionStore from "../manager/useInteractionStore"
 import DialogButton from "./DialogButton"
 import DialogueUI from "./DialogueUI"
-import useGame from "./useGame"
-import useStageStore from "./useStageStore"
+import useGame from "../manager/useGame"
+import useStageStore from "../manager/useStageStore"
 
 const InteractionUI = () => {
   const  currentTarget  = useInteractionStore((state) => (state.currentTarget))

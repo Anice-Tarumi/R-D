@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useProgress, Html } from "@react-three/drei"
 import { useLoader } from "@react-three/fiber"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import useGame from "./useGame"
+import useGame from "../manager/useGame"
 
 const AddLoadingScreen = ({ resourceUrl, onComplete }) => {
   const { progress } = useProgress()
