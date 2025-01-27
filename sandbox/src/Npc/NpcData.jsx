@@ -23,6 +23,15 @@ const NpcData = ({ playerRef, npcRefs }) => {
       colliderArgs: [0.5, 0.8],
       colliderPosition: [-9 ,0.2,4],
     },
+    {
+      id: "npc3",
+      name: "Purete",
+      modelPath: "./npc/purete.glb",
+      position: [-9, -0.7, 15],
+      rotation: [0, Math.PI, 0],
+      colliderArgs: [0.5, 0.8],
+      colliderPosition: [-9 ,0.2,15],
+    },
   ]
   return npcList.map((npc) => {
     if (!npcRefs.current[npc.id]) {

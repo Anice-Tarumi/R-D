@@ -8,7 +8,7 @@ import MenuScreen from "../ui/MenuScreen.jsx"
 import ClothChangeButton from "../ui/ClothChangeButton.jsx"
 import ClothChangeUI from "../ui/ClothChangeUI.jsx"
 import useAudioStore from "./useAudioStore.jsx"
-import AudioButton from "../sound/AudioButton.jsx"
+import AudioButton from "../sounds/AudioButton.jsx"
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {
