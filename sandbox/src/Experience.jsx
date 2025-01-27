@@ -1,5 +1,5 @@
 
-import Lights from "./env/Lights.jsx"
+import Lights from "./envs/Lights.jsx"
 import { Physics, RigidBody } from "@react-three/rapier"
 import CharacterController from "./player/CharacterController.jsx"
 import { Perf } from "r3f-perf"
@@ -21,7 +21,7 @@ export default function Experience({ canvasRef, onChestProximity }) {
   const currentStage = useStageStore((state) => state.currentStage);
 
   const renderStage = () => {
-    console.log(currentStage);
+    // console.log(currentStage);
     switch (currentStage) {
       case "WildWest":
         return (

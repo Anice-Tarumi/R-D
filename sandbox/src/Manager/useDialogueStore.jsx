@@ -1,16 +1,37 @@
 import { create } from "zustand"
 
 const useDialogueStore = create((set) => ({
-  currentNPC: null, // 現在のNPC ID
-  currentDialogue: null, // 現在の会話ID
-  startDialogue: (npcId, dialogueId) =>
-    set({ currentNPC: npcId, currentDialogue: dialogueId }),
+  currentNPC: null,
+  currentDialogue: null,
+  npcFlags: {},
+
+  startDialogue: (npcId) =>
+    set((state) => {
+      // フラグ判定
+      const isUnlocked =
+        npcId === "npc3"
+          ? state.npcFlags["npc1"] && state.npcFlags["npc2"]
+          : true;
+
+      return {
+        currentNPC: npcId,
+        currentDialogue: isUnlocked ? "d1" : "d1_locked",
+      };
+    }),
+
   advanceDialogue: (nextId) =>
     set((state) => ({
-      currentDialogue: nextId || null, // 次の会話へ進む
-      currentNPC: nextId ? state.currentNPC : null, // 会話終了時にNPCもリセット
+      currentDialogue: nextId || null,
+      currentNPC: nextId ? state.currentNPC : null,
     })),
-  endDialogue: () => set({ currentNPC: null, currentDialogue: null }), // 会話を完全にリセット
-}))
+
+  endDialogue: () => set({ currentNPC: null, currentDialogue: null }),
+
+  setNpcFlag: (npcId, value) =>
+    set((state) => ({
+      npcFlags: { ...state.npcFlags, [npcId]: value },
+    })),
+}));
+
 
 export default useDialogueStore

@@ -110,4 +110,7 @@ const NPCController = forwardRef(({
 
 // モデルのプリロード
 useGLTF.preload("./npc/carrot.glb")
+useGLTF.preload("./npc/jam.glb")
+useGLTF.preload("./npc/purete.glb")
+
 export default NPCController
