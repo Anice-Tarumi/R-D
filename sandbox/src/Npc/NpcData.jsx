@@ -56,6 +56,7 @@ const NpcData = ({ playerRef, npcRefs }) => {
           playerRef={playerRef}
           type = {"NPC"}
           ref={npcRefs.current[npc.id]}
+          npcRefs={npcRefs}
         />
         <CapsuleCollider
           args={npc.colliderArgs}

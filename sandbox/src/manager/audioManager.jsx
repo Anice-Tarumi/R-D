@@ -10,8 +10,8 @@ const sounds = {
   
   // サウンドの初期設定（デフォルト音量、ループ設定など）
   Object.values(sounds).forEach((sound) => {
-    sound.volume = 0.5; // デフォルト音量（0〜1）
-    sound.loop = false; // ループはデフォルトでOFF
+    sound.volume = 0.5; 
+    sound.loop = false; 
   });
   
   // サウンド再生関数
@@ -19,7 +19,7 @@ const sounds = {
     console.log("tatta")
     const sound = sounds[soundName];
     if (sound) {
-      sound.currentTime = 0; // 再生位置をリセット
+      sound.currentTime = 0;
       sound.play().catch((err) => console.error(`Failed to play sound "${soundName}":`, err));
     } else {
       console.warn(`Sound "${soundName}" not found.`);
@@ -31,7 +31,7 @@ const sounds = {
     const sound = sounds[soundName];
     if (sound) {
       sound.pause();
-      sound.currentTime = 0; // 停止後、再生位置をリセット
+      sound.currentTime = 0;
     } else {
       console.warn(`Sound "${soundName}" not found.`);
     }
@@ -47,7 +47,6 @@ const sounds = {
     }
   };
   
-  // 全サウンドを停止する関数
   export const stopAllSounds = () => {
     Object.values(sounds).forEach((sound) => {
       sound.pause();
@@ -55,24 +54,21 @@ const sounds = {
     });
   };
   
-  // サウンドの音量を個別に設定する関数
   export const setSoundVolume = (soundName, volume) => {
     const sound = sounds[soundName];
     if (sound) {
-      sound.volume = Math.max(0, Math.min(volume, 1)); // ボリュームを0〜1の範囲に制限
+      sound.volume = Math.max(0, Math.min(volume, 1)); 
     } else {
       console.warn(`Sound "${soundName}" not found.`);
     }
   };
   
-  // 全サウンドの音量を一括設定する関数
   export const setGlobalVolume = (volume) => {
     Object.values(sounds).forEach((sound) => {
       sound.volume = Math.max(0, Math.min(volume, 1));
     });
   };
   
-  // サウンドをループ再生にするかどうかを設定
   export const setLoop = (soundName, shouldLoop) => {
     const sound = sounds[soundName];
     if (sound) {
@@ -82,11 +78,10 @@ const sounds = {
     }
   };
   
-  // サウンドを追加する関数（動的追加が必要な場合）
   export const addSound = (soundName, soundPath) => {
     if (!sounds[soundName]) {
       sounds[soundName] = new Audio(soundPath);
-      sounds[soundName].volume = 0.5; // デフォルト音量
+      sounds[soundName].volume = 0.5;
       console.log(`Sound "${soundName}" added.`);
     } else {
       console.warn(`Sound "${soundName}" already exists.`);

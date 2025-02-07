@@ -2,31 +2,24 @@ import './style.css'
 import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx' // ゲームの3Dシーン
-import { KeyboardControls } from '@react-three/drei'
-import GameStateManager from './Manager/GameStateManager.jsx' // 状態管理コンポーネント
+import { CameraControls, KeyboardControls, OrbitControls } from '@react-three/drei'
+import GameStateManager from './manager/GameStateManager.jsx' // 状態管理コンポーネント
 import { useRef, useState } from 'react'
-import DialogButton from './UI/DialogButton.jsx'
-import DialogueUI from './UI/DialogueUI.jsx'
 import React from 'react'
-import InteractionUI from './UI/InteractionUI.jsx'
-import MenuScreen from './UI/MenuScreen.jsx'
-
+import InteractionUI from './ui/InteractionUI.jsx'
+import MenuScreen from './ui/MenuScreen.jsx'
+import useGame from './manager/useGame.jsx'
+import TitleScene from './TitleScene.jsx'
+import MiniMap from './ui/MiniMap.jsx'
 
 const App = () => {
   const canvasRef = useRef()
-  const [showChestButton, setShowChestButton] = useState(false)
-  const [triggerOpenChest, setTriggerOpenChest] = useState(null)
-
-  // 宝箱近接状態のハンドラー
-  const handleChestProximity = (isNearby, openChestCallback) => {
-    setShowChestButton(isNearby)
-    setTriggerOpenChest(() => openChestCallback) // ボタンのクリック時に実行される関数を保存
-  }
-
+  const phase = useGame((state) => state.phase);
   return (
     <>
       {/* ゲーム状態管理 */}
       <GameStateManager/>
+      
       <KeyboardControls
         map={[
           { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -37,32 +30,33 @@ const App = () => {
           { name: "jump", keys: ["Space"]}
         ]}
       >
-        <Canvas
-        ref={canvasRef}
-          shadows
-          style={{
-            touchAction: "none",
-          }}
-          camera={{
-            fov: 45,
-            near: 0.1,
-            far: 200,
-            position: [0, 0, 0],
-          }}
-        >
-          <Experience canvasRef={canvasRef} onChestProximity={handleChestProximity}/>
-        </Canvas>
+      <Canvas
+      ref={canvasRef}
+        shadows
+        style={{
+          touchAction: "none",
+        }}
+        camera={{
+          fov: 45,
+          near: 0.1,
+          far: 1000,
+          position: [0, 0, -20],
+          rotation: [0,Math.PI,0]
+        }}
+      >
+      {phase === "title"  && <CameraControls makeDefault minAzimuthAngle={-Math.PI / 6 + Math.PI} maxAzimuthAngle={Math.PI / 6 + Math.PI} minPolarAngle={1} maxPolarAngle={Math.PI / 2} />}
+      {(phase === "title" || phase === "transition") && <TitleScene />}
+      {/* <CameraControls makeDefault minAzimuthAngle={-Math.PI / 6 + Math.PI} maxAzimuthAngle={Math.PI / 6 + Math.PI} minPolarAngle={1} maxPolarAngle={Math.PI / 2} /> */}
+      <TitleScene/>
+      {(phase !== "loading" && phase !== "title" && phase !=="transition")&& <Experience canvasRef={canvasRef}/>}
+      {/* {phase === "playing" && <MiniMap />} */}
+      </Canvas>
       </KeyboardControls>
-      {showChestButton && (
-        <button
-          className="chest-open-button"
-          onClick={() => triggerOpenChest && triggerOpenChest()}
-        >
-          Open Chest
-        </button>
-      )}
       <InteractionUI />
       <MenuScreen />
+      
+
+    
     </>
   )
 }

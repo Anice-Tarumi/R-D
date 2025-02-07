@@ -43,6 +43,7 @@ export default function Portal({ position, id, playerRef }) {
   const interactionDistance = 3
 
   useFrame((delta) => {
+    console.count("useFrame (portal)");
     elapsedTime += delta // フレームごとに時間を加算
     if (elapsedTime < 0.3) return // 0.5秒未満なら処理をスキップ
         elapsedTime = 0 // 経過時間をリセット
@@ -68,6 +69,7 @@ export default function Portal({ position, id, playerRef }) {
   })
 
   useFrame(()=>{
+    console.count("useFrame (portal)");
     // ポータルシェーダーの時間更新
     if (portalMaterial.current) {
         portalMaterial.current.uTime += 0.05 // ポータルシェーダーのアニメーション速度

@@ -1,12 +1,12 @@
 import {create} from "zustand"
 
 const useChestStore = create((set) => ({
-  chests: {}, // 各宝箱の状態をIDごとに管理
+  chests: {},
   openChest: (id) =>
     set((state) => ({
-      chests: { ...state.chests, [id]: true }, // 対象の宝箱を開いた状態にする
+      chests: { ...state.chests, [id]: true },
     })),
-  isChestOpen: (id) => (state) => state.chests[id] || false, // 対象の宝箱が開いているか
+  isChestOpen: (id) => (state) => state.chests[id] || false,
 }))
 
 export default useChestStore

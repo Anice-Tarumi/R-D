@@ -1,32 +1,28 @@
-// useAudioStore.jsx
 import { create } from "zustand";
 
 const useAudioStore = create((set) => ({
-  bgm: null, // Audioオブジェクト
+  bgm: null,
   isPlaying: false,
   isFirstTime: true,
   
   playBGM: () => set((state) => {
     if (!state.bgm) {
-      const audio = new Audio('/audio/BGM.mp3'); // 音声ファイルのパス
-      audio.loop = true; // ループ再生
+      const audio = new Audio('/audio/BGM.mp3');
+      audio.loop = true;
       if(state.isFirstTime){
-        let volume = 0; // 初期音量
-      audio.volume = volume; // 初期音量設定
+        let volume = 0;
+      audio.volume = volume;
         const interval = setInterval(() => {
-        volume += 0.01; // 徐々に増加
-        console.log("1回目")
+        volume += 0.01;
       if (volume >= 0.1) {
-        volume = 0.1; // 最大音量に達したら終了
+        volume = 0.1;
         clearInterval(interval);
         state.isFirstTime = false
-        console.log('1回目終わり')
       }
       audio.volume = volume;
-    }, 100); // 100ms間隔で音量変更
+    }, 100);
       }else{
-        audio.volume = 0.1; // 音量調整（0.0～1.0）
-        console.log("2回目以降")
+        audio.volume = 0.1;
       }
       
       audio.play();
@@ -49,7 +45,7 @@ const useAudioStore = create((set) => ({
   stopBGM: () => set((state) => {
     if (state.bgm) {
       state.bgm.pause();
-      state.bgm.currentTime = 0; // 再生位置をリセット
+      state.bgm.currentTime = 0; 
       return { isPlaying: false };
     }
     return state;

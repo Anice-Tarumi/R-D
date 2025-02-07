@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useMemo } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import { useGLTF, useAnimations, ContactShadows } from '@react-three/drei'
 import { useSpring, a } from '@react-spring/three'
 import useClothStore from '../manager/useClothStore.jsx'
 
@@ -18,14 +18,14 @@ export default function Chara({ animation, ...props }) {
     scale: 0.5, // 初期スケール
     config: {
       tension: 500, // バネの強さ
-      friction: 12,  // 摩擦の強さ（小さいほどボヨンボヨン）
+      friction: 20,  // 摩擦の強さ（小さいほどボヨンボヨン）
     },
   }))
 
   // 衣装変更時にスケールアニメーションをトリガー
   useEffect(() => {
     if (selectedHat || selectedBag || selectedShoes) {
-      api.start({ scale: 0.45 }) // 一瞬小さく
+      api.start({ scale: 0.47 }) // 一瞬小さく
       setTimeout(() => {
         api.start({ scale: 0.5 }) // 少し大きくして戻る
       }, 100)
@@ -131,14 +131,29 @@ export default function Chara({ animation, ...props }) {
   }, [selectedShoes, nodes]);
 
   useEffect(() => {
-    actions[animation].reset().fadeIn(0.24).play()
-    return () => actions?.[animation]?.fadeOut(0.24)
+    if (actions[animation]) {
+      if (!actions[animation].isRunning()) { // 🔥 すでに再生中ならリセットしない
+        actions[animation].reset().fadeIn(0.24).play();
+      }
+    }
+    return () => {
+      if (actions[animation]) {
+        actions[animation].fadeOut(0.24);
+      }
+    };
   }, [animation]);
 
   return (
     <a.group ref={group} {...props} dispose={null} scale={spring.scale}>
       <group name="Scene">
         <group name="Armature">
+          {/* <ContactShadows
+            position={[0, 0.5, 0]} // 床の位置に配置
+            opacity={0.5} 
+            scale={10} 
+            blur={2} 
+            far={10} // 影が消える距離
+          /> */}
           <skinnedMesh
             name="mesh_char_137"
             geometry={nodes.mesh_char_137.geometry}
@@ -154,3 +169,4 @@ export default function Chara({ animation, ...props }) {
     </a.group>
   );
 }
+useGLTF.preload("./chara.glb");

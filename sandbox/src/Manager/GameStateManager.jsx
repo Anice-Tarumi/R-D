@@ -9,6 +9,10 @@ import ClothChangeButton from "../ui/ClothChangeButton.jsx"
 import ClothChangeUI from "../ui/ClothChangeUI.jsx"
 import useAudioStore from "./useAudioStore.jsx"
 import AudioButton from "../sounds/AudioButton.jsx"
+import MiniMap from "../ui/MiniMap.jsx"
+import MinimapButton from "../ui/MinimapButton.jsx"
+// import TitleScene from "../TitleScene.jsx"
+// import { useFrame } from "@react-three/fiber"
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {
@@ -27,12 +31,9 @@ const MenuButton = () => {
     </>
   )
 }
-
 const GameStateManager = () => {
-  const { progress } = useProgress() // Drei のロード進捗取得
-  const [animationDone, setAnimationDone] = useState(false) // ローディングアニメーション完了管理
   const phase = useGame((state) => state.phase)
-  const ready = useGame((state) => state.ready)
+  const title = useGame((state) => state.title)
   const start = useGame((state) => state.start)
   const endTalking = useGame((state) => state.endTalking) // 会話終了処理
   const endDialogue = useDialogueStore((state) => state.endDialogue) // 会話をリセット
@@ -41,22 +42,6 @@ const GameStateManager = () => {
   const resume = useGame((state) => state.resume)
   const characterControllerRef = useRef()
   const playBGM = useAudioStore((state) => state.playBGM);
-
-  // ロードが完了したらアニメーションを開始
-  useEffect(() => {
-    if (progress === 100 && phase === 'loading') {
-      setTimeout(() => {
-        setAnimationDone(true) // アニメーションを開始
-      }, 500) // 0.5秒遅延
-    }
-  }, [progress, phase])
-
-  // アニメーション完了後にスタート画面へ遷移
-  useEffect(() => {
-    if (animationDone) {
-      setTimeout(() => ready(), 1500) // アニメーション後1.5秒でスタート画面に遷移
-    }
-  }, [animationDone])
 
   useEffect(() => {
     if (phase === "playing") {
@@ -70,39 +55,31 @@ const GameStateManager = () => {
     endDialogue()
   }
 
-  // 状態ごとのUIを切り替える関数
   const renderState = () => {
     switch (phase) {
       case 'loading':
-        return <Loader animationDone={animationDone}/>
-      case 'ready':
-        return (
-          <div className="game-state-container">
-            <div className="title">
-              <h1>テストゲーム</h1>
-              <button
-                className="start-button"
-                onClick={() => {
-                  start()
-                }}
-              >
-                スタート！
-              </button>
-            </div>
-          </div>
-        )
+        return <Loader />
+      case "title":
+      case "transition":
+        return (<></>)
       case 'playing':
         return (
           <>
             <MenuButton />
             <ClothChangeButton />
             <AudioButton/>
+            <MinimapButton/>
           </>
         )
         case 'menu': // 追加
       return (
-      //  <MenuScreen/>
       <></>
+      )
+      case 'map': // 追加
+      return (
+      <>
+      <MiniMap mapImage="./images/map.png"/>
+      </>
       )
       case 'talking':
         return (

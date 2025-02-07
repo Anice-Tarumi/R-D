@@ -5,9 +5,11 @@ const useInteractionStore = create((set) => ({
 
   // 現在のターゲットを設定
   setCurrentTarget: (type,id) =>
-    set(() => ({
+    {
+      console.log("setCurrentTarget 実行", type, id);
+      set(() => ({
       currentTarget: {type,id},
-    })),
+    }))},
 
   // 現在のターゲットを削除（リセット）
   removeTarget: () =>
