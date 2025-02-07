@@ -9,12 +9,12 @@ export default create(subscribeWithSelector((set) =>
          */
         phase: 'loading',
 
-        ready: () =>
+        title: () =>
         {
             set((state) =>
             {
                 if(state.phase === 'loading')
-                    return { phase: 'ready'}
+                    return { phase: 'title'}
 
                 return {}
             })
@@ -23,7 +23,7 @@ export default create(subscribeWithSelector((set) =>
         {
             set((state) =>
             {
-                if(state.phase === 'ready')
+                // if(state.phase === 'transition')
                     return { phase: 'playing'}
 
                 return {}
@@ -49,18 +49,22 @@ export default create(subscribeWithSelector((set) =>
                 return {}
             })
         },
-        startTalking: () =>
-        {
-            set((state) =>
-            {
-                if(state.phase === 'playing')
-                    return { phase: 'talking'}
-
-                return {}
-            })
-        },
+        startTalking: () => {
+            console.log("startTalking 実行");
+            console.time("zustand set talking"); // ⏱️ 計測開始
+            set((state) => {
+              if (state.phase === "playing") {
+                console.log("zustand の set() 実行: phase を 'talking' に変更");
+                return { phase: "talking" };
+              }
+              return {};
+            });
+            console.timeEnd("zustand set talking"); // ⏱️ 計測終了
+          },
+          
         endTalking: () =>
         {
+            console.log("endTalking 実行");
             set((state) =>
             {
                 if(state.phase === 'talking')
@@ -95,6 +99,26 @@ export default create(subscribeWithSelector((set) =>
             {
                     return { phase: 'changing'}
             })
-        }
+        },
+        transition: () =>
+        {
+            set((state) =>
+            {
+                if(state.phase === 'title')
+                    return { phase: 'transition' }
+        
+                return {}
+            })
+        },
+        map: () =>
+            {
+                set((state) =>
+                {
+                    if(state.phase === 'playing')
+                        return { phase: 'map' }
+            
+                    return {}
+                })
+            }
     }
 }))

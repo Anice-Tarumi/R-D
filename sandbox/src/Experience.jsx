@@ -1,81 +1,47 @@
-
 import Lights from "./envs/Lights.jsx"
 import { Physics, RigidBody } from "@react-three/rapier"
 import CharacterController from "./player/CharacterController.jsx"
 import { Perf } from "r3f-perf"
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import NpcData from "./npc/NpcData.jsx"
-import * as THREE from "three"
-import Theatre from "./maps/Theatre.jsx"
-import useStageStore from "./manager/useStageStore.jsx"
+// import useStageStore from "./manager/useStageStore.jsx"
 import City from "./maps/City.jsx"
-import { Sky } from "@react-three/drei"
+// import useGame from "./manager/useGame.jsx"
+import NPCs from "./npc/NPCs.jsx"
+import useGame from "./manager/useGame.jsx"
+import MiniMap from "./ui/MiniMap.jsx"
+import usePlayerStore from "./manager/usePlayerStore.jsx"
 
-export default function Experience({ canvasRef, onChestProximity }) {
-  const playerRef = useRef();
-  const npcRefs = useRef({});
-  const chestRef = useRef();
-  const chestRefs = useRef({});
-  const raycaster = new THREE.Raycaster();
-  const direction = new THREE.Vector3();
-  const currentStage = useStageStore((state) => state.currentStage);
+export default function Experience({ canvasRef }) {
+  const playerRef = useRef()
+  const npcRefs = useRef({})
+  const phase = useGame((state) => state.phase)
+  const setPlayerRef = usePlayerStore((state) => state.setPlayerRef);
 
-  const renderStage = () => {
-    // console.log(currentStage);
-    switch (currentStage) {
-      case "WildWest":
-        return (
-          <group key="wildwest">
-            {" "}
-            {/* keyを付与してステージ全体を再生成 */}
-            <RigidBody type="fixed" friction={0}>
-              {/* <WildWest scale={10} /> */}
-              <City position={[0, -1, 0]} />
-            </RigidBody>
-            <group name="NPC">
-              <NpcData
-                playerRef={playerRef}
-                npcRefs={npcRefs}
-                chestRefs={chestRefs}
-              />
-            </group>
-          </group>
-        );
-      case "Theatre":
-        return (
-          <group key="theatre">
-            <RigidBody type="fixed" colliders="trimesh" friction={0}>
-              <Theatre scale={8} />
-            </RigidBody>
-          </group>
-        );
-      default:
-        return null;
-    }
-  };
+  // useEffect(() => {
+  //   if (playerRef.current) {
+  //     setPlayerRef(playerRef);
+  //   }
+  // }, [playerRef, setPlayerRef]);
+  // const currentStage = useStageStore((state) => state.currentStage)
 
   return (
     <>
-      {/* <OrbitControls makeDefault /> */}
-      <Perf position="top-left" />
+      {/* <Perf position="top-left" /> */}
       <Lights />
-      <Sky
-        distance={450000} // 空の描画範囲
-        sunPosition={[100, 10, 100]} // 太陽の位置
-        inclination={0.49} // 太陽の傾き
-        azimuth={0.25} // 太陽の方位
-        mieCoefficient={0.005} // 大気散乱の強さ
-        mieDirectionalG={0.8} // 大気の前方散乱の強さ
-        rayleigh={1} // 空の青み
-      />
-      <Physics key={currentStage} debug>
-        <CharacterController
-          canvasRef={canvasRef}
-          npcRefs={npcRefs}
-          ref={playerRef}
-        />
-        {renderStage()}
+      <Physics debug>
+        <CharacterController canvasRef={canvasRef} npcRefs={npcRefs} ref={playerRef} />
+        <group key="city">
+          <RigidBody type="fixed" friction={1}>
+            <City position={[0, -1, 0]} />
+          </RigidBody>
+          <group name="NPC">
+            <NPCs playerRef={playerRef} npcRefs={npcRefs} />
+            {/* <NpcData playerRef={playerRef} npcRefs={npcRefs} />  */}
+          </group>
+        </group>
       </Physics>
+      {/* {phase === "playing" && <MiniMap mapImage="/images/plane.png"/>} */}
     </>
-  );
+  )
 }

@@ -23,11 +23,8 @@ const DialogueUI = () => {
       if (dialogue.next) {
         advanceDialogue(dialogue.next);
       } else {
-        if (currentNPC === "npc1") {
-          useDialogueStore.getState().setNpcFlag("npc1", true);
-        }
-        if (currentNPC === "npc2") {
-          useDialogueStore.getState().setNpcFlag("npc2", true);
+        if (currentNPC === "npc1" || currentNPC === "npc2") {
+          useDialogueStore.getState().setNpcFlag(currentNPC, true);
         }
         endTalking();
         endDialogue();

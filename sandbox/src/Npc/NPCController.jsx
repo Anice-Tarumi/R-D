@@ -1,9 +1,9 @@
-import React, { useEffect, useRef,forwardRef, useState, useImperativeHandle } from "react"
-import { useGLTF, useAnimations } from "@react-three/drei"
-import { Vector3 } from "three"
-import useInteractionStore from "../manager/useInteractionStore" // 会話状態を管理
-import { useFrame } from "@react-three/fiber"
-import { Quaternion } from "three"
+import React, { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
+import { useGLTF, useAnimations } from "@react-three/drei";
+import { Vector3, Quaternion } from "three";
+import useInteractionStore from "../manager/useInteractionStore"; // 会話状態を管理
+import { useFrame } from "@react-three/fiber";
+import useGame from "../manager/useGame";
 
 const NPCController = forwardRef(({
   modelPath,
@@ -20,12 +20,21 @@ const NPCController = forwardRef(({
   const { actions } = useAnimations(animations,npcRef)
   const setCurrentTarget = useInteractionStore((state) => state.setCurrentTarget)
   const removeTarget = useInteractionStore((state) => state.removeTarget)
-  const [isTargetSet, setIsTargetSet] = useState(false)
   const npcPosition = new Vector3()
   const playerPosition = new Vector3()
-  let elapsedTime = 0
-  const checkDistance = 5
+  const isTargetSetRef = useRef(false);
   const interactionDistance = 3
+  const phase = useGame((state)=>state.phase)
+  const npcRefs = useRef([]);
+
+  useEffect(() => {
+    if (npcRef.current) {
+      npcRefs.current[npcId] = npcRef;
+    }
+    return () => {
+      delete npcRefs.current[npcId];
+    };
+  }, []);
   
   useImperativeHandle(ref, () => ({
     // setClose: (value) => setIsClose(value),
@@ -39,7 +48,7 @@ const NPCController = forwardRef(({
 
   useEffect(() => {
     // アニメーション再生
-    if (actions && actions.idle) {
+    if (actions.idle) {
       actions.idle.reset().fadeIn(0.24).play()
       
     }
@@ -51,49 +60,55 @@ const NPCController = forwardRef(({
     }
   }, [actions])
 
+  // useEffect(() => {
+  //   console.log("カメラ制御発動");
+  // }, [camera.position, camera.rotation]);
+  let prevQuaternion = new Quaternion();
   useFrame((_, delta) => {
-    elapsedTime += delta
-    if (elapsedTime < 0.3) return
-        elapsedTime = 0
-        if (npcRef.current && playerRef?.current) {
-        
-        npcRef.current.getWorldPosition(npcPosition)
-        playerRef.current.getWorldPosition(playerPosition)
-        
-        const distance = npcPosition.distanceTo(playerPosition)
-        if (distance > checkDistance) return
-        if (distance < interactionDistance) {
-          if (!isTargetSet) {
-            setCurrentTarget(type, npcId)
-            setIsTargetSet(true)
-          }
-        } else {
-          if (isTargetSet) {
-            // console.log("遠い:", npcId)
-            setIsTargetSet(false)
-            removeTarget()
-          }
+    // console.count("useFrame (npcController)");
+  
+    if (phase === "loading" || phase === "title" || phase === "transition" || phase === "talking") return;
+  
+    // elapsedTime += delta;
+    // elapsedTime2 += delta;
+  
+    // if (elapsedTime < 0.5 && elapsedTime2 < 0.5) return;
+  
+    // elapsedTime = 0;
+    // elapsedTime2 = 0;
+  
+    if (npcRef.current && playerRef?.current) {
+      npcRef.current.getWorldPosition(npcPosition);
+      playerRef.current.getWorldPosition(playerPosition);
+  
+      const distance = npcPosition.distanceTo(playerPosition);
+      // console.log(distance)
+      
+    //   // NPCターゲットの処理
+      if (distance < interactionDistance) {
+        if (!isTargetSetRef.current) {
+          setCurrentTarget(type, npcId);
+          isTargetSetRef.current = true;
+        }
+      } else if (isTargetSetRef.current) {
+        removeTarget();
+        isTargetSetRef.current = false;
+      }
+  
+    //   // NPCの回転処理
+      if (isTargetSetRef.current) {
+        const targetDirection = new Vector3().subVectors(playerPosition, npcPosition).normalize();
+        const targetQuaternion = new Quaternion().setFromUnitVectors(
+          new Vector3(1, 0, 0),
+          new Vector3(targetDirection.x, 0, targetDirection.z)
+        );
+        if (npcRef.current.quaternion.angleTo(targetQuaternion) > 0.1) {
+          npcRef.current.quaternion.slerp(targetQuaternion, 0.1);
         }
       }
-  },)
-
-  useFrame(() => {
-    // console.log(isClose,npcId)
-    if (playerRef?.current && ref?.current && isTargetSet) {
-      npcRef.current.getWorldPosition(npcPosition)
-      playerRef.current.getWorldPosition(playerPosition)
-  
-      // NPCが向くべき方向を計算
-      const targetDirection = new Vector3().subVectors(playerPosition, npcPosition).normalize()
-      const targetQuaternion = new Quaternion().setFromUnitVectors(
-        new Vector3(1, 0, 0), // NPCの正面方向
-        new Vector3(targetDirection.x, 0, targetDirection.z) // Y軸回転のみ考慮
-      )
-  
-      // 現在の回転を取得し補間
-      npcRef.current.quaternion.slerp(targetQuaternion, 0.1) // 0.1は補間速度
     }
-  })
+  });
+  
   return (
     <group 
       ref={npcRef} 

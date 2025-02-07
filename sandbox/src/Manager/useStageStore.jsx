@@ -1,7 +1,7 @@
 import {create} from "zustand"
 
 const useStageStore = create((set) => ({
-  currentStage: "WildWest", // 初期ステージ
+  currentStage: "City", // 初期ステージ
   setStage: (stage) => set({ currentStage: stage }),
 }))
 
