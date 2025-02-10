@@ -11,6 +11,7 @@ import useAudioStore from "./useAudioStore.jsx"
 import AudioButton from "../sounds/AudioButton.jsx"
 import MiniMap from "../ui/MiniMap.jsx"
 import MinimapButton from "../ui/MinimapButton.jsx"
+import { useFrame } from "@react-three/fiber"
 // import TitleScene from "../TitleScene.jsx"
 // import { useFrame } from "@react-three/fiber"
 
@@ -41,13 +42,7 @@ const GameStateManager = () => {
   const startChanging = useGame((state) => state.startChanging)
   const resume = useGame((state) => state.resume)
   const characterControllerRef = useRef()
-  const playBGM = useAudioStore((state) => state.playBGM);
-
-  useEffect(() => {
-    if (phase === "playing") {
-      playBGM(); // ゲーム開始時にBGMを再生
-    }
-  }, [phase]);
+  const playBGM = useAudioStore((state) => state.playBGM)
 
   const talkEnd = () =>
   {
@@ -68,7 +63,7 @@ const GameStateManager = () => {
             <MenuButton />
             <ClothChangeButton />
             <AudioButton/>
-            <MinimapButton/>
+            {/* <MinimapButton/> */}
           </>
         )
         case 'menu': // 追加
@@ -78,7 +73,7 @@ const GameStateManager = () => {
       case 'map': // 追加
       return (
       <>
-      <MiniMap mapImage="./images/map.png"/>
+      {/* <MiniMap mapImage="./images/map.png"/> */}
       </>
       )
       case 'talking':
@@ -105,7 +100,7 @@ const GameStateManager = () => {
             <>
               <ClothChangeUI/>
             </>
-          );
+          )
       default:
       return null
     }

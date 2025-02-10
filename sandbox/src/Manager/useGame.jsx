@@ -43,7 +43,7 @@ export default create(subscribeWithSelector((set) =>
         {
             set((state) =>
             {
-                if(state.phase === 'menu' || state.phase === 'talking' || state.phase === 'changing')
+                if(state.phase === 'menu' || state.phase === 'talking' || state.phase === 'changing' || state.phase === "map")
                     return { phase: 'playing'}
 
                 return {}
@@ -111,14 +111,14 @@ export default create(subscribeWithSelector((set) =>
             })
         },
         map: () =>
+        {
+            set((state) =>
             {
-                set((state) =>
-                {
-                    if(state.phase === 'playing')
-                        return { phase: 'map' }
-            
-                    return {}
-                })
-            }
+                if(state.phase === 'playing')
+                    return { phase: 'map' }
+        
+                return {}
+            })
+        },
     }
 }))

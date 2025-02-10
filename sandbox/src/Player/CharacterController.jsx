@@ -10,6 +10,7 @@ import useGame from "../manager/useGame.jsx"
 import useInteractionStore from "../manager/useInteractionStore.jsx"
 import * as THREE from 'three'
 import usePlayerStore from "../manager/usePlayerStore.jsx"
+import Player from "./Player.jsx"
 
 const normalizeAngle = (angle) => {
   while (angle > Math.PI) angle -= 2 * Math.PI
@@ -36,13 +37,12 @@ const WALK_SPEED = 3.0
 const RUN_SPEED = 6.5
 const ROTATION_SPEED = degToRad(2)
 const initialCameraPosition = useRef(new Vector3())
-// const isTalking = useRef(false) // 会話中フラグ
 const currentTarget = useInteractionStore((state) => state.currentTarget)
 const phase = useGame((state) => state.phase)
 const rb = useRef()
 const container = useRef()
 const character = useRef()
-const [animation, setAnimation] = useState("idle")
+const [animation, setAnimation] = useState("Idle")
 const characterRotationTarget = useRef(0)
 const rotationTarget = useRef(0)
 const cameraTarget = useRef()
@@ -53,20 +53,15 @@ const cameraLookAt = useRef(new Vector3())
 const [, get] = useKeyboardControls()
 const isClicking = useRef(false)
 const initialRotation = useRef(new Quaternion())
-const prevAnimation = useRef("idle")
+const prevAnimation = useRef("Idle")
 let prevCameraPos = new Vector3();
 const setPlayerRef = usePlayerStore((state) => state.setPlayerRef);
-// const transition = useGame((state) => state.transition);
-// const start = useGame((state) => state.start);
-// const targetPosition = new THREE.Vector3(0, 2.2016758024692518, -10);
-// const targetRotation = new THREE.Quaternion().setFromEuler(new THREE.Euler(-2.969401839066854,0,
-//     -3.141592653589793));
 const prevCameraPosition = useRef(new THREE.Vector3(0, 1, -5));
 
 useImperativeHandle(ref, () => ({
   getWorldPosition: (vector) => {
     if (rb.current) {
-      const translation = rb.current.translation() // RigidBody の位置を取得
+      const translation = rb.current.translation()
       vector.set(translation.x, translation.y, translation.z)
     }
   },
@@ -109,18 +104,6 @@ useEffect(() => {
   }
 }, [rb, setPlayerRef])
 
-// let prevCameraPos = new Vector3();
-// let prevCameraRot = new THREE.Euler();
-
-// useFrame(({ camera }) => {
-//   if (!camera.position.equals(prevCameraPos) || !camera.rotation.equals(prevCameraRot)) {
-//     console.log("カメラ位置が変わった:", camera.position);
-//     console.log("カメラの向きが変わった:", camera.rotation);
-//     prevCameraPos.copy(camera.position);
-//     prevCameraRot.copy(camera.rotation);
-//   }
-// });
-
   useEffect(() => {
     // console.count("useFrame Function Call");
     if (phase === "playing") {
@@ -138,37 +121,9 @@ useEffect(() => {
   
   
   useFrame(({ camera,mouse,gl }) => {
-    console.log(phase)
-    // if (phase === "playing") {
-    //   const lerpSpeed = 0.1;
-    //   const lookAtSpeed = 0.2; // 🔹 transition時はゆっくり回転
-
-    //   // カメラの位置補間
-    //   const startPosition = prevCameraPosition.current;
-    //   cameraPosition.current.getWorldPosition(cameraWorldPosition.current);
-    //   const targetPosition = cameraWorldPosition.current;
-    //   camera.position.lerp(startPosition.lerp(targetPosition, 0.05), lerpSpeed);
-
-    //   // 🔹 カメラの向きをスムーズに補間 (slerp を使用)
-    //   if (cameraTarget.current) {
-    //     cameraTarget.current.getWorldPosition(cameraLookAtWorldPosition.current);
-
-    //     const currentQuaternion = new Quaternion().copy(camera.quaternion);
-    //     const targetQuaternion = new Quaternion().setFromRotationMatrix(
-    //       new THREE.Matrix4().lookAt(
-    //         camera.position,
-    //         cameraLookAtWorldPosition.current,
-    //         new Vector3(0, 1, 0)
-    //       )
-    //     );
-
-    //     camera.quaternion.slerp(targetQuaternion, lookAtSpeed);
-    //   }
-    // }
   
     /** ========== 3. 会話フェーズ ("talking") のカメラ制御 ========== */
     if (phase === "talking" && currentTarget) {
-      // console.time("chatractercontroller cameraanimation")
       const npcRef = npcRefs.current[currentTarget.id]
       if(npcRef){
 
@@ -191,7 +146,6 @@ useEffect(() => {
           }
           prevCameraPos.copy(camera.position);
       }
-      // console.timeEnd("chatractercontroller cameraanimation")
     }
   
     /** ========== 4. 着替えフェーズ ("changing") のカメラ制御 ========== */
@@ -209,12 +163,7 @@ useEffect(() => {
   
     /** ========== 5. ゲームプレイ中 ("playing") のキャラクター移動処理 ========== */
     if (phase === "playing") {
-      // if (isTalking.current) {
-        // camera.position.lerp(initialCameraPosition.current, 0.1);
-        // isTalking.current = false;
-      // }
-  
-      camera.fov = MathUtils.lerp(camera.fov, 45, 0.1); // 通常視点に戻す
+      camera.fov = MathUtils.lerp(camera.fov, 45, 0.1);
       camera.updateProjectionMatrix();
   
       if (rb.current) {
@@ -235,26 +184,35 @@ useEffect(() => {
         }
   
         if (movement.x !== 0) rotationTarget.current += ROTATION_SPEED * movement.x;
-
+  
         if (movement.x !== 0 || movement.z !== 0) {
           characterRotationTarget.current = Math.atan2(movement.x, movement.z);
           vel.x = Math.sin(rotationTarget.current + characterRotationTarget.current) * speed;
           vel.z = Math.cos(rotationTarget.current + characterRotationTarget.current) * speed;
-          const nextAnimation = speed === RUN_SPEED ? "run" : "walk";
-        if (prevAnimation.current !== nextAnimation) {
-          setAnimation(nextAnimation);
-          prevAnimation.current = nextAnimation; // 変更時のみ更新
-        }
-        } else if (prevAnimation.current !== "idle") {
-          setAnimation("idle");
-          prevAnimation.current = "idle";
-        }
           
+          const nextAnimation = speed === RUN_SPEED ? "Run" : "Walk";
+          if (prevAnimation.current !== nextAnimation) {
+            setAnimation(nextAnimation);
+            prevAnimation.current = nextAnimation;
+          }
+        } else {
+          // 🎯 移動入力がない場合、完全に停止
+          vel.x = 0;
+          vel.z = 0;
+          rb.current.setLinvel(new Vector3(0, vel.y, 0), true); // 瞬時に停止
+          
+          if (prevAnimation.current !== "Idle") {
+            setAnimation("Idle");
+            prevAnimation.current = "Idle";
+          }
+        }
+  
         character.current.rotation.y = lerpAngle(
           character.current.rotation.y,
           characterRotationTarget.current,
           0.1
         );
+  
         rb.current.setLinvel(vel, true);
       }
   
@@ -290,13 +248,18 @@ useEffect(() => {
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={2} position-z={-10} />
         <group ref={character}>
-          <Chara 
+          {/* <Chara 
             scale={0.5} 
             position-y={-1.2} 
             rotation-y={-Math.PI / 2} 
             animation={animation}
+          /> */}
+          <Player
+            scale={1.2} 
+            position-y={-1.2} 
+            rotation-y={0} 
+            animation={animation}
           />
-          {/* <Purete1/> */}
         </group>
       </group>
       <CapsuleCollider args={[0.5, 0.5]} friction={1} />

@@ -6,8 +6,8 @@ const Sun = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime((prev) => (prev + 0.1) % 24); // 時間を進める
-    }, 1000);
+      setTime((prev) => (prev + 0.1) % 240); // 時間を進める
+    }, 100);
     return () => clearInterval(interval);
   }, []);
 

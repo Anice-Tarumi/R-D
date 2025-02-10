@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useMemo } from 'react'
 import { useGLTF, useAnimations, ContactShadows } from '@react-three/drei'
 import { useSpring, a } from '@react-spring/three'
 import useClothStore from '../manager/useClothStore.jsx'
+import { head } from 'framer-motion/client'
 
 export default function Chara({ animation, ...props }) {
   const group = useRef()
@@ -90,6 +91,7 @@ export default function Chara({ animation, ...props }) {
       hatObject.position.set(...position);
       hatObject.rotation.set(...rotation);
       hatObject.scale.set(...scale);
+      console.log("Chara",headBone)
       headBone.add(hatObject);
       return () => headBone.remove(hatObject);
     }
