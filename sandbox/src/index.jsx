@@ -54,9 +54,7 @@ const App = () => {
       </KeyboardControls>
       <InteractionUI />
       <MenuScreen />
-      
-
-    
+      <MiniMap mapImage="./images/map.png"/>
     </>
   )
 }

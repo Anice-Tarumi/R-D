@@ -69,24 +69,24 @@ const sounds = {
     });
   };
   
-  export const setLoop = (soundName, shouldLoop) => {
-    const sound = sounds[soundName];
-    if (sound) {
-      sound.loop = shouldLoop;
-    } else {
-      console.warn(`Sound "${soundName}" not found.`);
-    }
-  };
+  // export const setLoop = (soundName, shouldLoop) => {
+  //   const sound = sounds[soundName];
+  //   if (sound) {
+  //     sound.loop = shouldLoop;
+  //   } else {
+  //     console.warn(`Sound "${soundName}" not found.`);
+  //   }
+  // };
   
-  export const addSound = (soundName, soundPath) => {
-    if (!sounds[soundName]) {
-      sounds[soundName] = new Audio(soundPath);
-      sounds[soundName].volume = 0.5;
-      console.log(`Sound "${soundName}" added.`);
-    } else {
-      console.warn(`Sound "${soundName}" already exists.`);
-    }
-  };
+  // export const addSound = (soundName, soundPath) => {
+  //   if (!sounds[soundName]) {
+  //     sounds[soundName] = new Audio(soundPath);
+  //     sounds[soundName].volume = 0.5;
+  //     console.log(`Sound "${soundName}" added.`);
+  //   } else {
+  //     console.warn(`Sound "${soundName}" already exists.`);
+  //   }
+  // };
   
   export default {
     playSound,
@@ -95,7 +95,7 @@ const sounds = {
     stopAllSounds,
     setSoundVolume,
     setGlobalVolume,
-    setLoop,
-    addSound,
+    // setLoop,
+    // addSound,
   };
   

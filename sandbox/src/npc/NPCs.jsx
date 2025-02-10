@@ -37,6 +37,26 @@ const NPC_LIST = [
     colliderArgs: [0.5, 0.8],
     colliderPosition: [-9, 0.2, 15],
   },
+  {
+    id: "npc4",
+    name: "M2",
+    modelPath: "./low_chara/m_3.glb",
+    position: [5, -1, 15],
+    scale: [1.2, 1.2, 1.2],
+    rotation: [0, Math.PI/2, 0],
+    colliderArgs: [0.6, 0.5],
+    colliderPosition: [5, 0.2, 15],
+  },
+  {
+    id: "npc5",
+    name: "M3",
+    modelPath: "./low_chara/m_4.glb",
+    position: [-9, -0.8, 20],
+    scale: [1.2, 1.2, 1.2],
+    rotation: [0, 0, 0],
+    colliderArgs: [0.6, 0.5],
+    colliderPosition: [-9, 0.2, 20],
+  },
 ];
 
 const NPCs = forwardRef(({ playerRef, npcRefs }, ref) => {
@@ -107,12 +127,13 @@ const NPCs = forwardRef(({ playerRef, npcRefs }, ref) => {
         const { actions } = useAnimations(animations, npcRef);
 
         useEffect(() => {
-          if (actions?.idle) {
-            actions.idle.reset().fadeIn(0.24).play();
+          const idleanimation = actions?.idle || actions?.Idle;
+          if (actions?.idle || actions?.Idle) {
+            idleanimation.reset().fadeIn(0.24).play();
           }
           return () => {
             if (actions?.idle) {
-              actions.idle.fadeOut(0.5);
+              idleanimation.fadeOut(0.5);
             }
           };
         }, [actions]);

@@ -2,13 +2,10 @@ import * as THREE from 'three'
 import { useEffect, useRef, useState } from 'react'
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber'
 import { useCursor, MeshPortalMaterial, CameraControls, Gltf, Text, Preload, ContactShadows, useGLTF } from '@react-three/drei'
-import { useRoute, useLocation } from 'wouter'
 import { easing, geometry } from 'maath'
-import { suspend } from 'suspend-react'
 import Experience from './Experience'
 import useGame from './manager/useGame'
 import Lights from './envs/Lights'
-import { Perf } from 'r3f-perf'
 
 extend(geometry)
 
@@ -31,7 +28,6 @@ export const TitleScene = () =>
           <planeGeometry args={[10,10]}/>
           <meshNormalMaterial />
           </mesh>
-        <Perf/>
       </Frame>
         <Rig zoomed={zoomed} start={start}/>
       <Preload all />

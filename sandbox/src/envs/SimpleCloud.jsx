@@ -1,5 +1,5 @@
 import React, { useRef, useMemo } from "react";
-import { useGLTF } from "@react-three/drei";
+import { Sky, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
 const SimpleCloud = () => {
@@ -19,15 +19,15 @@ const SimpleCloud = () => {
   //   }));
   // }, []);
 
-  useFrame(({ clock }) => {
-    console.count("useFrame (SimpleCloud)");
-    cloudRefs.current.forEach((cloud, index) => {
-      if (cloud) {
-        cloud.position.y += Math.sin(clock.getElapsedTime() * 0.1 + index) * 0.02; // ゆっくり上下
-        // cloud.rotation.y += 0.0005; // ゆっくり回転
-      }
-    });
-  });
+  // useFrame(({ clock }) => {
+    // console.count("useFrame (SimpleCloud)");
+    // cloudRefs.current.forEach((cloud, index) => {
+    //   if (cloud) {
+    //     cloud.position.y += Math.sin(clock.getElapsedTime() * 0.1 + index) * 0.02; // ゆっくり上下
+    //     // cloud.rotation.y += 0.0005; // ゆっくり回転
+    //   }
+    // });
+  // });
 
   return (
     // <group>
@@ -38,6 +38,12 @@ const SimpleCloud = () => {
     //   ))}
     // </group>
   <>
+  <Sky
+        distance={450000}
+        sunPosition={[5, 1, 0]}
+        inclination={0}
+        azimuth={0.25}
+      />
   {/* 前 */}
   <group position={[0,20,100]} scale={20}>
   <primitive object={scene.clone()} />

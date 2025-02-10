@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 const useAudioStore = create((set) => ({
   bgm: null,
-  isPlaying: false,
+  isPlaying: true,
   isFirstTime: true,
   
   playBGM: () => set((state) => {

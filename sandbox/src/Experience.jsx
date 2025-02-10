@@ -1,35 +1,43 @@
-import Lights from "./envs/Lights.jsx"
 import { Physics, RigidBody } from "@react-three/rapier"
 import CharacterController from "./player/CharacterController.jsx"
 import { Perf } from "r3f-perf"
 import React, { useEffect, useRef } from "react"
-import NpcData from "./npc/NpcData.jsx"
-// import useStageStore from "./manager/useStageStore.jsx"
 import City from "./maps/City.jsx"
-// import useGame from "./manager/useGame.jsx"
 import NPCs from "./npc/NPCs.jsx"
 import useGame from "./manager/useGame.jsx"
-import MiniMap from "./ui/MiniMap.jsx"
 import usePlayerStore from "./manager/usePlayerStore.jsx"
+import SimpleCloud from "./envs/SimpleCloud.jsx"
+import SkyComponent from "./envs/SkyComponent.jsx"
+import Ocean from "./envs/Ocean.jsx"
+import useAudioStore from "./manager/useAudioStore.jsx"
+import { useFrame } from "@react-three/fiber"
 
 export default function Experience({ canvasRef }) {
   const playerRef = useRef()
   const npcRefs = useRef({})
   const phase = useGame((state) => state.phase)
   const setPlayerRef = usePlayerStore((state) => state.setPlayerRef);
+  const sunRef = useRef()
+  const isPlaying = useAudioStore((state) => state.isPlaying)
+  const playBGM = useAudioStore((state) => state.playBGM)
 
-  // useEffect(() => {
-  //   if (playerRef.current) {
-  //     setPlayerRef(playerRef);
-  //   }
-  // }, [playerRef, setPlayerRef]);
-  // const currentStage = useStageStore((state) => state.currentStage)
+  useEffect(() => {
+    playBGM()
+  }, [])
 
   return (
     <>
+    {/* <Water rotation={[-Math.PI/2,0,0]} position={[0,-1,0]}/> */}
       {/* <Perf position="top-left" /> */}
-      <Lights />
-      <Physics debug>
+      {/* <Lights /> */}
+      <SimpleCloud/>
+      {/* <Sun /> */}
+      {/* <SkyShader/> */}
+      {/* <SimpleSky/> */}
+      <SkyComponent />
+      {/* <SkyComponentv2/> */}
+      <Ocean/>
+      <Physics >
         <CharacterController canvasRef={canvasRef} npcRefs={npcRefs} ref={playerRef} />
         <group key="city">
           <RigidBody type="fixed" friction={1}>
