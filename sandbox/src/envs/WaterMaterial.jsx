@@ -1,5 +1,5 @@
-import { shaderMaterial } from "@react-three/drei";
-import { Color } from "three";
+import { shaderMaterial } from "@react-three/drei"
+import { Color } from "three"
 
 export const WaterMaterial = shaderMaterial(
     {
@@ -112,5 +112,5 @@ export const WaterMaterial = shaderMaterial(
       vec3 finalColor = mix(uColor, vec3(0.0), noise);
       gl_FragColor = vec4(finalColor, uOpacity);
     }`
-  );
+  )
   

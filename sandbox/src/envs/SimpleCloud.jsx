@@ -1,10 +1,10 @@
-import React, { useRef, useMemo } from "react";
-import { Sky, useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import React, { useRef, useMemo } from "react"
+import { Sky, useGLTF } from "@react-three/drei"
+import { useFrame } from "@react-three/fiber"
 
 const SimpleCloud = () => {
-  const { scene } = useGLTF("./model/Clouds.glb");
-  const cloudRefs = useRef([]);
+  const { scene } = useGLTF("./model/Clouds.glb")
+  const cloudRefs = useRef([])
 
   // 🔹 複数の雲をランダムに配置
   // const cloudPositions = useMemo(() => {
@@ -16,18 +16,18 @@ const SimpleCloud = () => {
   //       0,0,0
   //     ],
   //     scale: Math.random() * 5 + 5, // サイズ
-  //   }));
-  // }, []);
+  //   }))
+  // }, [])
 
   // useFrame(({ clock }) => {
-    // console.count("useFrame (SimpleCloud)");
+    // console.count("useFrame (SimpleCloud)")
     // cloudRefs.current.forEach((cloud, index) => {
     //   if (cloud) {
-    //     cloud.position.y += Math.sin(clock.getElapsedTime() * 0.1 + index) * 0.02; // ゆっくり上下
-    //     // cloud.rotation.y += 0.0005; // ゆっくり回転
+    //     cloud.position.y += Math.sin(clock.getElapsedTime() * 0.1 + index) * 0.02 // ゆっくり上下
+    //     // cloud.rotation.y += 0.0005 // ゆっくり回転
     //   }
-    // });
-  // });
+    // })
+  // })
 
   return (
     // <group>
@@ -79,7 +79,7 @@ const SimpleCloud = () => {
   
   </>
     
-  );
-};
+  )
+}
 
-export default SimpleCloud;
+export default SimpleCloud

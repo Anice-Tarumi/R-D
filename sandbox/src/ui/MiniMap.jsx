@@ -30,11 +30,11 @@ const handleTeleport = (point) => {
   setIsExpanded(false)
   setTimeout(() => {
     if (!playerRef.current) return
-    console.log(playerRef.current)
+    // console.log(playerRef.current)
     const playerPosition = playerRef.current.translation()
-    console.log("playerPosition", playerRef.current.setTranslation)
+    // console.log("playerPosition", playerRef.current.setTranslation)
     if (playerRef.current.setTranslation) {
-      console.log("移動する")
+      // console.log("移動する")
       playerRef.current.setTranslation({ x: point.worldPos.x, y: point.worldPos.y, z: point.worldPos.z }, true)
     }
   }, 1000)
@@ -62,7 +62,21 @@ useEffect(() => {
   return () => window.removeEventListener("resize", updateSize)
 }, [])
 
+// useEffect(() => {
+//   const handleTouchMove = (e) => {
+//     e.preventDefault()
+//   }
+
+//   document.addEventListener("touchmove", handleTouchMove, { passive: false })
+
+//   return () => {
+//     document.removeEventListener("touchmove", handleTouchMove)
+//   }
+// }, [])
+
+
 const handleTouchStart = (e) => {
+  // console.log(e.preventDefault)
     if (!isExpanded) return
     isDragging.current = true
     const touch = e.touches[0]
@@ -72,6 +86,7 @@ const handleTouchStart = (e) => {
   
   const handleTouchMove = (e) => {
     if (!isDragging.current) return
+    // e.preventDefault()
     const touch = e.touches[0]
     const newX = touch.clientX - dragStart.current.x
     const newY = touch.clientY - dragStart.current.y
@@ -90,11 +105,11 @@ const handleTouchStart = (e) => {
     setIsExpanded(!isExpanded)
     setMapOffset({ x: 0, y: 0 })
     if(phase === "map") {
-      console.log("playingに変更")
+      // console.log("playingに変更")
     resume()
     }
       else if (phase === "playing") {
-        console.log("mapに変更")
+        // console.log("mapに変更")
     map()
     }
   }
@@ -178,6 +193,9 @@ return (
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          // onTouchEnd={handleMouseUp}
         >
           {teleportPoints.map((point) => (
             <div

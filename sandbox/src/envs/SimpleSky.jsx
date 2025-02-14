@@ -1,10 +1,10 @@
-import React from "react";
-import * as THREE from "three";
-import { useThree } from "@react-three/fiber";
-import { Cloud } from "@react-three/drei";
+import React from "react"
+import * as THREE from "three"
+import { useThree } from "@react-three/fiber"
+import { Cloud } from "@react-three/drei"
 
 const SimpleSky = () => {
-  const { scene } = useThree();
+  const { scene } = useThree()
 
   return (
     <>
@@ -18,7 +18,7 @@ const SimpleSky = () => {
     <Cloud opacity={1} position={[0, 0, 100]} />
     </>
     
-  );
-};
+  )
+}
 
-export default SimpleSky;
+export default SimpleSky

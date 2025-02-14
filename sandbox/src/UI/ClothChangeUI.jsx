@@ -5,36 +5,36 @@ import { useEffect } from "react"
 import { playSound } from "../manager/audioManager"
 
 const ClothChangeUI = ({ onApply, onCancel }) => {
-  const { selectedHat, selectedBag, selectedShoes, setHat, setBag, setShoes } = useClothStore();
+  const { selectedHat, selectedBag, selectedShoes, setHat, setBag, setShoes } = useClothStore()
   const resume = useGame((state) => state.resume)
 
-  const changeHat = useClothStore((state) => state.changeHat);
-  const changeBag = useClothStore((state) => state.changeBag);
-  const changeShoes = useClothStore((state) => state.changeShoes);
-  const [initialHat, setInitialHat] = useState(null);
-  const [initialBag, setInitialBag] = useState(null);
-  const [initialShoes, setInitialShoes] = useState(null);
+  const changeHat = useClothStore((state) => state.changeHat)
+  const changeBag = useClothStore((state) => state.changeBag)
+  const changeShoes = useClothStore((state) => state.changeShoes)
+  const [initialHat, setInitialHat] = useState(null)
+  const [initialBag, setInitialBag] = useState(null)
+  const [initialShoes, setInitialShoes] = useState(null)
 
   useEffect(() => {
-    setInitialHat(selectedHat);
-    setInitialBag(selectedBag);
-    setInitialShoes(selectedShoes);
+    setInitialHat(selectedHat)
+    setInitialBag(selectedBag)
+    setInitialShoes(selectedShoes)
   }, [])
 
   const handleCancel = () => {
     // 元の装備に戻す
-    setHat(initialHat);
-    setBag(initialBag);
-    setShoes(initialShoes);
+    setHat(initialHat)
+    setBag(initialBag)
+    setShoes(initialShoes)
     resume()
   }
 
   const handleApply = () => {
     // 現在選択中のアイテムを確定
     resume()
-    // onApply(selectedHat, selectedBag, selectedShoes);
+    // onApply(selectedHat, selectedBag, selectedShoes)
     
-  };
+  }
   return (
     <div className="cloth-change-ui">
       {/* 頭部の左右ボタン */}

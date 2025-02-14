@@ -12,9 +12,9 @@ export default function Player({animation, ...props}) {
     const { scene } = useThree()
 
     // 選択されている衣装
-    const selectedHat = useClothStore((state) => state.selectedHat);
-    const selectedBag = useClothStore((state) => state.selectedBag);
-    const selectedShoes = useClothStore((state) => state.selectedShoes);
+    const selectedHat = useClothStore((state) => state.selectedHat)
+    const selectedBag = useClothStore((state) => state.selectedBag)
+    const selectedShoes = useClothStore((state) => state.selectedShoes)
 
     // スケールアニメーション
     const [spring, api] = useSpring(() => ({
@@ -50,7 +50,7 @@ export default function Player({animation, ...props}) {
           rotation: [0, Math.PI / 2, 0],
           scale: [0.4, 0.4, 0.45],
         },
-      };
+      }
     
       const bagModels = {
         "Open Backpack": {
@@ -65,7 +65,7 @@ export default function Player({animation, ...props}) {
           rotation: [0, Math.PI, 0],
           scale: [0.5, 0.5, 0.5],
         },
-      };
+      }
     
       const shoesModels = {
         "Slippers": {
@@ -84,87 +84,87 @@ export default function Player({animation, ...props}) {
           rotation: [Math.PI / 2.3, Math.PI, Math.PI],
           scale: [0.7, 0.7, 0.7],
         },
-      };
+      }
 
       // 全ボーンをリストアップして確認
 // useEffect(() => {
-//     // console.log("📌 すべてのボーン:");
+//     // console.log("📌 すべてのボーン:")
 //     Object.keys(nodes).forEach((key) => {
 //       if (nodes[key].isBone) {
-//         // console.log(`Bone: ${key}`, nodes[key]);
+//         // console.log(`Bone: ${key}`, nodes[key])
 //       }
-//     });
-//   }, []);
+//     })
+//   }, [])
 
       useEffect(() => {
           if (selectedHat && hatModels[selectedHat]) {
-            const headBone = nodes["DEF-spine006"];
-            const hatObject = hatModels[selectedHat].model.scene.clone();
-            const { position, rotation, scale } = hatModels[selectedHat];
+            const headBone = nodes["DEF-spine006"]
+            const hatObject = hatModels[selectedHat].model.scene.clone()
+            const { position, rotation, scale } = hatModels[selectedHat]
             // console.log(position,rotation,scale)
-            hatObject.position.set(...position);
-            hatObject.rotation.set(...rotation);
-            hatObject.scale.set(...scale);
+            hatObject.position.set(...position)
+            hatObject.rotation.set(...rotation)
+            hatObject.scale.set(...scale)
             // console.log("Player",headBone)
-            headBone.add(hatObject);
-            return () => headBone.remove(hatObject);
+            headBone.add(hatObject)
+            return () => headBone.remove(hatObject)
           }
-        }, [selectedHat, nodes]);
+        }, [selectedHat, nodes])
       
         useEffect(() => {
           if (selectedBag && bagModels[selectedBag]) {
-            const spineBone = nodes["DEF-spine003"];
-            const bagObject = bagModels[selectedBag].model.scene.clone();
-            const { position, rotation, scale } = bagModels[selectedBag];
-            bagObject.position.set(...position);
-            bagObject.rotation.set(...rotation);
-            bagObject.scale.set(...scale);
-            spineBone.add(bagObject);
-            return () => spineBone.remove(bagObject);
+            const spineBone = nodes["DEF-spine003"]
+            const bagObject = bagModels[selectedBag].model.scene.clone()
+            const { position, rotation, scale } = bagModels[selectedBag]
+            bagObject.position.set(...position)
+            bagObject.rotation.set(...rotation)
+            bagObject.scale.set(...scale)
+            spineBone.add(bagObject)
+            return () => spineBone.remove(bagObject)
           }
-        }, [selectedBag, nodes]);
+        }, [selectedBag, nodes])
       
         useEffect(() => {
           if (selectedShoes && shoesModels[selectedShoes]) {
-            const leftFootBone = nodes["DEF-footL"];
-            const rightFootBone = nodes["DEF-footR"];
-            const leftShoe = shoesModels[selectedShoes].left.scene.clone();
-            const rightShoe = shoesModels[selectedShoes].right.scene.clone();
-            const { leftPosition, rightPosition, rotation, scale } = shoesModels[selectedShoes];
-            leftShoe.position.set(...leftPosition);
-            rightShoe.position.set(...rightPosition);
-            leftShoe.rotation.set(...rotation);
-            rightShoe.rotation.set(...rotation);
-            leftShoe.scale.set(...scale);
-            rightShoe.scale.set(...scale);
-            leftFootBone.add(leftShoe);
-            rightFootBone.add(rightShoe);
+            const leftFootBone = nodes["DEF-footL"]
+            const rightFootBone = nodes["DEF-footR"]
+            const leftShoe = shoesModels[selectedShoes].left.scene.clone()
+            const rightShoe = shoesModels[selectedShoes].right.scene.clone()
+            const { leftPosition, rightPosition, rotation, scale } = shoesModels[selectedShoes]
+            leftShoe.position.set(...leftPosition)
+            rightShoe.position.set(...rightPosition)
+            leftShoe.rotation.set(...rotation)
+            rightShoe.rotation.set(...rotation)
+            leftShoe.scale.set(...scale)
+            rightShoe.scale.set(...scale)
+            leftFootBone.add(leftShoe)
+            rightFootBone.add(rightShoe)
             return () => {
-              leftFootBone.remove(leftShoe);
-              rightFootBone.remove(rightShoe);
-            };
+              leftFootBone.remove(leftShoe)
+              rightFootBone.remove(rightShoe)
+            }
           }
-        }, [selectedShoes, nodes]);
+        }, [selectedShoes, nodes])
 
         useEffect(() => {
             if (actions[animation]) {
               // 現在アクティブなアニメーションを取得
-              const activeAction = Object.values(actions).find(action => action.isRunning());
+              const activeAction = Object.values(actions).find(action => action.isRunning())
               
               if (activeAction && activeAction !== actions[animation]) {
                 // 現在のアニメーションから新しいアニメーションへクロスフェード
-                activeAction.crossFadeTo(actions[animation], 0.2, false);
+                activeAction.crossFadeTo(actions[animation], 0.2, false)
               }
               
-              actions[animation].reset().play();
+              actions[animation].reset().play()
             }
           
             return () => {
               if (actions[animation]) {
-                actions[animation].fadeOut(0.2);
+                actions[animation].fadeOut(0.2)
               }
-            };
-          }, [animation]);
+            }
+          }, [animation])
           
 
   return (

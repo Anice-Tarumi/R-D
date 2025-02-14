@@ -8,5 +8,31 @@
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="./index.jsx"></script></body>
+    <script type="module" src="./index.jsx"></script>
+<script>
+function disableUnwantedInteractions() {
+  document.addEventListener("contextmenu", (e) => e.preventDefault()); // 右クリック禁止
+  document.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false }); // スクロール禁止
+  document.addEventListener("dragstart", (e) => e.preventDefault()); // ドラッグ禁止
+  document.addEventListener("mousedown", (e) => e.preventDefault()); // クリックで意図しない選択を防ぐ
+  document.addEventListener("selectstart", (e) => e.preventDefault()); // テキスト選択禁止
+
+  let lastTouchEnd = 0;
+  document.addEventListener("touchend", (event) => {
+    const now = new Date().getTime();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault(); // ダブルタップ防止
+    }
+    lastTouchEnd = now;
+  }, false);
+
+  document.body.style.userSelect = "none"; // テキスト選択禁止
+  document.body.style.webkitUserSelect = "none";
+  document.body.style.touchAction = "none"; // タップハイライト禁止
+}
+
+// 🚀 ゲーム開始時に呼び出す
+disableUnwantedInteractions();
+</script>
+</body>
 </html>

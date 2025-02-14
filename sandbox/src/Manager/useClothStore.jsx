@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from "zustand"
 
 const useClothStore = create((set) => ({
   selectedHat: "",
@@ -15,24 +15,24 @@ const useClothStore = create((set) => ({
   
   changeHat: (direction) =>
     set((state) => {
-      const currentIndex = state.hats.indexOf(state.selectedHat);
-      const nextIndex = (currentIndex + direction + state.hats.length) % state.hats.length;
-      return { selectedHat: state.hats[nextIndex] };
+      const currentIndex = state.hats.indexOf(state.selectedHat)
+      const nextIndex = (currentIndex + direction + state.hats.length) % state.hats.length
+      return { selectedHat: state.hats[nextIndex] }
     }),
     
   changeBag: (direction) =>
     set((state) => {
-      const currentIndex = state.bags.indexOf(state.selectedBag);
-      const nextIndex = (currentIndex + direction + state.bags.length) % state.bags.length;
-      return { selectedBag: state.bags[nextIndex] };
+      const currentIndex = state.bags.indexOf(state.selectedBag)
+      const nextIndex = (currentIndex + direction + state.bags.length) % state.bags.length
+      return { selectedBag: state.bags[nextIndex] }
     }),
     
   changeShoes: (direction) =>
     set((state) => {
-      const currentIndex = state.shoes.indexOf(state.selectedShoes);
-      const nextIndex = (currentIndex + direction + state.shoes.length) % state.shoes.length;
-      return { selectedShoes: state.shoes[nextIndex] };
+      const currentIndex = state.shoes.indexOf(state.selectedShoes)
+      const nextIndex = (currentIndex + direction + state.shoes.length) % state.shoes.length
+      return { selectedShoes: state.shoes[nextIndex] }
     }),
-}));
+}))
 
-export default useClothStore;
+export default useClothStore

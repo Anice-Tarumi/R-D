@@ -9,7 +9,7 @@ export function Purete1(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/walk.glb')
   const { actions } = useAnimations(animations, group)
-  console.log(actions.animation_0)
+  // console.log(actions.animation_0)
     actions.animation_0.play()
   
   return (

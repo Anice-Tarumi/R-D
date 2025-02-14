@@ -9,7 +9,6 @@ body,
     height: 100%;
     background: ivory;
 }
-
 .loader-container.slide-down {
   opacity: 0;
   transform: translateY(100%);
@@ -994,3 +993,24 @@ button.show {
   width: 30px;
   height: 30px;
 }
+/**
+ * ジョイスティック
+ */
+ .joystick-container {
+  position: fixed;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  opacity: 0;  /* 📌 初期状態は透明 */
+  /* visibility: hidden; */
+  transition: opacity 0.4s ease-in-out;  /* 📌 200ms でフェードイン・フェードアウト */
+}
+.joystick-container.active {
+  opacity: 1;  /* 📌 アクティブ時に表示 */
+  /* visibility: visible; */
+}
+
+
+/**
+ * ジョイスティック
+ */

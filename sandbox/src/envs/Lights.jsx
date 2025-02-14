@@ -1,11 +1,11 @@
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
-import { Environment, useHelper } from "@react-three/drei";
-import { DirectionalLightHelper } from "three";
+import { useFrame } from "@react-three/fiber"
+import { useRef } from "react"
+import { Environment, useHelper } from "@react-three/drei"
+import { DirectionalLightHelper } from "three"
 
 export default function Lights() {
-    const lightRef = useRef();
-    useHelper(lightRef, DirectionalLightHelper, 5, 'red'); // 🔹 影の範囲を可視化
+    const lightRef = useRef()
+    useHelper(lightRef, DirectionalLightHelper, 5, 'red') // 🔹 影の範囲を可視化
     return <>
 <directionalLight
 ref={lightRef}

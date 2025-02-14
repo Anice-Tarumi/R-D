@@ -9,25 +9,21 @@ import Lights from './envs/Lights'
 
 extend(geometry)
 
-export const TitleScene = () => 
+export const TitleScene = (canvasRef) => 
     {
       const phase = useGame((state) => state.phase)
       const transition = useGame((state) => state.transition) // 🔹 フェーズ変更用
       const start = useGame((state) => state.start) // 🔹 `playing` へ移行用
       const [zoomed, setZoomed] = useState(false)
       
-      if (phase !== "title" && phase !== "transition") return null
+      // if (phase !== "title" && phase !== "transition") return null
       return (
       <>
       <color attach="background" args={['#f0f0f0']} />
-      <Frame id="01" name={`pick\nles`} author="Omar Faruq Tawsif" bg="#e4cdac" position={[0, 0, 0]} rotation={[0, 0, 0]} setZoomed={setZoomed} transition={transition}>
-        <Gltf src="./map/city/scenev3.gltf" scale={8} position={[0, -20, -2]} />
-        <Lights/>
-        {/* <Experience/> */}
-        <mesh side={THREE.DoubleSide}>
-          <planeGeometry args={[10,10]}/>
-          <meshNormalMaterial />
-          </mesh>
+      <Frame id="01" name={`game`} author="Omar Faruq Tawsif" bg="#e4cdac" position={[0, 0, 0]} rotation={[0, 0, 0]} setZoomed={setZoomed} transition={transition}>
+        {/* <Gltf src="./map/city/scenev3.gltf" scale={8} position={[0, -20, -2]} />
+        <Lights/> */}
+        <Experience canvasRef={canvasRef}/>
       </Frame>
         <Rig zoomed={zoomed} start={start}/>
       <Preload all />
@@ -49,11 +45,13 @@ function Frame({ id, name, bg, width = 5, height = 8, children,setZoomed, transi
 
   useCursor(hovered)
   useFrame((state,delta, dt) => {
-    // console.count("useFrame (TitleScene)");
-    easing.damp(portal.current, 'blend', phase === "transition" ? 1 : 0, 0.2, dt)
-    
+    // console.count("useFrame (TitleScene)")
+    // if(phase === "playing")
+    if(portal?.current){
+      easing.damp(portal.current, 'blend', phase === "transition" ? 1 : 0, 0.2, dt)
+    }
     if (planeRef.current.scale.x < 1) {
-      planeRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.02); // 🔹 `lerp` で滑らかに拡大
+      planeRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.02) // 🔹 `lerp` で滑らかに拡大
     }
     
   })
@@ -84,7 +82,7 @@ function Frame({ id, name, bg, width = 5, height = 8, children,setZoomed, transi
         scale={0.01}
       >
         <roundedPlaneGeometry args={[width, height, 0.1]} />
-        <MeshPortalMaterial ref={portal} side={THREE.DoubleSide} >
+          <MeshPortalMaterial ref={portal} side={THREE.DoubleSide} >
           <color attach="background" args={[bg]} />
           {children}
         </MeshPortalMaterial>
@@ -109,7 +107,7 @@ function Frame({ id, name, bg, width = 5, height = 8, children,setZoomed, transi
     }, [phase])
   
     useFrame((state, delta) => {
-      // console.count("useFrame (TitleScene)");
+      // console.count("useFrame (TitleScene)")
       if (phase !== "transition" || transitionComplete.current) return
       camera.position.lerp(targetPosition.current, 1 - Math.exp(-lerpSpeed * delta))
       camera.lookAt(focus.current)
@@ -122,4 +120,4 @@ function Frame({ id, name, bg, width = 5, height = 8, children,setZoomed, transi
     return null
 }
 
-export default TitleScene;
+export default TitleScene

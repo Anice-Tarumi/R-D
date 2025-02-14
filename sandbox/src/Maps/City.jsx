@@ -17,34 +17,34 @@ const City = (position) => {
     // すべてのメッシュに対して receiveShadow を適用
     gltf.scene.traverse((child) => {
       if (child.isMesh) {
-        child.receiveShadow = true;
+        child.receiveShadow = true
         child.castShadow = true
       }
-    });
-  }, [gltf]);
+    })
+  }, [gltf])
 
   useEffect(() => {
     return () => {
       if (gltf) {
         gltf.scene.traverse((child) => {
           if (child.isMesh) {
-            child.geometry.dispose();
+            child.geometry.dispose()
             if (child.material.isMaterial) {
               Object.keys(child.material).forEach((key) => {
-                const value = child.material[key];
+                const value = child.material[key]
                 if (value && typeof value.dispose === "function") {
-                  value.dispose();
+                  value.dispose()
                 }
-              });
+              })
             }
           }
-        });
+        })
       }
-    };
-  }, []);
+    }
+  }, [])
 
-  return <primitive object={gltf.scene} position={[0,-1,0]}/>
+  return <primitive object={gltf.scene} position={[0,-1,0]} />
 }
-// useGLTF.preload("./map/city/scenev3.gltf");
+// useGLTF.preload("./map/city/scenev3.gltf")
 
 export default City
