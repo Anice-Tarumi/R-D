@@ -1,35 +1,35 @@
-import React, { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
-import * as THREE from "three";
+import React, { useRef } from "react"
+import { useFrame } from "@react-three/fiber"
+import * as THREE from "three"
 
 export default function SkyShader() {
-  const materialRef = useRef();
-  const lightRef = useRef();
+  const materialRef = useRef()
+  const lightRef = useRef()
 
   useFrame((state, delta) => {
-    const time = state.clock.getElapsedTime();
-    console.log("time", time);
-    const sunAngle = time * 0.01; // フレームレート依存しない時間の進行
-    const radius = 30;
-    const sunHeight = Math.sin(sunAngle) * 30;
-    const sunIntensity = Math.max(0.2, Math.sin(sunAngle));
+    const time = state.clock.getElapsedTime()
+    console.log("time", time)
+    const sunAngle = time * 0.01
+    const radius = 30
+    const sunHeight = Math.sin(sunAngle) * 30
+    const sunIntensity = Math.max(0.2, Math.sin(sunAngle))
 
     // ☀️ 太陽（DirectionalLight）の移動
     lightRef.current.position.set(
       Math.cos(sunAngle) * radius,
       sunHeight,
       Math.sin(sunAngle) * radius
-    );
-    lightRef.current.target.position.set(0, 0, 0);
-    lightRef.current.target.updateMatrixWorld();
+    )
+    lightRef.current.target.position.set(0, 0, 0)
+    lightRef.current.target.updateMatrixWorld()
 
     // ☀️ 太陽の色と明るさを変更
-    lightRef.current.intensity = sunIntensity * 2;
-    lightRef.current.color.setHSL(0.1, 0.8, sunIntensity);
+    lightRef.current.intensity = sunIntensity * 2
+    lightRef.current.color.setHSL(0.1, 0.8, sunIntensity)
 
     // 🟡 シェーダーの時間を更新
-    materialRef.current.uniforms.uTime.value = time;
-  });
+    materialRef.current.uniforms.uTime.value = time
+  })
 
   return (
     <>
@@ -65,7 +65,7 @@ export default function SkyShader() {
       />
       <ambientLight intensity={1.5} />
     </>
-  );
+  )
 }
 
 // 🎭 頂点シェーダー

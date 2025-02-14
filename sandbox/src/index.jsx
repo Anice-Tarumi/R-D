@@ -1,25 +1,46 @@
 import './style.css'
 import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
-import Experience from './Experience.jsx' // ゲームの3Dシーン
+import Experience from './Experience.jsx'
 import { CameraControls, KeyboardControls, OrbitControls } from '@react-three/drei'
-import GameStateManager from './manager/GameStateManager.jsx' // 状態管理コンポーネント
+import GameStateManager from './manager/GameStateManager.jsx'
 import { useRef, useState } from 'react'
 import React from 'react'
 import InteractionUI from './ui/InteractionUI.jsx'
 import MenuScreen from './ui/MenuScreen.jsx'
 import useGame from './manager/useGame.jsx'
-import TitleScene from './TitleScene.jsx'
 import MiniMap from './ui/MiniMap.jsx'
+import { Leva } from 'leva'
+import StartEarth from './StartEarth.jsx'
+import { Joystick } from 'react-joystick-component'
+import useDeviceStore from './manager/useDeviceStore.jsx'
+import useJoystickStore from './manager/useJoystickStore.jsx'
+import { Perf } from 'r3f-perf'
 
 const App = () => {
   const canvasRef = useRef()
   const phase = useGame((state) => state.phase);
+  const {isMobile} = useDeviceStore();
+  const { isActive, setIsActive, startPosition, setPosition, setStartPosition, resetJoystick } = useJoystickStore();
+  // const stickPosiiton = useRef([0,0]);
+  const handleTouchStart = (e) => {
+    if (!isMobile) return;
+    const touch = e.touches[0];
+  
+    setStartPosition(touch.clientX, touch.clientY);
+    setIsActive(true); 
+  };
+  
+  const handleTouchEnd = () => {
+    resetJoystick(); 
+  };
+
+  const handleMove = (event) => {
+    setPosition(event.x, event.y);
+  };
   return (
     <>
-      {/* ゲーム状態管理 */}
       <GameStateManager/>
-      
       <KeyboardControls
         map={[
           { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -39,22 +60,39 @@ const App = () => {
         camera={{
           fov: 45,
           near: 0.1,
-          far: 1000,
-          position: [0, 0, -20],
+          far: 2000,
+          position: [0, 100, -50],
           rotation: [0,Math.PI,0]
         }}
+        onTouchStart={handleTouchStart} 
+        onTouchEnd={handleTouchEnd}
       >
-      {phase === "title"  && <CameraControls makeDefault minAzimuthAngle={-Math.PI / 6 + Math.PI} maxAzimuthAngle={Math.PI / 6 + Math.PI} minPolarAngle={1} maxPolarAngle={Math.PI / 2} />}
-      {(phase === "title" || phase === "transition") && <TitleScene />}
-      {/* <CameraControls makeDefault minAzimuthAngle={-Math.PI / 6 + Math.PI} maxAzimuthAngle={Math.PI / 6 + Math.PI} minPolarAngle={1} maxPolarAngle={Math.PI / 2} /> */}
-      <TitleScene/>
-      {(phase !== "loading" && phase !== "title" && phase !=="transition")&& <Experience canvasRef={canvasRef}/>}
-      {/* {phase === "playing" && <MiniMap />} */}
+      <Experience canvasRef={canvasRef}/>
+      {(phase === "loading" || phase === "title" || phase === "transition") && <StartEarth/> }
+      <Perf position={"top-left"}/>
       </Canvas>
       </KeyboardControls>
       <InteractionUI />
       <MenuScreen />
-      <MiniMap mapImage="./images/map.png"/>
+      <Leva hidden/>
+      <MiniMap mapImage="./images/map.jpg"/>
+      {isMobile && isActive && phase === "playing" && (
+      <div 
+        className={`joystick-container ${isActive ? "active" : ""}`}  
+        style={{ top: `${startPosition.y}px`, left: `${startPosition.x}px`,backdropFilter: "blur(10px)", borderRadius: "100px" }}
+      >
+        <Joystick 
+          size={84} 
+          stickSize={50}
+          baseColor={"rgba(255, 255, 255, 0.4)"}
+          stickColor={"#FFFBF6"}
+          followCursor={true} 
+          minDistance={20}
+          move={handleMove}
+        />
+      </div>
+    )}
+
     </>
   )
 }

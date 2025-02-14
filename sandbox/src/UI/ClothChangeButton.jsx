@@ -24,7 +24,7 @@ const ClothChangeButton = () => {
         <path d="M20 10 L32 5 L44 10 L52 20 L48 28 L40 28 L40 50 L24 50 L24 28 L16 28 L12 20 Z" stroke="white" fill="none" strokeWidth="3"/>
       </svg>
     </button>
-  );
+  )
 }
 
 export default ClothChangeButton

@@ -1,5 +1,5 @@
-import React from "react";
-import { playSound } from "../manager/audioManager";
+import React from "react"
+import { playSound } from "../manager/audioManager"
 
 const ArrowButton = ({ direction, onClick }) => {
   return (
@@ -11,7 +11,7 @@ const ArrowButton = ({ direction, onClick }) => {
     >
       <div className="arrow-icon" />
     </div>
-  );
-};
+  )
+}
 
-export default ArrowButton;
+export default ArrowButton

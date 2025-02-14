@@ -25,30 +25,30 @@
 //   )
 // }
 // Loader.jsx
-import React, { useEffect, useState } from "react";
-import { useGLTF, useProgress } from "@react-three/drei";
-import useGame from "../manager/useGame";
-import { useFrame } from "@react-three/fiber";
+import React, { useEffect, useState } from "react"
+import { useGLTF, useProgress } from "@react-three/drei"
+import useGame from "../manager/useGame"
+import { useFrame } from "@react-three/fiber"
 
 export default function Loader() {
-  const { progress } = useProgress(); // ロード進捗を取得 (0~100%)
-  const [fadeOut, setFadeOut] = useState(false);
+  const { progress } = useProgress() // ロード進捗を取得 (0~100%)
+  const [fadeOut, setFadeOut] = useState(false)
   const title = useGame((state) => state.title)
-  useGLTF.preload("./map/city/scenev3.gltf");
-  useGLTF.preload("./npc/carrot.glb");
-  useGLTF.preload("./npc/jam.glb");
-  useGLTF.preload("./npc/purete.glb");
+  useGLTF.preload("./map/city/scenev3.gltf")
+  useGLTF.preload("./npc/carrot.glb")
+  useGLTF.preload("./npc/jam.glb")
+  useGLTF.preload("./npc/purete.glb")
 
   useEffect(() => {
     if (progress === 100) {
       setTimeout(() => {
-        setFadeOut(true); // 🔹 フェードアウト開始
+        setFadeOut(true) // 🔹 フェードアウト開始
         setTimeout(() => {
-          title(); // 🔹 フェードアウトが完了した後に `title()` を実行
-        }, 1000); // 1秒かけてフェードアウトしてからタイトル画面へ
-      }, 500); // 0.5秒後に `fadeOut` 開始
+          title() // 🔹 フェードアウトが完了した後に `title()` を実行
+        }, 1000) // 1秒かけてフェードアウトしてからタイトル画面へ
+      }, 500) // 0.5秒後に `fadeOut` 開始
     }
-  }, [progress, title]);
+  }, [progress, title])
 
   return (
     <div className={`loader-container ${fadeOut ? "fade-out" : ""}`}>
@@ -60,5 +60,5 @@ export default function Loader() {
         <p className="loading-text">{Math.floor(progress)}%</p>
       </div>
     </div>
-  );
+  )
 }

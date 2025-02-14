@@ -1,16 +1,16 @@
-import useAudioStore from "../manager/useAudioStore";
+import useAudioStore from "../manager/useAudioStore"
 
 const AudioButton = () => {
-    const playBGM = useAudioStore((state) => state.playBGM);
-    const pauseBGM = useAudioStore((state) => state.pauseBGM);
-    const isPlaying = useAudioStore((state) => state.isPlaying);
+    const playBGM = useAudioStore((state) => state.playBGM)
+    const pauseBGM = useAudioStore((state) => state.pauseBGM)
+    const isPlaying = useAudioStore((state) => state.isPlaying)
   const toggleBGM = () => {
     if (isPlaying) {
       pauseBGM()
     } else {
       playBGM()
     }
-  };
+  }
   
   // return (
   //   <button
@@ -19,7 +19,7 @@ const AudioButton = () => {
   //   >
   //     {isPlaying ? "⏸️" : "▶️"}
   //   </button>
-  // );
+  // )
   return (
     <button 
       className={`audio-button ${isPlaying ? "playing" : "paused"}`} 
@@ -31,8 +31,8 @@ const AudioButton = () => {
         <div className="wave"></div>
       </div>
     </button>
-  );
-  };
+  )
+  }
   
-  export default AudioButton;
+  export default AudioButton
   

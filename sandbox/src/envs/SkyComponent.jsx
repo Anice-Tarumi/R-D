@@ -1,142 +1,155 @@
-import React, { useRef, useEffect, useState } from "react";
-import { extend, useFrame, useThree } from "@react-three/fiber";
-import { Leva, useControls } from "leva";
-import * as THREE from "three";
-import { Sky } from "three/examples/jsm/objects/Sky";
-import { useHelper } from "@react-three/drei";
-import { DirectionalLightHelper } from "three";
+import React, { useRef, useEffect, useState } from "react"
+import { extend, useFrame, useThree } from "@react-three/fiber"
+import { Leva, useControls } from "leva"
+import * as THREE from "three"
+import { Sky } from "three/examples/jsm/objects/Sky"
+import { useHelper } from "@react-three/drei"
+import { DirectionalLightHelper } from "three"
+import useGame from "../manager/useGame"
 
-extend({ Sky });
+extend({ Sky })
 
 const SkyComponent = () => {
-  const skyRef = useRef();
-  const starsRef = useRef();
-  const sun = useRef(new THREE.Vector3());
-  const moon = useRef(new THREE.Vector3());
-  const { scene, gl } = useThree();
+  const skyRef = useRef()
+  const starsRef = useRef()
+  const sun = useRef(new THREE.Vector3())
+  const moon = useRef(new THREE.Vector3())
+  const { scene, gl } = useThree()
+  const phase = useGame((state) => state.phase)
 
   // 🌞 太陽 & 🌙 月 のライト
-  const sunLightRef = useRef();
-  const moonLightRef = useRef();
-  const ambientLightRef = useRef();
+  const sunLightRef = useRef()
+  const moonLightRef = useRef()
+  const ambientLightRef = useRef()
+  const [time, setTime] = useState(0)
+ 
 
-  const [time, setTime] = useState(0);
-  useFrame(({ clock }) => {
-    // const newTime = (clock.getElapsedTime() % 240) / 240; // 30秒で1日サイクル
-    const newTime = (clock.getElapsedTime() % 20) / 20; 
-    setTime(newTime);
-  });
+  // const { timeCycleDuration } = useControls({
+  //   timeCycleDuration: { value: 240, min: 10, max: 600, step: 1 },
+  // })
+  
+
 
   // 🌅 デバッグ用GUI（パラメータ調整）
-  const { turbidity, rayleigh, mieCoefficient, mieDirectionalG, azimuth, exposure } = useControls({
-    turbidity: { value: 10, min: 0, max: 20, step: 0.1 },
-    rayleigh: { value: 3, min: 0, max: 4, step: 0.001 },
+  const { timeCycleDuration,turbidity, rayleigh, mieCoefficient, mieDirectionalG, azimuth, exposure } = useControls("Sky Settings", {
+    timeCycleDuration: { value: 240, min: 10, max: 600, step: 1 },
+    turbidity: { value: 10, min: 0.01, max: 20, step: 0.1 },
+    rayleigh: { value: 3, min: 0.01, max: 4, step: 0.001 },
     mieCoefficient: { value: 0.005, min: 0, max: 0.1, step: 0.001 },
     mieDirectionalG: { value: 0.7, min: 0, max: 1, step: 0.001 },
     azimuth: { value: 180, min: -180, max: 180, step: 0.1 },
-    exposure: { value: 0.5, min: 0, max: 1, step: 0.0001 },
-  });
+    exposure: { value: 0.5, min: 0.01, max: 1, step: 0.0001 },
+  })
+  
+    useFrame(({ clock }) => {
+      if(phase !== "playing")return
+      // const newTime = (clock.getElapsedTime() % 240) / 240 // 30秒で1日サイクル
+      const newTime = (clock.getElapsedTime() % timeCycleDuration) / timeCycleDuration 
+      setTime(newTime)
+    })
 
   useEffect(() => {
-    if (!skyRef.current) return;
+    if (!skyRef.current || phase !== "playing") return
 
-    const sky = skyRef.current;
-    sky.scale.setScalar(450000);
-    scene.add(sky);
+    const sky = skyRef.current
+    sky.scale.setScalar(450000)
+    scene.add(sky)
 
-    const starGeometry = new THREE.BufferGeometry();
-    const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 2 });
-    const starVertices = [];
+    const starGeometry = new THREE.BufferGeometry()
+    const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 2 })
+    const starVertices = []
 
-    for (let i = 0; i < 1000; i++) {
-      const x = (Math.random() - 0.5) * 2000;
-      const y = (Math.random() - 0.5) * 2000;
-      const z = (Math.random() - 0.5) * 2000;
-      starVertices.push(x, y, z);
+    for (let i = 0 ;i < 3000; i++) {
+      const x = (Math.random() - 0.5) * 2000
+      const y = (Math.random() - 0.5) * 2000
+      const z = (Math.random() - 0.5) * 2000
+      starVertices.push(x, y, z)
     }
 
-    starGeometry.setAttribute("position", new THREE.Float32BufferAttribute(starVertices, 3));
-    const stars = new THREE.Points(starGeometry, starMaterial);
-    starsRef.current = stars;
-    scene.add(stars);
+    starGeometry.setAttribute("position", new THREE.Float32BufferAttribute(starVertices, 3))
+    const stars = new THREE.Points(starGeometry, starMaterial)
+    starsRef.current = stars
+    scene.add(stars)
 
     return () => {
-      scene.remove(stars);
-    };
-  }, [scene]);
+      scene.remove(stars)
+    }
+  }, [scene])
 
   useEffect(() => {
-    if (!skyRef.current) return;
+    if (!skyRef.current || phase !== "playing") return
 
-    const sky = skyRef.current;
-    sky.scale.setScalar(450000);
-    scene.add(sky);
+    const sky = skyRef.current
+    sky.scale.setScalar(450000)
+    scene.add(sky)
 
-    const uniforms = sky.material.uniforms;
-    uniforms["turbidity"].value = turbidity;
-    uniforms["rayleigh"].value = rayleigh;
-    uniforms["mieCoefficient"].value = mieCoefficient;
-    uniforms["mieDirectionalG"].value = mieDirectionalG;
+    const uniforms = sky.material.uniforms
+    uniforms["turbidity"].value = turbidity
+    uniforms["rayleigh"].value = rayleigh
+    uniforms["mieCoefficient"].value = mieCoefficient
+    uniforms["mieDirectionalG"].value = mieDirectionalG
 
     // 🌞 太陽の位置を更新（360°回転するように）
-    const angle = time * Math.PI * 2; // 0 ~ 360°
-    const radius = 50; // 軌道の半径
+    const angle = time * Math.PI * 2 // 0 ~ 360°
+    const radius = 50 // 軌道の半径
     sun.current.set(
       Math.cos(angle) * radius, // X座標
       Math.sin(angle) * radius, // Y座標（高さ）
       0 // Z座標
-    );
+    )
 
-    uniforms["sunPosition"].value.copy(sun.current);
+    uniforms["sunPosition"].value.copy(sun.current)
 
     // 🌙 月の位置（太陽と180°反対側）
     moon.current.set(
       Math.cos(angle + Math.PI) * radius, // X座標
       Math.sin(angle + Math.PI) * radius, // Y座標（高さ）
       0 // Z座標
-    );
+    )
 
     // 🌅 昼夜の明るさ調整
-    gl.toneMappingExposure = exposure * Math.max(0.6, Math.sin(angle) * 1.5);
-  }, [time, turbidity, rayleigh, mieCoefficient, mieDirectionalG, azimuth, exposure]);
+    gl.toneMappingExposure = exposure * Math.max(0.6, Math.sin(angle) * 1.5)
+  }, [time, turbidity, rayleigh, mieCoefficient, mieDirectionalG, azimuth, exposure])
 
   // 🌅 昼から夜の色変化をスムーズに補間
   useFrame(() => {
-    if (ambientLightRef.current) {
-      const t = (Math.sin(time * Math.PI * 2) + 1) / 2; // 0.0 (夜) ～ 1.0 (昼)
+    // console.log(ambientLightRef.current && phase === "playing")
+    if (ambientLightRef.current && phase === "playing") {
+      const t = (Math.sin(time * Math.PI * 2) + 1) / 2 // 0.0 (夜) ～ 1.0 (昼)
 
       // 🌅 夕焼けオレンジ → 夜の青白い光へスムーズに補間
-      const dayColor = new THREE.Color(1, 1, 1); // 白 (昼)
-      const sunsetColor = new THREE.Color(1, 0.6, 0.3); // 夕焼けオレンジ
-      const nightColor = new THREE.Color(0.5, 0.7, 1); // 夜の青白
+      const dayColor = new THREE.Color(1, 1, 1) // 白 (昼)
+      const sunsetColor = new THREE.Color(1, 0.6, 0.3) // 夕焼けオレンジ
+      const nightColor = new THREE.Color(0.5, 0.7, 1) // 夜の青白
 
-      const interpolatedColor = new THREE.Color();
+      const interpolatedColor = new THREE.Color()
       interpolatedColor.lerpColors(
         t > 0.5 ? sunsetColor : nightColor,
         t > 0.5 ? dayColor : sunsetColor,
         t > 0.5 ? (t - 0.5) * 2 : t * 2
-      );
+      )
 
-      ambientLightRef.current.color.copy(interpolatedColor);
-      ambientLightRef.current.intensity = 1.5 + (1 - t) * 1.2;
+      ambientLightRef.current.color.copy(interpolatedColor)
+      ambientLightRef.current.intensity = 1.5 + (1 - t) * 1.2
     }
 
     if (sunLightRef.current) {
-      sunLightRef.current.position.copy(sun.current);
-      sunLightRef.current.intensity = Math.max(0.5, Math.sin(time * Math.PI * 2) ** 2 * 5);
-      sunLightRef.current.target.position.set(0, 5, 0);
-      sunLightRef.current.target.updateMatrixWorld();
+      sunLightRef.current.position.copy(sun.current)
+      sunLightRef.current.intensity = Math.max(0.5, Math.sin(time * Math.PI * 2) ** 2 * 5)
+      sunLightRef.current.target.position.set(0, 5, 0)
+      sunLightRef.current.target.updateMatrixWorld()
     }
 
     if (moonLightRef.current) {
-      moonLightRef.current.position.copy(moon.current);
-      moonLightRef.current.intensity = Math.max(1.0, Math.cos(time * Math.PI * 2) ** 2 * 5);
-      moonLightRef.current.target.position.set(0, 5, 0);
-      moonLightRef.current.target.updateMatrixWorld();
-
-      starsRef.current.visible = time < 0.5 ? false : true;
+      moonLightRef.current.position.copy(moon.current)
+      moonLightRef.current.intensity = Math.max(1.0, Math.cos(time * Math.PI * 2) ** 2 * 5)
+      moonLightRef.current.target.position.set(0, 5, 0)
+      moonLightRef.current.target.updateMatrixWorld()
+      if(starsRef.current)
+      starsRef.current.visible = time < 0.5 ? false : true
     }
-  });
+    
+  })
 
   return (
     <>
@@ -154,7 +167,7 @@ const SkyComponent = () => {
         shadow-camera-bottom={-100}
         shadow-camera-left={-100}
       />
-      {/* <Leva/> */}
+      {/* <Leva /> */}
       <directionalLight
         ref={moonLightRef}
         castShadow
@@ -170,7 +183,7 @@ const SkyComponent = () => {
       />
       <ambientLight ref={ambientLightRef} intensity={1.5} />
     </>
-  );
-};
+  )
+}
 
-export default SkyComponent;
+export default SkyComponent

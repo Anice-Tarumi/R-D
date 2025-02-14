@@ -10,9 +10,9 @@ export default function Chara({ animation, ...props }) {
   const { actions } = useAnimations(animations, group)
   
   // 選択されている衣装
-  const selectedHat = useClothStore((state) => state.selectedHat);
-  const selectedBag = useClothStore((state) => state.selectedBag);
-  const selectedShoes = useClothStore((state) => state.selectedShoes);
+  const selectedHat = useClothStore((state) => state.selectedHat)
+  const selectedBag = useClothStore((state) => state.selectedBag)
+  const selectedShoes = useClothStore((state) => state.selectedShoes)
 
   // スケールアニメーション
   const [spring, api] = useSpring(() => ({
@@ -47,7 +47,7 @@ export default function Chara({ animation, ...props }) {
       rotation: [0, Math.PI / 2, 0],
       scale: [1.5, 1.5, 2],
     },
-  };
+  }
 
   const bagModels = {
     "Open Backpack": {
@@ -62,7 +62,7 @@ export default function Chara({ animation, ...props }) {
       rotation: [0, Math.PI, 0],
       scale: [1.5, 1.5, 1.5],
     },
-  };
+  }
 
   const shoesModels = {
     "Slippers": {
@@ -81,69 +81,69 @@ export default function Chara({ animation, ...props }) {
       rotation: [Math.PI / 2, Math.PI, 0],
       scale: [1, 1, 1],
     },
-  };
+  }
 
   useEffect(() => {
     if (selectedHat && hatModels[selectedHat]) {
-      const headBone = nodes["mixamorigHead"];
-      const hatObject = hatModels[selectedHat].model.scene.clone();
-      const { position, rotation, scale } = hatModels[selectedHat];
-      hatObject.position.set(...position);
-      hatObject.rotation.set(...rotation);
-      hatObject.scale.set(...scale);
-      console.log("Chara",headBone)
-      headBone.add(hatObject);
-      return () => headBone.remove(hatObject);
+      const headBone = nodes["mixamorigHead"]
+      const hatObject = hatModels[selectedHat].model.scene.clone()
+      const { position, rotation, scale } = hatModels[selectedHat]
+      hatObject.position.set(...position)
+      hatObject.rotation.set(...rotation)
+      hatObject.scale.set(...scale)
+      // console.log("Chara",headBone)
+      headBone.add(hatObject)
+      return () => headBone.remove(hatObject)
     }
-  }, [selectedHat, nodes]);
+  }, [selectedHat, nodes])
 
   useEffect(() => {
     if (selectedBag && bagModels[selectedBag]) {
-      const spineBone = nodes["mixamorigSpine"];
-      const bagObject = bagModels[selectedBag].model.scene.clone();
-      const { position, rotation, scale } = bagModels[selectedBag];
-      bagObject.position.set(...position);
-      bagObject.rotation.set(...rotation);
-      bagObject.scale.set(...scale);
-      spineBone.add(bagObject);
-      return () => spineBone.remove(bagObject);
+      const spineBone = nodes["mixamorigSpine"]
+      const bagObject = bagModels[selectedBag].model.scene.clone()
+      const { position, rotation, scale } = bagModels[selectedBag]
+      bagObject.position.set(...position)
+      bagObject.rotation.set(...rotation)
+      bagObject.scale.set(...scale)
+      spineBone.add(bagObject)
+      return () => spineBone.remove(bagObject)
     }
-  }, [selectedBag, nodes]);
+  }, [selectedBag, nodes])
 
   useEffect(() => {
     if (selectedShoes && shoesModels[selectedShoes]) {
-      const leftFootBone = nodes["mixamorigLeftToeBase"];
-      const rightFootBone = nodes["mixamorigRightToeBase"];
-      const leftShoe = shoesModels[selectedShoes].left.scene.clone();
-      const rightShoe = shoesModels[selectedShoes].right.scene.clone();
-      const { leftPosition, rightPosition, rotation, scale } = shoesModels[selectedShoes];
-      leftShoe.position.set(...leftPosition);
-      rightShoe.position.set(...rightPosition);
-      leftShoe.rotation.set(...rotation);
-      rightShoe.rotation.set(...rotation);
-      leftShoe.scale.set(...scale);
-      rightShoe.scale.set(...scale);
-      leftFootBone.add(leftShoe);
-      rightFootBone.add(rightShoe);
+      const leftFootBone = nodes["mixamorigLeftToeBase"]
+      const rightFootBone = nodes["mixamorigRightToeBase"]
+      const leftShoe = shoesModels[selectedShoes].left.scene.clone()
+      const rightShoe = shoesModels[selectedShoes].right.scene.clone()
+      const { leftPosition, rightPosition, rotation, scale } = shoesModels[selectedShoes]
+      leftShoe.position.set(...leftPosition)
+      rightShoe.position.set(...rightPosition)
+      leftShoe.rotation.set(...rotation)
+      rightShoe.rotation.set(...rotation)
+      leftShoe.scale.set(...scale)
+      rightShoe.scale.set(...scale)
+      leftFootBone.add(leftShoe)
+      rightFootBone.add(rightShoe)
       return () => {
-        leftFootBone.remove(leftShoe);
-        rightFootBone.remove(rightShoe);
-      };
+        leftFootBone.remove(leftShoe)
+        rightFootBone.remove(rightShoe)
+      }
     }
-  }, [selectedShoes, nodes]);
+  }, [selectedShoes, nodes])
 
   useEffect(() => {
     if (actions[animation]) {
       if (!actions[animation].isRunning()) { // 🔥 すでに再生中ならリセットしない
-        actions[animation].reset().fadeIn(0.24).play();
+        actions[animation].reset().fadeIn(0.24).play()
       }
     }
     return () => {
       if (actions[animation]) {
-        actions[animation].fadeOut(0.24);
+        actions[animation].fadeOut(0.24)
       }
-    };
-  }, [animation]);
+    }
+  }, [animation])
 
   return (
     <a.group ref={group} {...props} dispose={null} scale={spring.scale}>
@@ -169,6 +169,6 @@ export default function Chara({ animation, ...props }) {
         </group>
       </group>
     </a.group>
-  );
+  )
 }
-useGLTF.preload("./chara.glb");
+useGLTF.preload("./chara.glb")

@@ -1,36 +1,36 @@
-import React from "react";
-import { motion } from "framer-motion";
-import dialogueData from "./dialogueData.json";
-import useDialogueStore from "../manager/useDialogueStore";
-import useGame from "../manager/useGame";
+import React from "react"
+import { motion } from "framer-motion"
+import dialogueData from "./dialogueData.json"
+import useDialogueStore from "../manager/useDialogueStore"
+import useGame from "../manager/useGame"
 
 const DialogueUI = () => {
-  const currentNPC = useDialogueStore((state) => state.currentNPC);
-  const currentDialogue = useDialogueStore((state) => state.currentDialogue);
-  const advanceDialogue = useDialogueStore((state) => state.advanceDialogue);
-  const endTalking = useGame((state) => state.endTalking);
-  const endDialogue = useDialogueStore((state) => state.endDialogue);
+  const currentNPC = useDialogueStore((state) => state.currentNPC)
+  const currentDialogue = useDialogueStore((state) => state.currentDialogue)
+  const advanceDialogue = useDialogueStore((state) => state.advanceDialogue)
+  const endTalking = useGame((state) => state.endTalking)
+  const endDialogue = useDialogueStore((state) => state.endDialogue)
 
-  if (!currentNPC || !currentDialogue) return null;
+  if (!currentNPC || !currentDialogue) return null
 
-  const npcDialogues = dialogueData[currentNPC]?.dialogues;
-  const dialogue = npcDialogues?.find((d) => d.id === currentDialogue);
+  const npcDialogues = dialogueData[currentNPC]?.dialogues
+  const dialogue = npcDialogues?.find((d) => d.id === currentDialogue)
 
-  if (!dialogue) return null;
+  if (!dialogue) return null
 
   const handleClick = () => {
     if (!dialogue.options) {
       if (dialogue.next) {
-        advanceDialogue(dialogue.next);
+        advanceDialogue(dialogue.next)
       } else {
         if (currentNPC === "npc1" || currentNPC === "npc2") {
-          useDialogueStore.getState().setNpcFlag(currentNPC, true);
+          useDialogueStore.getState().setNpcFlag(currentNPC, true)
         }
-        endTalking();
-        endDialogue();
+        endTalking()
+        endDialogue()
       }
     }
-  };
+  }
 
   // アニメーション設定
   const container = {
@@ -42,7 +42,7 @@ const DialogueUI = () => {
         delayChildren: 0.2,   // アニメーション開始の遅延
       },
     },
-  };
+  }
 
   const child = {
     hidden: { opacity: 0, y: -10 },
@@ -51,10 +51,10 @@ const DialogueUI = () => {
       y: 0, 
       transition: { duration: 0.2 }, // 各文字のアニメーション速度
     },
-  };
+  }
 
   // テキストを1文字ずつ分割
-  const characters = dialogue.text.split("");
+  const characters = dialogue.text.split("")
 
   return (
     <div className="dialogue-container" onClick={handleClick}>
@@ -94,12 +94,12 @@ const DialogueUI = () => {
             <button
               key={index}
               onClick={(e) => {
-                e.stopPropagation(); // クリックイベントのバブルを防ぐ
+                e.stopPropagation() // クリックイベントのバブルを防ぐ
                 if (option.next) {
-                  advanceDialogue(option.next);
+                  advanceDialogue(option.next)
                 } else {
-                  endTalking();
-                  endDialogue();
+                  endTalking()
+                  endDialogue()
                 }
               }}
             >
@@ -109,7 +109,7 @@ const DialogueUI = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default DialogueUI;
+export default DialogueUI

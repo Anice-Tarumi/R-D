@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Cloud, Sky } from "@react-three/drei";
+import React, { useState, useEffect } from "react"
+import { Cloud, Sky } from "@react-three/drei"
 
 const Sun = () => {
-  const [time, setTime] = useState(12); // ☀️ 正午（快晴）
+  const [time, setTime] = useState(12) // ☀️ 正午（快晴）
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime((prev) => (prev + 0.1) % 240); // 時間を進める
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
+      setTime((prev) => (prev + 0.1) % 240) // 時間を進める
+    }, 100)
+    return () => clearInterval(interval)
+  }, [])
 
   // ☀️ 太陽の位置を時間に応じて変化
-  const sunX = Math.sin((time / 24) * Math.PI * 2) * 100;
-  const sunY = Math.cos((time / 24) * Math.PI * 2) * 50 + 50; // 🔥 Y軸を高めにする
-  const sunZ = Math.sin((time / 24) * Math.PI * 2) * 100;
+  const sunX = Math.sin((time / 24) * Math.PI * 2) * 100
+  const sunY = Math.cos((time / 24) * Math.PI * 2) * 50 + 50 // 🔥 Y軸を高めにする
+  const sunZ = Math.sin((time / 24) * Math.PI * 2) * 100
 
   return (
     <>
@@ -31,7 +31,7 @@ const Sun = () => {
       <Cloud opacity={0.4} position={[30, 55, -40]} />
       <Cloud opacity={0.3} position={[-20, 60, 20]} />
     </>
-  );
-};
+  )
+}
 
-export default Sun;
+export default Sun

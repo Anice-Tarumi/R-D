@@ -1,11 +1,11 @@
-import React from "react";
-import { useThree } from "@react-three/fiber";
-import * as THREE from "three";
-import { Cloud, Clouds } from "@react-three/drei";
-import SimpleCloud from "./SimpleCloud";
+import React from "react"
+import { useThree } from "@react-three/fiber"
+import * as THREE from "three"
+import { Cloud, Clouds } from "@react-three/drei"
+import SimpleCloud from "./SimpleCloud"
 
 const GradientSky = () => {
-  const { viewport } = useThree();
+  const { viewport } = useThree()
 
   const planes = [
     { position: [0, 500, 0], rotation: [-Math.PI / 2, 0, 0] }, // 上面
@@ -14,7 +14,7 @@ const GradientSky = () => {
     { position: [0, 0, 500], rotation: [0, 0, 0] }, // 背面
     { position: [-500, 0, 0], rotation: [0, -Math.PI / 2, 0] }, // 左面
     { position: [500, 0, 0], rotation: [0, Math.PI / 2, 0] }, // 右面
-  ];
+  ]
 
   return (
     <>
@@ -29,18 +29,18 @@ const GradientSky = () => {
                 colorBottom: { value: new THREE.Color("#FFFFFF") }, // 下部の空（白っぽい）
               },
               vertexShader: `
-                varying vec2 vUv;
+                varying vec2 vUv
                 void main() {
-                  vUv = uv;
-                  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                  vUv = uv
+                  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0)
                 }
               `,
               fragmentShader: `
-                varying vec2 vUv;
-                uniform vec3 colorTop;
-                uniform vec3 colorBottom;
+                varying vec2 vUv
+                uniform vec3 colorTop
+                uniform vec3 colorBottom
                 void main() {
-                  gl_FragColor = vec4(mix(colorBottom, colorTop, vUv.y), 1.0);
+                  gl_FragColor = vec4(mix(colorBottom, colorTop, vUv.y), 1.0)
                 }
               `,
             }]}
@@ -64,7 +64,7 @@ const GradientSky = () => {
       <Cloud scale={2} opacity={1} position={[-200, 20, 20]} />
       </Clouds> */}
     </>
-  );
-};
+  )
+}
 
-export default GradientSky;
+export default GradientSky
