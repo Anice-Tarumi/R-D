@@ -11,19 +11,28 @@ import MenuScreen from './ui/MenuScreen.jsx'
 import useGame from './manager/useGame.jsx'
 import MiniMap from './ui/MiniMap.jsx'
 import { Leva } from 'leva'
-import StartEarth from './StartEarth.jsx'
-import { Joystick } from 'react-joystick-component'
+// import StartEarth from './StartEarth.jsx'
+// import { Joystick } from 'react-joystick-component'
 import useDeviceStore from './manager/useDeviceStore.jsx'
 import useJoystickStore from './manager/useJoystickStore.jsx'
-import { Perf } from 'r3f-perf'
+// import { Perf } from 'r3f-perf'
+import useAudioStore from './manager/useAudioStore.jsx'
+import TitleScreen from './ui/TitleScreen.jsx'
+import Loader from './ui/Loader.jsx'
+
 
 const App = () => {
   const canvasRef = useRef()
   const phase = useGame((state) => state.phase);
   const {isMobile} = useDeviceStore();
   const { isActive, setIsActive, startPosition, setPosition, setStartPosition, resetJoystick } = useJoystickStore();
-  // const stickPosiiton = useRef([0,0]);
+  const isfirstTouch = useRef(false);
+  const playBGM = useAudioStore((state) => state.playBGM);
   const handleTouchStart = (e) => {
+    if(!isfirstTouch.current) {
+      playBGM();
+      isfirstTouch.current = true;
+    }
     if (!isMobile) return;
     const touch = e.touches[0];
   
@@ -40,6 +49,7 @@ const App = () => {
   };
   return (
     <>
+    
       <GameStateManager/>
       <KeyboardControls
         map={[
@@ -61,22 +71,27 @@ const App = () => {
           fov: 45,
           near: 0.1,
           far: 2000,
-          position: [0, 100, -50],
+          position: [0, 3, -10],
           rotation: [0,Math.PI,0]
         }}
         onTouchStart={handleTouchStart} 
+        onClick={handleTouchStart}
         onTouchEnd={handleTouchEnd}
+        gl={{stencil: true}}
       >
+        {(phase === "title" || phase === "loading") && <TitleScreen />}
+        {/* <OrbitControls /> */}
       <Experience canvasRef={canvasRef}/>
-      {(phase === "loading" || phase === "title" || phase === "transition") && <StartEarth/> }
-      <Perf position={"top-left"}/>
+      {/* {(phase === "loading" || phase === "title" || phase === "transition") && <StartEarth/> } */}
+      {/* <Perf position={"top-left"}/> */}
+      {/* {phase === "playing" && <FlockingBird />} */}
       </Canvas>
       </KeyboardControls>
       <InteractionUI />
       <MenuScreen />
       <Leva hidden/>
       <MiniMap mapImage="./images/map.jpg"/>
-      {isMobile && isActive && phase === "playing" && (
+      {/* {isMobile && isActive && phase === "playing" && (
       <div 
         className={`joystick-container ${isActive ? "active" : ""}`}  
         style={{ top: `${startPosition.y}px`, left: `${startPosition.x}px`,backdropFilter: "blur(10px)", borderRadius: "100px" }}
@@ -91,8 +106,8 @@ const App = () => {
           move={handleMove}
         />
       </div>
-    )}
-
+    )} */}
+{/* <Leva/> */}
     </>
   )
 }

@@ -3,9 +3,8 @@ import { extend, useFrame, useThree } from "@react-three/fiber"
 import { Leva, useControls } from "leva"
 import * as THREE from "three"
 import { Sky } from "three/examples/jsm/objects/Sky"
-import { useHelper } from "@react-three/drei"
-import { DirectionalLightHelper } from "three"
 import useGame from "../manager/useGame"
+import { useMemo } from "react"
 
 extend({ Sky })
 
@@ -32,44 +31,61 @@ const SkyComponent = () => {
 
   // 🌅 デバッグ用GUI（パラメータ調整）
   const { timeCycleDuration,turbidity, rayleigh, mieCoefficient, mieDirectionalG, azimuth, exposure } = useControls("Sky Settings", {
-    timeCycleDuration: { value: 240, min: 10, max: 600, step: 1 },
-    turbidity: { value: 10, min: 0.01, max: 20, step: 0.1 },
-    rayleigh: { value: 3, min: 0.01, max: 4, step: 0.001 },
-    mieCoefficient: { value: 0.005, min: 0, max: 0.1, step: 0.001 },
-    mieDirectionalG: { value: 0.7, min: 0, max: 1, step: 0.001 },
+    timeCycleDuration: { value: 600, min: 10, max: 600, step: 1 },
+    turbidity: { value: 1.4, min: 0.01, max: 20, step: 0.1 },
+    rayleigh: { value: 1.02, min: 0.01, max: 4, step: 0.001 },
+    mieCoefficient: { value: 0.01, min: 0, max: 0.1, step: 0.001 },
+    mieDirectionalG: { value: 1.0, min: 0, max: 1, step: 0.001 },
     azimuth: { value: 180, min: -180, max: 180, step: 0.1 },
-    exposure: { value: 0.5, min: 0.01, max: 1, step: 0.0001 },
+    exposure: { value: 0.3, min: 0.01, max: 1, step: 0.0001 },
   })
   
-    useFrame(({ clock }) => {
-      if(phase !== "playing")return
-      // const newTime = (clock.getElapsedTime() % 240) / 240 // 30秒で1日サイクル
-      const newTime = (clock.getElapsedTime() % timeCycleDuration) / timeCycleDuration 
-      setTime(newTime)
-    })
+  useFrame(({ clock }) => {
+    // if(phase !== "playing")return
+    // const newTime = (clock.getElapsedTime() % 240) / 240 // 30秒で1日サイクル
+    const newTime = (clock.getElapsedTime() % timeCycleDuration) / timeCycleDuration 
+    setTime(newTime)
+  })
+
+  const starVertices = useMemo(() => {
+    const vertices = [];
+    for (let i = 0; i < 3000; i++) {
+      const x = (Math.random() - 0.5) * 2000;
+      const y = (Math.random() - 0.5) * 2000;
+      const z = (Math.random() - 0.5) * 2000;
+      vertices.push(x, y, z);
+    }
+    return vertices;
+  }, []);
 
   useEffect(() => {
-    if (!skyRef.current || phase !== "playing") return
+    if (!skyRef.current) return
 
     const sky = skyRef.current
     sky.scale.setScalar(450000)
     scene.add(sky)
 
-    const starGeometry = new THREE.BufferGeometry()
-    const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 2 })
-    const starVertices = []
+    // const starGeometry = new THREE.BufferGeometry()
+    // const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 2 })
+    // const starVertices = []
 
-    for (let i = 0 ;i < 3000; i++) {
-      const x = (Math.random() - 0.5) * 2000
-      const y = (Math.random() - 0.5) * 2000
-      const z = (Math.random() - 0.5) * 2000
-      starVertices.push(x, y, z)
-    }
+    // for (let i = 0 ;i < 3000; i++) {
+    //   const x = (Math.random() - 0.5) * 2000
+    //   const y = (Math.random() - 0.5) * 2000
+    //   const z = (Math.random() - 0.5) * 2000
+    //   starVertices.push(x, y, z)
+    // }
 
-    starGeometry.setAttribute("position", new THREE.Float32BufferAttribute(starVertices, 3))
-    const stars = new THREE.Points(starGeometry, starMaterial)
-    starsRef.current = stars
-    scene.add(stars)
+    // starGeometry.setAttribute("position", new THREE.Float32BufferAttribute(starVertices, 3))
+    // const stars = new THREE.Points(starGeometry, starMaterial)
+    // starsRef.current = stars
+    // scene.add(stars)
+
+    const starGeometry = new THREE.BufferGeometry();
+  starGeometry.setAttribute("position", new THREE.Float32BufferAttribute(starVertices, 3));
+  const stars = new THREE.Points(starGeometry, new THREE.PointsMaterial({ color: 0xffffff, size: 2 }));
+  starsRef.current = stars;
+  scene.add(stars);
 
     return () => {
       scene.remove(stars)
@@ -77,7 +93,7 @@ const SkyComponent = () => {
   }, [scene])
 
   useEffect(() => {
-    if (!skyRef.current || phase !== "playing") return
+    if (!skyRef.current) return
 
     const sky = skyRef.current
     sky.scale.setScalar(450000)

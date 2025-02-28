@@ -11,10 +11,11 @@ import useInteractionStore from "../manager/useInteractionStore.jsx"
 import * as THREE from 'three'
 import usePlayerStore from "../manager/usePlayerStore.jsx"
 import Player from "./Player.jsx"
-import { Html } from "@react-three/drei"
-import { Joystick } from "react-joystick-component"
 import useJoystickStore from "../manager/useJoystickStore.jsx"
 import useDeviceStore from "../manager/useDeviceStore.jsx"
+import useAudioStore from "../manager/useAudioStore.jsx"
+import { frame } from "framer-motion"
+import { useMemo } from "react"
 
 const normalizeAngle = (angle) => {
   while (angle > Math.PI) angle -= 2 * Math.PI
@@ -36,9 +37,9 @@ const lerpAngle = (start, end, t) => {
   return MathUtils.lerp(start, end, t)
 }
 
-const CharacterController = forwardRef(({ canvasRef,npcRefs,portalRefs,stickPosition }, ref) => {
-const WALK_SPEED = 3.0
-const RUN_SPEED = 6.5
+const CharacterController = forwardRef(({ canvasRef,npcRefs}, ref) => {
+const WALK_SPEED = 3
+const RUN_SPEED = 8
 const ROTATION_SPEED = degToRad(2)
 const initialCameraPosition = useRef(new Vector3())
 const currentTarget = useInteractionStore((state) => state.currentTarget)
@@ -63,8 +64,10 @@ const setPlayerRef = usePlayerStore((state) => state.setPlayerRef)
 const prevCameraPosition = useRef(new THREE.Vector3(0, 1, -5))
 const start = useGame((state) => state.start)
 const mouse = useRef(0,0)
-const {position,isActive} = useJoystickStore()
-const isMobile = useDeviceStore((state) => state.isMobile)
+let frameCounter = 0
+const npcPosition = useMemo(() => new Vector3(), []);
+const npcDirection = useMemo(() => new Vector3(), []);
+const cameraTargetPosition = useMemo(() => new Vector3(), []);
 
 useImperativeHandle(ref, () => ({
   getWorldPosition: (vector) => {
@@ -84,7 +87,6 @@ useEffect(() => {
         updateMousePosition(e) 
       }
     }
-    
   }
   const onMouseUp = (e) => {
     if(phase !== "title" && phase !== "transition"){
@@ -134,7 +136,7 @@ useEffect(() => {
 
 useEffect(() => {
   // console.count("useFrame Function Call")
-  if (phase === "playing") {
+  if (phase === "playing" ) {
     if (character.current) {
       character.current.quaternion.copy(initialRotation.current) // 初期回転に戻す
     }
@@ -152,19 +154,21 @@ useFrame(({ camera,mouse,gl }) => {
 
   /** ========== 3. 会話フェーズ ("talking") のカメラ制御 ========== */
   if (phase === "talking" && currentTarget) {
+    frameCounter++
+    if (frameCounter % 2 !== 0) return  //2フレームに1回だけ実行
+
+
     const npcRef = npcRefs.current[currentTarget.id]
     if(npcRef){
-      const npcPosition = new Vector3()
       npcRef.current.getWorldPosition(npcPosition)
 
-      const npcDirection = new Vector3(0, 0, 1.5)
-      npcDirection.applyQuaternion(npcRef.current.quaternion)
-      npcDirection.applyAxisAngle(new Vector3(0, 1, 0), -Math.PI / 2)
+      npcDirection.set(0, 0, 1.5).applyQuaternion(npcRef.current.quaternion).applyAxisAngle(new Vector3(0, 1, 0), Math.PI);
+      // npcDirection.applyQuaternion(npcRef.current.quaternion)
+      // npcDirection.applyAxisAngle(new Vector3(0, 1, 0), Math.PI)
 
-      const cameraTargetPosition = npcPosition
-        .clone()
+      cameraTargetPosition.copy(npcPosition)
         .add(npcDirection.multiplyScalar(-4))
-        .add(new Vector3(0, 2, 0))
+        .add(new Vector3(0, 2, 0));
 
         if (!camera.position.equals(cameraTargetPosition)) {
           camera.position.lerp(cameraTargetPosition, 0.1)
@@ -198,21 +202,21 @@ useFrame(({ camera,mouse,gl }) => {
   }
 
   /** ========== 5. ゲームプレイ中 ("playing") のキャラクター移動処理 ========== */
-  if (phase === "playing") {
+  if (phase === "playing" || phase === "loading") {
     camera.fov = MathUtils.lerp(camera.fov, 45, 0.1)
     camera.updateProjectionMatrix()
 
-    if (rb.current) {
+    if (rb.current && phase === "playing") {
       const vel = rb.current.linvel()
       const movement = { x: 0, z: 0 }
       let speed = WALK_SPEED
 
-      if (isMobile && useJoystickStore.getState().isActive) {
-        const position = useJoystickStore.getState().position // ✅ `getState()` で値を取得
-      if (Math.abs(position.x) > 0.1) movement.x = -position.x
-      movement.z = position.y
-      if (Math.abs(movement.x) > 0.5 || Math.abs(movement.z) > 0.5) speed = RUN_SPEED
-      }else if(!isMobile){
+      // if (isMobile && useJoystickStore.getState().isActive) {
+      //   const position = useJoystickStore.getState().position // ✅ `getState()` で値を取得
+      // if (Math.abs(position.x) > 0.1) movement.x = -position.x
+      // movement.z = position.y
+      // if (Math.abs(movement.x) > 0.5 || Math.abs(movement.z) > 0.5) speed = RUN_SPEED
+      // }else if(!isMobile){
       if (get().forward) movement.z = 1
       if (get().backward) movement.z = -1
       if (get().left) movement.x = 1
@@ -224,7 +228,7 @@ useFrame(({ camera,mouse,gl }) => {
         movement.z = mouse.y + 0.4
         if (Math.abs(movement.x) > 0.5 || Math.abs(movement.z) > 0.5) speed = RUN_SPEED
       }
-      }
+      // }
       if (movement.x !== 0) rotationTarget.current += ROTATION_SPEED * movement.x
 
       if (movement.x !== 0 || movement.z !== 0) {
@@ -255,6 +259,11 @@ useFrame(({ camera,mouse,gl }) => {
       )
 
       rb.current.setLinvel(vel, true)
+      // if(!isFirst){
+      //   console.log(isFirst)
+      //   playBGM()
+      //   isFirst = true
+      // }
     }
 
     container.current.rotation.y = MathUtils.lerp(

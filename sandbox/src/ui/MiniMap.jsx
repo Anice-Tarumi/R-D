@@ -13,16 +13,13 @@ const MiniMap = ({ mapImage, mapWidth = 1254, mapHeight = 912}) => {
   const playerRef = usePlayerStore((state) => state.playerRef)
   const resume = useGame((state) => state.resume)
   const map = useGame((state) => state.map)
-  
 
-  
-
-    const teleportPoints = [
-    { id: "top", x: 0.5, y: 0.1, worldPos: { x: 0, y: 2, z: -70 } },
-    { id: "bottom", x: 0.5, y: 0.9, worldPos: { x: 0, y: 2, z: 60 } },
-    { id: "left", x: 0.1, y: 0.435, worldPos: { x: -50, y: 2, z: -13 } },
-    { id: "right", x: 0.9, y: 0.435, worldPos: { x: 50, y: 2, z: -13 } },
-    { id: "center", x: 0.5, y: 0.435, worldPos: { x: 0, y: 2, z: -13 } }
+  const teleportPoints = [
+  { id: "top", x: 0.5, y: 0.1, worldPos: { x: 0, y: 2, z: -70 } },
+  { id: "bottom", x: 0.5, y: 0.9, worldPos: { x: 0, y: 2, z: 60 } },
+  { id: "left", x: 0.1, y: 0.435, worldPos: { x: -50, y: 2, z: -13 } },
+  { id: "right", x: 0.9, y: 0.435, worldPos: { x: 50, y: 2, z: -13 } },
+  { id: "center", x: 0.5, y: 0.435, worldPos: { x: 0, y: 2, z: -13 } }
   ]
 //2/5
 const handleTeleport = (point) => {
@@ -30,30 +27,19 @@ const handleTeleport = (point) => {
   setIsExpanded(false)
   setTimeout(() => {
     if (!playerRef.current) return
-    // console.log(playerRef.current)
     const playerPosition = playerRef.current.translation()
-    // console.log("playerPosition", playerRef.current.setTranslation)
     if (playerRef.current.setTranslation) {
-      // console.log("移動する")
       playerRef.current.setTranslation({ x: point.worldPos.x, y: point.worldPos.y, z: point.worldPos.z }, true)
     }
   }, 1000)
-  // if (!playerRef.current) return
-  // console.log(playerRef.current)
-  // const playerPosition = playerRef.current.translation()
-  // console.log("playerPosition", playerRef.current.setTranslation)
-  // if (playerRef.current.setTranslation) {
-  //   console.log("移動する")
-  //   playerRef.current.setTranslation({ x: point.worldPos.x, y: point.worldPos.y, z: point.worldPos.z }, true)
-  // }
 }
   const [frameSize, setFrameSize] = useState(500)
 useEffect(() => {
   const updateSize = () => {
     const width = window.innerWidth
-    if (width <= 480) setFrameSize(300) // 小さい画面（スマホ）
-    else if (width <= 768) setFrameSize(500) // タブレット
-    else setFrameSize(600) // PC
+    if (width <= 480) setFrameSize(300) 
+    else if (width <= 768) setFrameSize(500)
+    else setFrameSize(600)
   }
 
   window.addEventListener("resize", updateSize)
@@ -61,19 +47,6 @@ useEffect(() => {
 
   return () => window.removeEventListener("resize", updateSize)
 }, [])
-
-// useEffect(() => {
-//   const handleTouchMove = (e) => {
-//     e.preventDefault()
-//   }
-
-//   document.addEventListener("touchmove", handleTouchMove, { passive: false })
-
-//   return () => {
-//     document.removeEventListener("touchmove", handleTouchMove)
-//   }
-// }, [])
-
 
 const handleTouchStart = (e) => {
   // console.log(e.preventDefault)
@@ -86,7 +59,6 @@ const handleTouchStart = (e) => {
   
   const handleTouchMove = (e) => {
     if (!isDragging.current) return
-    // e.preventDefault()
     const touch = e.touches[0]
     const newX = touch.clientX - dragStart.current.x
     const newY = touch.clientY - dragStart.current.y
@@ -105,11 +77,9 @@ const handleTouchStart = (e) => {
     setIsExpanded(!isExpanded)
     setMapOffset({ x: 0, y: 0 })
     if(phase === "map") {
-      // console.log("playingに変更")
     resume()
     }
       else if (phase === "playing") {
-        // console.log("mapに変更")
     map()
     }
   }
@@ -119,8 +89,6 @@ const handleTouchStart = (e) => {
     document.documentElement.style.setProperty("--map-width", `${mapWidth}px`)
     document.documentElement.style.setProperty("--map-height", `${mapHeight}px`)
   }, [frameSize, mapWidth, mapHeight])
-
-  // if (phase !== "playing") return null
 
   const handleMouseDown = (e) => {
     if (!isExpanded) return
@@ -195,7 +163,6 @@ return (
           onMouseLeave={handleMouseUp}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
-          // onTouchEnd={handleMouseUp}
         >
           {teleportPoints.map((point) => (
             <div

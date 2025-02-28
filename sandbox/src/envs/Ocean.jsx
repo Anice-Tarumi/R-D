@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import * as THREE from "three"
 import { Water } from "three/examples/jsm/objects/Water.js"
-import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js"
 
 export default function Ocean({ sunDirection }) {
   const waterRef = useRef()
@@ -59,9 +58,9 @@ export default function Ocean({ sunDirection }) {
   }, [scene, sunDirection, distortionScale])
 
   // 波のアニメーション
-  useFrame(() => {
+  useFrame((delta) => {
     if (waterRef.current) {
-      waterRef.current.material.uniforms["time"].value += 1.0 / 60.0
+      waterRef.current.material.uniforms["time"].value += delta
     }
   })
 

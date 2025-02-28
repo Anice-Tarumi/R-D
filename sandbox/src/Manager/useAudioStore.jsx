@@ -2,12 +2,16 @@ import { create } from "zustand"
 
 const useAudioStore = create((set) => ({
   bgm: null,
-  isPlaying: true,
+  isPlaying: false,
   isFirstTime: true,
   
   playBGM: () => set((state) => {
+    
+    const audio = new Audio('./audio/BGM.mp3')
+    // console.log(state)
     if (!state.bgm) {
-      const audio = new Audio('/audio/BGM.mp3')
+      // console.log("adsa")
+      // const audio = new Audio('./audio/BGM.mp3')
       audio.loop = true
       if(state.isFirstTime){
         let volume = 0
@@ -17,7 +21,10 @@ const useAudioStore = create((set) => ({
       if (volume >= 0.1) {
         volume = 0.1
         clearInterval(interval)
+        audio.muted=false
+        audio.autoplay = false
         state.isFirstTime = false
+        audio.play()
       }
       audio.volume = volume
     }, 100)
@@ -25,7 +32,7 @@ const useAudioStore = create((set) => ({
         audio.volume = 0.1
       }
       
-      audio.play()
+      // audio.play()
       return { bgm: audio, isPlaying: true }
     } else if (!state.isPlaying) {
       state.bgm.play()

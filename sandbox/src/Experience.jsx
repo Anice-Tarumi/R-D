@@ -8,26 +8,15 @@ import SimpleCloud from "./envs/SimpleCloud.jsx"
 import SkyComponent from "./envs/SkyComponent.jsx"
 import Ocean from "./envs/Ocean.jsx"
 import useAudioStore from "./manager/useAudioStore.jsx"
-import { Cloud, Clouds } from "@react-three/drei"
-import * as THREE from "three"
 
 export default function Experience({ canvasRef}) {
   const playerRef = useRef()
   const npcRefs = useRef({})
   const phase = useGame((state) => state.phase)
   const playBGM = useAudioStore((state) => state.playBGM)
-
-  useEffect(() => {
-    playBGM()
-  }, [])
-
   return (
     <>
       <SimpleCloud/>
-      {/* <Clouds material={THREE.MeshBasicMaterial}> */}
-        {/* <Cloud segments={40} bounds={[10, 2, 2]} volume={10} color="orange" position={[0,10,100]} scale={2} visible/>
-        <Cloud seed={1} scale={2} volume={5} color="hotpink" fade={100} position={[0,0,30]}/> */}
-      {/* </Clouds> */}
       <SkyComponent />
       <Ocean/>
       <Physics >

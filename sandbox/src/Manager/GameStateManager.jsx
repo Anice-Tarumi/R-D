@@ -1,19 +1,13 @@
-import React, { useState, useEffect, Suspense, useRef } from "react"
+import React, { Suspense, useRef } from "react"
 import Loader from "../ui/Loader.jsx" // ローディング画面
-import { useProgress } from "@react-three/drei"
 import useGame from "./useGame.jsx"
 import useDialogueStore from "./useDialogueStore.jsx"
 import AddLoadingScreen from "../ui/AddLoadingScreen.jsx"
-import MenuScreen from "../ui/MenuScreen.jsx"
 import ClothChangeButton from "../ui/ClothChangeButton.jsx"
 import ClothChangeUI from "../ui/ClothChangeUI.jsx"
 import useAudioStore from "./useAudioStore.jsx"
 import AudioButton from "../sounds/AudioButton.jsx"
-import MiniMap from "../ui/MiniMap.jsx"
-// import MinimapButton from "../ui/MinimapButton.jsx"
-import { useFrame } from "@react-three/fiber"
-// import TitleScene from "../TitleScene.jsx"
-// import { useFrame } from "@react-three/fiber"
+import { useCallback } from "react"
 
 // メニューボタンのデザインとアニメーション
 const MenuButton = () => {
@@ -44,17 +38,17 @@ const GameStateManager = () => {
   const characterControllerRef = useRef()
   const playBGM = useAudioStore((state) => state.playBGM)
 
-  const talkEnd = () =>
-  {
-    endTalking()
-    endDialogue()
-  }
+  const talkEnd = useCallback(() => {
+    endTalking();
+    endDialogue();
+  }, [endTalking, endDialogue]);
 
   const renderState = () => {
     switch (phase) {
       case 'loading':
         return <Loader />
       case "title":
+        // return <Loader />
       case "transition":
         return (<></>)
       case 'playing':

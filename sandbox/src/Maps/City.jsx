@@ -19,6 +19,7 @@ const City = (position) => {
       if (child.isMesh) {
         child.receiveShadow = true
         child.castShadow = true
+        // child.material.opacity = 0
       }
     })
   }, [gltf])

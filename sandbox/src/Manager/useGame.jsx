@@ -23,7 +23,7 @@ export default create(subscribeWithSelector((set) =>
         {
             set((state) =>
             {
-                // if(state.phase === 'transition')
+                if (state.phase !== 'playing')
                     return { phase: 'playing'}
 
                 return {}
@@ -51,7 +51,7 @@ export default create(subscribeWithSelector((set) =>
         },
         startTalking: () => {
             // console.log("startTalking 実行")
-            console.time("zustand set talking") // ⏱️ 計測開始
+            // console.time("zustand set talking") // ⏱️ 計測開始
             set((state) => {
               if (state.phase === "playing") {
                 // console.log("zustand の set() 実行: phase を 'talking' に変更")
@@ -59,7 +59,7 @@ export default create(subscribeWithSelector((set) =>
               }
               return {}
             })
-            console.timeEnd("zustand set talking") // ⏱️ 計測終了
+            // console.timeEnd("zustand set talking") // ⏱️ 計測終了
           },
           
         endTalking: () =>
