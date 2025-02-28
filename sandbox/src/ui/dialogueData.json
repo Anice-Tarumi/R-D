@@ -5,7 +5,7 @@
       {
         "id": "d1",
         "text": "こんにちは！このフレグランスを知っていますか？",
-        "image": "/images/fre.png",
+        "image": "./images/fre.png",
         "next": "d2"
       },
       {
@@ -36,7 +36,7 @@
       {
         "id": "d2",
         "text": "町で一番の品揃えですよ！",
-        "image": "/images/realcarrot.png",
+        "image": "./images/realcarrot.png",
         "next": null
       },
       {
@@ -62,6 +62,36 @@
       {
         "id": "d2",
         "text": "お話できて嬉しいです！",
+        "next": null
+      }
+    ]
+  },
+  "npc4": {
+    "name": "M2",
+    "dialogues": [
+      {
+        "id": "d1",
+        "text": "やあ！天気が良いですね。",
+        "next": "d2"
+      },
+      {
+        "id": "d2",
+        "text": "こんな日は散歩が最高です。",
+        "next": null
+      }
+    ]
+  },
+  "npc5": {
+    "name": "M3",
+    "dialogues": [
+      {
+        "id": "d1",
+        "text": "こんにちは！ここは初めてですか？",
+        "next": "d2"
+      },
+      {
+        "id": "d2",
+        "text": "この街を楽しんでいってくださいね！",
         "next": null
       }
     ]
